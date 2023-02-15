@@ -8,15 +8,14 @@ html {
 
 body {
 	font-family: ${({ theme }) => theme.fonts.global};
-  //font-family: 'Permanent Marker', cursive;
-	color: ${({ theme }) => theme.colors.lletraGlobal};
   background-color: ${({ theme }) => theme.colors.fons};
+	height: 50vh;
 }
 
 * {
 	color: ${({ theme }) => theme.colors.lletraGlobal};	
 }
-
+${'' /* 
 .App {
 	position: absolute;
   top: 50%;
@@ -51,13 +50,26 @@ button, input  {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+button {
+	margin: 10px 0;
+	background-color: #535b82;
+}
 button:hover {
   border-color: #646cff;
 }
 button:focus, input:focus {
-  outline: 1px solid #646cff;
+  outline: 1px solid #646cff;	
+}
+button:focus {
+	background: #646cff;
 }
 input {
 	border-color: #535b82;
+	flex: 1;
 }
+
+form {
+	display:flex;
+	flex-direction: column;
+} */}
 `;
