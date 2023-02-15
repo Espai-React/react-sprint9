@@ -22,11 +22,9 @@ const FormulariNovaClaudePas = () => {
 			<div className="error">
 				{error ? <span>{error}</span> : <span>{missatge}</span>}
 			</div>
-			<Boto
-				tipus="submit"
-				text="Crear nova conatrasenya"
-				deshabilitat={processant}
-			/>
+			<Boto tipus="submit" deshabilitat={processant}>
+				Crear nova conatrasenya
+			</Boto>
 		</Formulari>
 	);
 };

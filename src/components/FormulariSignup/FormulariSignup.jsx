@@ -43,7 +43,7 @@ const FormulariSignup = () => {
 			/>
 
 			<div className="error">{error && <span>{error}</span>}</div>
-			<Boto tipus="submit" text="Crear usuari" deshabilitat={processant} />
+			<Boto tipus="submit" deshabilitat={processant}>Crear usuari</Boto>
 			<BotoLogo
 				tipus="button"
 				onClick={handleSubmitGoogle}

@@ -34,7 +34,7 @@ const FormulariPerfil = () => {
 				nom="claudePas"
 				referencia={novaClaudePasRef}
 				requerit={false}
-				placeholder="Deixa-ho en blanc si no vols fer canvis"
+				placeholder="deixa-ho en blanc si no vols fer canvis..."
 			/>
 
 			<BlocInput
@@ -43,15 +43,13 @@ const FormulariPerfil = () => {
 				nom="claudePasConfirmacio"
 				referencia={novaClaudePasConfirmacioRef}
 				requerit={false}
-				placeholder="Deixa-ho en blanc si no vols fer canvis"
+				placeholder="deixa-ho en blanc si no vols fer canvis..."
 			/>
 
 			<div className="error">{error && <span>{error}</span>}</div>
 			<Boto
 				tipus="submit"
-				text="Actualitzar usuari"
-				deshabilitat={processant}
-			/>
+				deshabilitat={processant}>Actualitzar usuari</Boto>
 		</Formulari>
 	);
 };

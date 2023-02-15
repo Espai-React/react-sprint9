@@ -8,7 +8,7 @@ function PanellPublic() {
 		<ContenidorPage>
 			<Titol>Benvinguda</Titol>
 			<Link to="login">
-				<Boto text={"Autenticacio"}></Boto>
+				<Boto>Autenticació</Boto>
 			</Link>
 		</ContenidorPage>
 	);

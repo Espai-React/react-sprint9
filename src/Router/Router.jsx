@@ -20,6 +20,7 @@ const Router = () => {
 			<Route path="panellusuari" element={<Usuari />}>
 				<Route index element={<PanellUsuari />} />
 				<Route path="perfilusuari" element={<PerfilUsuari />} />
+				<Route path="canvisusuari" element={<PerfilUsuari />} />
 			</Route>
 		</Routes>
 	);

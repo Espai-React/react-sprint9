@@ -25,7 +25,6 @@ const FormulariLogin = () => {
 				referencia={correuElectronicRef}
 				requerit={true}
 			/>
-
 			<BlocInput
 				etiqueta="Contrasenya"
 				tipus="password"
@@ -33,7 +32,6 @@ const FormulariLogin = () => {
 				referencia={claudePasRef}
 				requerit={true}
 			/>
-
 			<div className="error">
 				{error ? (
 					<span>{error}</span>
@@ -41,7 +39,8 @@ const FormulariLogin = () => {
 					<Link to="/novaClaudePas">No recordes la contrasenya?</Link>
 				)}
 			</div>
-			<Boto tipus="submit" text="Iniciar sessió" deshabilitat={processant} />
+			<Boto tipus="submit" deshabilitat={processant}>
+			Iniciar sessió</Boto>
 			<BotoLogo
 				tipus="button"
 				onClick={handleSubmitGoogle}

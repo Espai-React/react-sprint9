@@ -4,19 +4,20 @@ import { ContenidorPage } from "../../styles/common/ContenidorPage.styles";
 import { Titol } from "../../styles/common/Titol.styles";
 import Boto from "../../components/common/Boto";
 import { Link } from "react-router-dom";
-import { useAutenticacioContext } from "../../context/AutenticacioContext";
 
 function PanellUsuari() {
-	const { usuariLoguejat } = useAutenticacioContext();
 	const { handleLogout } = useFormulari();
 
 	return (
 		<ContenidorPage>
 			<Titol>Panell Usuari</Titol>
 			<Link to="perfilusuari">
-				<Boto text={"Perfil Usuari"}></Boto>
+				<Boto>Dades perfil Usuari</Boto>
 			</Link>
-			<Boto onClick={handleLogout}>Log out</Boto>
+			<Link to="canvisusuari">
+				<Boto>Canviar usuari i contrasenya</Boto>
+			</Link>
+			<Boto onClick={handleLogout}>Abandonar la sessió</Boto>
 		</ContenidorPage>
 	);
 }
