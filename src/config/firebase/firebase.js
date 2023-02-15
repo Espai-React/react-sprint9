@@ -3,13 +3,13 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-	apiKey: "AIzaSyCyywpbKu-xym338kH1C8hv3r-vQtCxb7E",
-	authDomain: "envivo-f665f.firebaseapp.com",
-	projectId: "envivo-f665f",
-	storageBucket: "envivo-f665f.appspot.com",
-	messagingSenderId: "203490706625",
-	appId: "1:203490706625:web:6743701ea60e2f599d0040",
-	measurementId: "G-0GWGJS0LNL",
+	apiKey: import.meta.env.VITE_APP_FIREBASE_APIKEY,
+	authDomain: import.meta.env.VITE_APP_FIREBASE_AUTHDOMAIN,
+	projectId: import.meta.env.VITE_APP_FIREBASE_PROJECTID,
+	storageBucket: import.meta.env.VITE_APP_FIREBASE_STORAGEBUCKET,
+	messagingSenderId: import.meta.env.VITE_APP_FIREBASE_MESSAGINGSENDERID,
+	appId: import.meta.env.VITE_APP_FIREBASE_APPID,
+	measurementId: import.meta.env.VITE_APP_FIREBASE_MEASUREMENTID,
 };
 
 const app = initializeApp(firebaseConfig);
