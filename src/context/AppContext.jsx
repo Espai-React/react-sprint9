@@ -2,10 +2,10 @@ import { createContext, useContext } from "react";
 import { useAutenticacio } from "../lib/hooks/useAutenticacio";
 import { useBasedeDades } from '../lib/hooks/useBasedeDades';
 
-export const AutenticacioContext = createContext();
-export const useAutenticacioContext = () => useContext(AutenticacioContext);
+export const Context = createContext();
+export const useAppContext = () => useContext(Context);
 
-const AutenticacioContextProvider = ({ children }) => {
+const ContextProvider = ({ children }) => {
 	const {
 		gestioUsuari,
 		signup,
@@ -15,8 +15,6 @@ const AutenticacioContextProvider = ({ children }) => {
 		updatepassword,
 		logout,
 	} = useAutenticacio();
-
-	const {} = useBasedeDades();
 
 	const value = {
 		usuariLoguejat:
@@ -32,10 +30,10 @@ const AutenticacioContextProvider = ({ children }) => {
 	};
 
 	return (
-		<AutenticacioContext.Provider value={value}>
+		<Context.Provider value={value}>
 			{!gestioUsuari.loadingUsuari && children}
-		</AutenticacioContext.Provider>
+		</Context.Provider>
 	);
 };
 
-export default AutenticacioContextProvider;
+export default ContextProvider;

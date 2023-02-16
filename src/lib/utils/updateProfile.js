@@ -34,7 +34,6 @@ export const updateProfile = (
 			missatge: "Canvis realitzats corectament",
 		}));
 		navega("/panellusuari");
-		console.log(promeses);
 	} catch (err) {
 		setLogueigUsuari((prev) => ({
 			...prev,

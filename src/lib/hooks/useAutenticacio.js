@@ -15,12 +15,16 @@ export const useAutenticacio = () => {
 	const [gestioUsuari, setGestioUsuari] = useState({
 		usuariLoguejat: null,
 		loadingUsuari: true,
+		administrador: false
 	});
+
+	const { usuariLoguejat, administrador } = gestioUsuari;
+
 	console.log(
 		"Usuari loguejat: ",
-		gestioUsuari.usuariLoguejat === null
+		usuariLoguejat === null
 			? null
-			: `${gestioUsuari.usuariLoguejat.email}, \nid: ${gestioUsuari.usuariLoguejat.uid}`
+			: `${usuariLoguejat.email}, \nid: ${usuariLoguejat.uid}, \nadministrador: ${administrador}`
 	);
 
 	const signup = (correuElectronic, claudePas) =>
@@ -33,22 +37,23 @@ export const useAutenticacio = () => {
 		sendPasswordResetEmail(auth, correuElectronic);
 
 	const updateemail = (correuElectronic) =>
-		updateEmail(gestioUsuari.usuariLoguejat, correuElectronic);
+		updateEmail(usuariLoguejat, correuElectronic);
 
 	const updatepassword = (claudePas) =>
-		updatePassword(gestioUsuari.usuariLoguejat, claudePas);
+		updatePassword(usuariLoguejat, claudePas);
 
 	const logout = () => signOut(auth);
 
 	useEffect(() => {
 		const cancellaSubscripcio = onAuthStateChanged(auth, (user) =>
-			setGestioUsuari({
+			setGestioUsuari((prev) => ({
+				...prev,
 				usuariLoguejat: user,
 				loadingUsuari: false,
-			})
+			}))
 		);
 		return () => cancellaSubscripcio();
-	}, [gestioUsuari.usuariLoguejat]);
+	}, [usuariLoguejat]);
 
 	return {
 		gestioUsuari,

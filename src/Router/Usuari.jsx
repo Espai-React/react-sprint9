@@ -1,8 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useAutenticacioContext } from "../context/AutenticacioContext";
+import { useAppContext } from "../context/AppContext";
 
 const Usuari = () => {
-	const { usuariLoguejat } = useAutenticacioContext();
+	const { usuariLoguejat } = useAppContext();
 
 	return usuariLoguejat === null ? (
 		<Navigate to="/" />

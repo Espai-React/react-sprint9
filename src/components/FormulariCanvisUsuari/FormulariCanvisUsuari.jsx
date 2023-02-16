@@ -3,10 +3,10 @@ import { Formulari } from "../../styles/common/Formulari.styles";
 import BlocInput from "../common/BlocInput";
 import Boto from "../common/Boto";
 import { useFormulari } from "../../lib/hooks/useFormulari";
-import { useAutenticacioContext } from "../../context/AutenticacioContext";
+import { useAppContext } from "../../context/AppContext";
 
 const FormulariCanvisUsuari = () => {
-	const { usuariLoguejat } = useAutenticacioContext();
+	const { usuariLoguejat } = useAppContext();
 	const nouCorreuElectronicRef = useRef();
 	const novaClaudePasRef = useRef();
 	const novaClaudePasConfirmacioRef = useRef();

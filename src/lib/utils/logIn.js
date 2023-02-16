@@ -3,7 +3,6 @@ export const logIn = async (
 	correuElectronicRef,
 	claudePasRef,
 	usuariLoguejat,
-	logueigUsuari,
 	setLogueigUsuari,
 	login,
 	navega

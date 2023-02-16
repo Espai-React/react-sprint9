@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useAutenticacioContext } from "../../context/AutenticacioContext";
+import { useAppContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../utils/signUp";
 import { logIn } from "../utils/logIn";
 import { resetPassword } from "../utils/resetPassword";
-import { updateProfile } from '../utils/updateProfile';
+import { updateProfile } from "../utils/updateProfile";
 import { logOut } from "../utils/logOut";
-import {logueigAmbGoogle} from '../utils/logueigAmbGoogle';
+import { logueigAmbGoogle } from "../utils/logueigAmbGoogle";
 
 export const useFormulari = (
 	correuElectronicRef,
@@ -21,7 +21,7 @@ export const useFormulari = (
 		updateemail,
 		updatepassword,
 		logout,
-	} = useAutenticacioContext();
+	} = useAppContext();
 
 	const [logueigUsuari, setLogueigUsuari] = useState({
 		processant: false,
@@ -48,7 +48,6 @@ export const useFormulari = (
 			correuElectronicRef,
 			claudePasRef,
 			usuariLoguejat,
-			logueigUsuari,
 			setLogueigUsuari,
 			login,
 			navega
@@ -56,7 +55,7 @@ export const useFormulari = (
 
 	const handleSubmitGoogle = () =>
 		logueigAmbGoogle(usuariLoguejat, setLogueigUsuari, navega);
-	
+
 	const handleSubmitNovaClaudePas = (e) =>
 		resetPassword(e, correuElectronicRef, setLogueigUsuari, resetpassword);
 
@@ -75,6 +74,8 @@ export const useFormulari = (
 
 	const handleLogout = () =>
 		logOut(usuariLoguejat, setLogueigUsuari, logout, navega);
+
+	//const handleSubmitDetails = () =>
 
 	return {
 		error: logueigUsuari.error,
