@@ -1,12 +1,12 @@
 import { Titol } from "../../styles/common/Titol.styles";
 import { ContenidorForm } from "../../styles/common/ContenidorForm.styles";
 import { Link } from "react-router-dom";
-import FormulariPerfil from '../FormulariPerfil';
+import FormulariDetallsUsuari from "../FormulariDetallsUsuari";
 
-const PerfilUsuari = () => (
+const DetallsUsuari = () => (
 	<ContenidorForm>
-		<Titol>Actualitzar Perfil</Titol>
-		<FormulariPerfil />
+		<Titol>Detalls Usuari</Titol>
+		<FormulariDetallsUsuari />
 		<div>
 			No vols conservar els canvis?
 			<Link to="/panellusuari">Cancel·lar canvis</Link>
@@ -14,4 +14,4 @@ const PerfilUsuari = () => (
 	</ContenidorForm>
 );
 
-export default PerfilUsuari;
+export default DetallsUsuari;

@@ -5,11 +5,11 @@ export const Label = styled.label`
 	display: flex;
 	flex-direction: column;
 	justify-content: start;
-	gap: .25rem;
+	gap: 0.25rem;
 	align-items: start;
 	font-size: 1.1rem;
 
-	&:focus-within {		
+	&:focus-within {
 		color: ${({ theme }) => theme.colors.titol};
 	}
 
@@ -23,6 +23,10 @@ export const Label = styled.label`
 		&:focus {
 			border-color: ${({ theme }) => theme.colors.voraLilaIntens};
 			color: ${({ theme }) => theme.colors.titol};
+		}
+
+		&[readOnly] {
+			color: ${({ theme }) => theme.colors.missatge};
 		}
 	}
 `;

@@ -5,7 +5,7 @@ import Boto from "../common/Boto";
 import { useFormulari } from "../../lib/hooks/useFormulari";
 import { useAutenticacioContext } from "../../context/AutenticacioContext";
 
-const FormulariPerfil = () => {
+const FormulariCanvisUsuari = () => {
 	const { usuariLoguejat } = useAutenticacioContext();
 	const nouCorreuElectronicRef = useRef();
 	const novaClaudePasRef = useRef();
@@ -47,11 +47,11 @@ const FormulariPerfil = () => {
 			/>
 
 			<div className="error">{error && <span>{error}</span>}</div>
-			<Boto
-				tipus="submit"
-				deshabilitat={processant}>Actualitzar usuari</Boto>
+			<Boto tipus="submit" deshabilitat={processant}>
+				Aplicar canvis
+			</Boto>
 		</Formulari>
 	);
 };
 
-export default FormulariPerfil;
+export default FormulariCanvisUsuari;

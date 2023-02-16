@@ -5,8 +5,9 @@ import Login from "../components/Login";
 import PanellUsuari from "../pages/PanellUsuari";
 import Public from "./Public";
 import Usuari from "./Usuari";
-import NovaClaudePas from '../components/NovaClaudePas';
-import PerfilUsuari from "../components/PerfilUsuari";
+import ClaudePasOblidada from "../components/ClaudePasOblidada";
+import DetallsUsuari from "../components/DetallsUsuari";
+import CanvisUsuari from '../components/CanvisUsuari/index';
 
 const Router = () => {
 	return (
@@ -15,12 +16,12 @@ const Router = () => {
 				<Route index element={<PanellPublic />} />
 				<Route path="login" element={<Login />} />
 				<Route path="signup" element={<Signup />} />
-				<Route path="novaclaudepas" element={<NovaClaudePas />} />
+				<Route path="claudepasoblidada" element={<ClaudePasOblidada />} />
 			</Route>
 			<Route path="panellusuari" element={<Usuari />}>
 				<Route index element={<PanellUsuari />} />
-				<Route path="perfilusuari" element={<PerfilUsuari />} />
-				<Route path="canvisusuari" element={<PerfilUsuari />} />
+				<Route path="detallsusuari" element={<DetallsUsuari />} />
+				<Route path="canvisusuari" element={<CanvisUsuari />} />
 			</Route>
 		</Routes>
 	);

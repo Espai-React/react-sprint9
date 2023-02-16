@@ -3,7 +3,7 @@ import { Titol } from "../../styles/common/Titol.styles"
 import FormulariNovaClaudePas from '../FormulariNovaClaudePas/index';
 import {Link} from 'react-router-dom';
 
-const NovaClaudePas = () => (
+const ClaudePasOblidada = () => (
 	<ContenidorForm>
 		<Titol>Crear nova constrasenya</Titol>
 		<FormulariNovaClaudePas />
@@ -13,4 +13,4 @@ const NovaClaudePas = () => (
 	</ContenidorForm>
 );
 
-export default NovaClaudePas;
+export default ClaudePasOblidada;

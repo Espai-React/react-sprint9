@@ -36,11 +36,12 @@ const FormulariLogin = () => {
 				{error ? (
 					<span>{error}</span>
 				) : (
-					<Link to="/novaClaudePas">No recordes la contrasenya?</Link>
+					<Link to="/claudepasoblidada">No recordes la contrasenya?</Link>
 				)}
 			</div>
 			<Boto tipus="submit" deshabilitat={processant}>
-			Iniciar sessió</Boto>
+				Iniciar sessió
+			</Boto>
 			<BotoLogo
 				tipus="button"
 				onClick={handleSubmitGoogle}

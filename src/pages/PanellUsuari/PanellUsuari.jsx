@@ -11,11 +11,11 @@ function PanellUsuari() {
 	return (
 		<ContenidorPage>
 			<Titol>Panell Usuari</Titol>
-			<Link to="perfilusuari">
-				<Boto>Dades perfil Usuari</Boto>
+			<Link to="detallsusuari">
+				<Boto>Detalls Usuari</Boto>
 			</Link>
 			<Link to="canvisusuari">
-				<Boto>Canviar usuari i contrasenya</Boto>
+				<Boto>Canviar correu i contrasenya</Boto>
 			</Link>
 			<Boto onClick={handleLogout}>Abandonar la sessió</Boto>
 		</ContenidorPage>
