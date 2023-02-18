@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 	signOut,
-	onAuthStateChanged,
 	sendPasswordResetEmail,
 	updatePassword,
 	updateEmail,
@@ -11,21 +10,12 @@ import {
 import { auth } from "../../config/firebase/firebase";
 
 export const useAutenticacio = () => {
-
 	const [gestioUsuari, setGestioUsuari] = useState({
 		usuariLoguejat: null,
 		loadingUsuari: true,
-		administrador: false
+		administrador: false,
 	});
-
-	const { usuariLoguejat, administrador } = gestioUsuari;
-
-	console.log(
-		"Usuari loguejat: ",
-		usuariLoguejat === null
-			? null
-			: `${usuariLoguejat.email}, \nid: ${usuariLoguejat.uid}, \nadministrador: ${administrador}`
-	);
+	const { usuariLoguejat } = gestioUsuari;
 
 	const signup = (correuElectronic, claudePas) =>
 		createUserWithEmailAndPassword(auth, correuElectronic, claudePas);
@@ -44,19 +34,9 @@ export const useAutenticacio = () => {
 
 	const logout = () => signOut(auth);
 
-	useEffect(() => {
-		const cancellaSubscripcio = onAuthStateChanged(auth, (user) =>
-			setGestioUsuari((prev) => ({
-				...prev,
-				usuariLoguejat: user,
-				loadingUsuari: false,
-			}))
-		);
-		return () => cancellaSubscripcio();
-	}, [usuariLoguejat]);
-
 	return {
 		gestioUsuari,
+		setGestioUsuari,
 		signup,
 		login,
 		resetpassword,
@@ -65,3 +45,4 @@ export const useAutenticacio = () => {
 		logout,
 	};
 };
+

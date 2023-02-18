@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Formulari } from "../../styles/common/Formulari.styles";
 import BlocInput from "../common/BlocInput";
 import Boto from "../common/Boto";
-import { useFormulari } from "../../lib/hooks/useFormulari";
+import { useFormulariAutenticacio } from "../../lib/hooks/useFormulariAutenticacio";
 import { useAppContext } from "../../context/AppContext";
 
 const FormulariCanvisUsuari = () => {
@@ -11,11 +11,12 @@ const FormulariCanvisUsuari = () => {
 	const novaClaudePasRef = useRef();
 	const novaClaudePasConfirmacioRef = useRef();
 
-	const { error, processant, handleSubmitUpdateProfile } = useFormulari(
-		nouCorreuElectronicRef,
-		novaClaudePasRef,
-		novaClaudePasConfirmacioRef
-	);
+	const { error, processant, handleSubmitUpdateProfile } =
+		useFormulariAutenticacio(
+			nouCorreuElectronicRef,
+			novaClaudePasRef,
+			novaClaudePasConfirmacioRef
+		);
 
 	return (
 		<Formulari id="signup" onSubmit={handleSubmitUpdateProfile}>

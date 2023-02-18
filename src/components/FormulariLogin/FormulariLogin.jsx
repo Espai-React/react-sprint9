@@ -3,7 +3,7 @@ import { Formulari } from "../../styles/common/Formulari.styles";
 import { Link } from "react-router-dom";
 import BlocInput from "../common/BlocInput";
 import Boto from "../common/Boto";
-import { useFormulari } from "../../lib/hooks/useFormulari";
+import { useFormulariAutenticacio } from "../../lib/hooks/useFormulariAutenticacio";
 import { logosLogin } from "../../lib/constants/logosLogin";
 import { BotoLogo } from "../../styles/common/BotoLogo.styles";
 
@@ -12,7 +12,7 @@ const FormulariLogin = () => {
 	const claudePasRef = useRef();
 
 	const { error, processant, handleSubmitLogin, handleSubmitGoogle } =
-		useFormulari(correuElectronicRef, claudePasRef);
+		useFormulariAutenticacio(correuElectronicRef, claudePasRef);
 
 	const logoGoogle = logosLogin.logoGoogle;
 

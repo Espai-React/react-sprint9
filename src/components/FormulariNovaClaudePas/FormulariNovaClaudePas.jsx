@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useFormulari } from "../../lib/hooks/useFormulari";
+import { useFormulariAutenticacio } from "../../lib/hooks/useFormulariAutenticacio";
 import { Formulari } from "../../styles/common/Formulari.styles";
 import BlocInput from "../common/BlocInput/BlocInput";
 import Boto from "../common/Boto";
@@ -8,7 +8,7 @@ const FormulariNovaClaudePas = () => {
 	const correuElectronicRef = useRef();
 
 	const { error, processant, missatge, handleSubmitNovaClaudePas } =
-		useFormulari(correuElectronicRef);
+		useFormulariAutenticacio(correuElectronicRef);
 
 	return (
 		<Formulari id="novaClaudePas" onSubmit={handleSubmitNovaClaudePas}>

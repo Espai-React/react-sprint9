@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Formulari } from "../../styles/common/Formulari.styles";
 import BlocInput from "../common/BlocInput";
 import Boto from "../common/Boto";
-import { useFormulari } from "../../lib/hooks/useFormulari";
+import { useFormulariUsuari } from "../../lib/hooks/useFormulariUsuari";
 import { useAppContext } from "../../context/AppContext";
 
 const FormulariDetallsUsuari = () => {
@@ -11,14 +11,14 @@ const FormulariDetallsUsuari = () => {
 	const cognomRef = useRef();
 	const telefonRef = useRef();
 
-	const { error, processant, handleSubmitUpdateDetails } = useFormulari(
+	const { error, processant, handleSubmitDetailsUsuari } = useFormulariUsuari(
 		nomRef,
 		cognomRef,
 		telefonRef
 	);
 
 	return (
-		<Formulari id="dadesUsuari" onSubmit={handleSubmitUpdateDetails}>
+		<Formulari id="dadesUsuari" onSubmit={handleSubmitDetailsUsuari}>
 			<BlocInput
 				etiqueta="Correu electrònic"
 				tipus="email"

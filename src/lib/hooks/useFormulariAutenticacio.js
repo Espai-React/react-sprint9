@@ -1,5 +1,5 @@
+import { useAutenticacio } from "./useAutenticacio";
 import { useState } from "react";
-import { useAppContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../utils/signUp";
 import { logIn } from "../utils/logIn";
@@ -8,27 +8,28 @@ import { updateProfile } from "../utils/updateProfile";
 import { logOut } from "../utils/logOut";
 import { logueigAmbGoogle } from "../utils/logueigAmbGoogle";
 
-export const useFormulari = (
+export const useFormulariAutenticacio = (
 	correuElectronicRef,
 	claudePasRef,
 	clauePasConfirmacioRef
 ) => {
 	const {
-		usuariLoguejat,
+		gestioUsuari: { usuariLoguejat, administrador },
 		signup,
 		login,
 		resetpassword,
 		updateemail,
 		updatepassword,
 		logout,
-	} = useAppContext();
+	} = useAutenticacio();
+
+	const navega = useNavigate();
 
 	const [logueigUsuari, setLogueigUsuari] = useState({
 		processant: false,
 		error: "",
 		missatge: "",
 	});
-	const navega = useNavigate();
 
 	const handleSubmitSignup = (e) =>
 		signUp(
@@ -37,6 +38,7 @@ export const useFormulari = (
 			claudePasRef,
 			clauePasConfirmacioRef,
 			usuariLoguejat,
+			administrador,
 			setLogueigUsuari,
 			signup,
 			navega
@@ -74,8 +76,6 @@ export const useFormulari = (
 
 	const handleLogout = () =>
 		logOut(usuariLoguejat, setLogueigUsuari, logout, navega);
-
-	//const handleSubmitDetails = () =>
 
 	return {
 		error: logueigUsuari.error,

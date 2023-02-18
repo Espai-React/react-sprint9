@@ -1,12 +1,25 @@
-import React from "react";
-import { useFormulari } from "../../lib/hooks/useFormulari";
+import { useFormulariAutenticacio } from "../../lib/hooks/useFormulariAutenticacio";
 import { ContenidorPage } from "../../styles/common/ContenidorPage.styles";
 import { Titol } from "../../styles/common/Titol.styles";
 import Boto from "../../components/common/Boto";
 import { Link } from "react-router-dom";
+import { useFormulariUsuari } from "../../lib/hooks/useFormulariUsuari";
+import { useAppContext } from "../../context/AppContext";
+import { useEffect } from "react";
 
 function PanellUsuari() {
-	const { handleLogout } = useFormulari();
+	/* const { usuariLoguejat, uid, administrador } = useAppContext();
+	const { handleCreateUser } = useFormulariUsuari(
+		usuariLoguejat,
+		uid,
+		administrador
+	);
+	console.log(usuariLoguejat, uid, administrador); */
+	const { handleLogout } = useFormulariAutenticacio();
+/* 
+	useEffect(() => {
+		handleCreateUser();
+	}, [usuariLoguejat]); */
 
 	return (
 		<ContenidorPage>

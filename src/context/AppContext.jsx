@@ -1,37 +1,56 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { useAutenticacio } from "../lib/hooks/useAutenticacio";
-import { useBasedeDades } from '../lib/hooks/useBasedeDades';
+import { useUsuaris } from "../lib/hooks/useUsuaris";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth, refUsuaris } from "../config/firebase/firebase";
+import { onSnapshot } from "firebase/firestore";
 
 export const Context = createContext();
 export const useAppContext = () => useContext(Context);
 
 const ContextProvider = ({ children }) => {
 	const {
-		gestioUsuari,
-		signup,
-		login,
-		resetpassword,
-		updateemail,
-		updatepassword,
-		logout,
+		gestioUsuari: { usuariLoguejat, loadingUsuari, administrador },
+		setGestioUsuari,
 	} = useAutenticacio();
 
+	const {
+		dadesUsuari: { nom, cognom, telefon },
+	} = useUsuaris();
+
+	console.log(
+		"Usuari loguejat: \n",
+		usuariLoguejat === null
+			? null
+			: `${usuariLoguejat.email} \n id: ${usuariLoguejat.uid} \n administrador: ${administrador} \n ${nom} \n ${cognom} \n ${telefon}`
+	);
+
+	useEffect(() => {
+		const cancellaSubscripcio = () => {
+			onAuthStateChanged(auth, (user) => {
+				setGestioUsuari((prev) => ({
+					...prev,
+					usuariLoguejat: user,
+					loadingUsuari: false,
+				}));
+			});
+			onSnapshot(refUsuaris, (snapshot) => {
+				const dadesdbUsuaris = snapshot.docs.map((doc) => ({ ...doc.data() }));
+				console.log("Dades usuaris: ", dadesdbUsuaris);
+			});
+		};
+		return () => cancellaSubscripcio();
+	}, []);
+
 	const value = {
-		usuariLoguejat:
-			gestioUsuari.usuariLoguejat === null
-				? null
-				: gestioUsuari.usuariLoguejat.email,
-		signup,
-		login,
-		resetpassword,
-		updateemail,
-		updatepassword,
-		logout,
+		usuariLoguejat: usuariLoguejat === null ? null : usuariLoguejat.email,
+		uid: usuariLoguejat === null ? null : usuariLoguejat.uid,
+		administrador: usuariLoguejat === null ? null : administrador,
 	};
 
 	return (
 		<Context.Provider value={value}>
-			{!gestioUsuari.loadingUsuari && children}
+			{!loadingUsuari && children}
 		</Context.Provider>
 	);
 };
