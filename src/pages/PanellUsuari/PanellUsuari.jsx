@@ -8,18 +8,18 @@ import { useAppContext } from "../../context/AppContext";
 import { useEffect } from "react";
 
 function PanellUsuari() {
-	/* const { usuariLoguejat, uid, administrador } = useAppContext();
+	const { usuariLoguejat, authID, administrador } = useAppContext();
+
 	const { handleCreateUser } = useFormulariUsuari(
 		usuariLoguejat,
-		uid,
+		authID,
 		administrador
 	);
-	console.log(usuariLoguejat, uid, administrador); */
 	const { handleLogout } = useFormulariAutenticacio();
-/* 
+	
 	useEffect(() => {
-		handleCreateUser();
-	}, [usuariLoguejat]); */
+		if (usuariLoguejat !== null) handleCreateUser();
+	}, []);
 
 	return (
 		<ContenidorPage>

@@ -22,7 +22,7 @@ const ContextProvider = ({ children }) => {
 		"Usuari loguejat: \n",
 		usuariLoguejat === null
 			? null
-			: `${usuariLoguejat.email} \n id: ${usuariLoguejat.uid} \n administrador: ${administrador} \n ${nom} \n ${cognom} \n ${telefon}`
+			: `id: ${usuariLoguejat.uid} \n${usuariLoguejat.email}  \n administrador: ${administrador} \n${nom} \n${cognom} \n${telefon}`
 	);
 
 	useEffect(() => {
@@ -43,8 +43,8 @@ const ContextProvider = ({ children }) => {
 	}, []);
 
 	const value = {
+		authID: usuariLoguejat === null ? null : usuariLoguejat.uid,
 		usuariLoguejat: usuariLoguejat === null ? null : usuariLoguejat.email,
-		uid: usuariLoguejat === null ? null : usuariLoguejat.uid,
 		administrador: usuariLoguejat === null ? null : administrador,
 	};
 

@@ -4,7 +4,6 @@ export const signUp = async (
 	claudePasRef,
 	clauePasConfirmacioRef,
 	usuariLoguejat,
-	administrador,
 	setLogueigUsuari,
 	signup,
 	navega
@@ -20,7 +19,6 @@ export const signUp = async (
 			...prev,
 			error: "Les contrasenyes no coincideixen",
 		}));
-
 		return;
 	}
 
@@ -41,6 +39,4 @@ export const signUp = async (
 		...prev,
 		processant: false,
 	}));
-
-	return { usuariLoguejat, administrador };
 };

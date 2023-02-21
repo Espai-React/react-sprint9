@@ -2,17 +2,17 @@ import { updateDoc, addDoc } from "firebase/firestore";
 import { refUsuaris } from "../../config/firebase/firebase";
 import { useState } from "react";
 
-export const useUsuaris = (usuariLoguejat, uid, administrador) => {
+export const useUsuaris = () => {
 	const [dadesUsuari, setDadesUsuari] = useState({
-		id: uid,
-		correuElectronic: usuariLoguejat,
-		administrador: administrador,
+		authID: "id",
+		correuElectronic: "correu",
+		administrador: false,
 		nom: "nom",
 		cognom: "cognom",
-		telefon: "telefon",
+		telefon: "telefon"
 	});
 
-	const crearusuari = (dadesUsuari) => {
+	const crearusuari = () => {		
 		addDoc(refUsuaris, dadesUsuari);
 	};
 
@@ -21,3 +21,4 @@ export const useUsuaris = (usuariLoguejat, uid, administrador) => {
 
 	return { dadesUsuari, setDadesUsuari, crearusuari, actualitzarusuari };
 };
+

@@ -14,7 +14,7 @@ export const useFormulariAutenticacio = (
 	clauePasConfirmacioRef
 ) => {
 	const {
-		gestioUsuari: { usuariLoguejat, administrador },
+		gestioUsuari: { usuariLoguejat },
 		signup,
 		login,
 		resetpassword,
@@ -38,7 +38,6 @@ export const useFormulariAutenticacio = (
 			claudePasRef,
 			clauePasConfirmacioRef,
 			usuariLoguejat,
-			administrador,
 			setLogueigUsuari,
 			signup,
 			navega

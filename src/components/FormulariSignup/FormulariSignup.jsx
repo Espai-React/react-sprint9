@@ -7,15 +7,9 @@ import { logosLogin } from "../../lib/constants/logosLogin";
 import { BotoLogo } from "../../styles/common/BotoLogo.styles";
 import { useFormulariUsuari } from "../../lib/hooks/useFormulariUsuari";
 import { useAppContext } from "../../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const FormulariSignup = () => {
-	const { usuariLoguejat, uid, administrador } = useAppContext();
-	const { handleCreateUser } = useFormulariUsuari(
-		usuariLoguejat,
-		uid,
-		administrador
-	);
-	console.log(usuariLoguejat, uid, administrador);
 	const correuElectronicRef = useRef();
 	const claudePasRef = useRef();
 	const claudePasConfirmacioRef = useRef();
@@ -29,17 +23,8 @@ const FormulariSignup = () => {
 
 	const logoGoogle = logosLogin.logoGoogle;
 
-	const handleDoble = async (e) => {
-		handleSubmitSignup(e);
-		await handleCreateUser();
-	}
-
-	/* useEffect(() => {
-		handleCreateUser();
-	}, [usuariLoguejat]); */
-
 	return (
-		<Formulari id="signup" onSubmit={handleDoble}>
+		<Formulari id="signup" onSubmit={handleSubmitSignup}>
 			<BlocInput
 				etiqueta="Correu electrònic"
 				tipus="email"
