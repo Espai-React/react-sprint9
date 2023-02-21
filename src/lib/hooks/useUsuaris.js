@@ -12,7 +12,7 @@ export const useUsuaris = () => {
 		telefon: "telefon"
 	});
 
-	const crearusuari = () => {		
+	const crearusuari = () => {
 		addDoc(refUsuaris, dadesUsuari);
 	};
 

@@ -7,25 +7,14 @@ export const crearUsuari = async (
 	authID,
 	administrador
 ) => {
-	console.log(usuariLoguejat, authID, administrador);
-
 	setProcesUsuari({
 		processant: false,
 		error: "",
 		missatge: "",
-	});
-	await setDadesUsuari((prev) => ({
-		
-		authID,
-		correuElectronic: usuariLoguejat,
-		administrador,
-		nom: "nom2",
-		cognom: "cognom2",
-		telefon: "telefon2",
-	}));
-	console.log(dadesUsuari);
-
+	});	
+	
 	try {
+		console.log(dadesUsuari);
 		await crearusuari(dadesUsuari);
 		setProcesUsuari((prev) => ({
 			...prev,

@@ -15,7 +15,7 @@ export const useFormulariUsuari = (usuariLoguejat, authID, administrador) => {
 		missatge: "",
 	});
 
-	const handleCreateUser = () => 
+	const handleCreateUser = () =>
 		crearUsuari(
 			dadesUsuari,
 			setDadesUsuari,
@@ -43,6 +43,8 @@ export const useFormulariUsuari = (usuariLoguejat, authID, administrador) => {
 		error: procesUsuari.error,
 		processant: procesUsuari.processant,
 		missatge: procesUsuari.missatge,
+		dadesUsuari,
+		setDadesUsuari,
 		handleCreateUser,
 		handleSubmitDetailsUsuari,
 	};

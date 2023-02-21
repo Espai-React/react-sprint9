@@ -1,13 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Formulari } from "../../styles/common/Formulari.styles";
 import BlocInput from "../common/BlocInput";
 import Boto from "../common/Boto";
 import { useFormulariAutenticacio } from "../../lib/hooks/useFormulariAutenticacio";
 import { logosLogin } from "../../lib/constants/logosLogin";
 import { BotoLogo } from "../../styles/common/BotoLogo.styles";
-import { useFormulariUsuari } from "../../lib/hooks/useFormulariUsuari";
-import { useAppContext } from "../../context/AppContext";
-import { useNavigate } from "react-router-dom";
 
 const FormulariSignup = () => {
 	const correuElectronicRef = useRef();

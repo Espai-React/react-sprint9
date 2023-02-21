@@ -9,8 +9,9 @@ import { useEffect } from "react";
 
 function PanellUsuari() {
 	const { usuariLoguejat, authID, administrador } = useAppContext();
+	console.log(usuariLoguejat, authID, administrador);
 
-	const { handleCreateUser } = useFormulariUsuari(
+	const { dadesUsuari, setDadesUsuari, handleCreateUser } = useFormulariUsuari(
 		usuariLoguejat,
 		authID,
 		administrador
@@ -18,12 +19,23 @@ function PanellUsuari() {
 	const { handleLogout } = useFormulariAutenticacio();
 	
 	useEffect(() => {
-		if (usuariLoguejat !== null) handleCreateUser();
-	}, []);
+		console.log("aquí form panell");
+		setDadesUsuari((prev) => ({
+			...prev,
+			authID,
+			correuElectronic: usuariLoguejat,
+			nom: "nom2",
+			cognom: "cognom2",
+			telefon: "telefon2"
+		}));
+
+		console.log(dadesUsuari);
+		handleCreateUser();
+	}, [usuariLoguejat]);
 
 	return (
 		<ContenidorPage>
-			<Titol>Panell Usuari</Titol>
+			<Titol>Panell Usuari {dadesUsuari.authID}{dadesUsuari.nom}</Titol>
 			<Link to="detallsusuari">
 				<Boto>Detalls Usuari</Boto>
 			</Link>
