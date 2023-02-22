@@ -39,7 +39,7 @@ export const signUp = async (
 			...prev,
 			missatge: `Nou usuari: ${usuariLoguejat}`,
 		}));
-		navega("/panellusuari");
+		navega("/usuari");
 	} catch (err) {
 		setLogueigUsuari((prev) => ({
 			...prev,

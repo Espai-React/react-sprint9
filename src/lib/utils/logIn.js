@@ -20,7 +20,7 @@ export const logIn = async (
 			...prev,
 			missatge: `Nova sessió usuari: ${usuariLoguejat}`,
 		}));
-		navega("/panellusuari");
+		navega("/usuari");
 	} catch (err) {
 		let error;
 		switch (err.message) {

@@ -20,7 +20,7 @@ export const logueigAmbGoogle = async (
 			processant: true,
 			missatge: `Nova sessió de Google usuari: ${usuariLoguejat}`,
 		});
-		navega("/panellusuari");
+		navega("/usuari");
 	} catch (err) {
 		setLogueigUsuari((prev) => ({
 			...prev,

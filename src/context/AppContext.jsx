@@ -40,7 +40,7 @@ const ContextProvider = ({ children }) => {
 			});
 		};
 		return () => cancellaSubscripcio();
-	}, []);
+	}, [usuariLoguejat]);
 
 	const value = {
 		authID: usuariLoguejat === null ? null : usuariLoguejat.uid,

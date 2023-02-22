@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 
-const Usuari = () => {
+const LayoutUsuari = () => {
 	const { usuariLoguejat } = useAppContext();
 
 	return usuariLoguejat === null ? (
@@ -13,4 +13,4 @@ const Usuari = () => {
 	);
 };
 
-export default Usuari;
+export default LayoutUsuari;

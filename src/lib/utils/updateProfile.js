@@ -33,7 +33,7 @@ export const updateProfile = (
 			...prev,
 			missatge: "Canvis realitzats corectament",
 		}));
-		navega("/panellusuari");
+		navega("/usuari");
 	} catch (err) {
 		setLogueigUsuari((prev) => ({
 			...prev,

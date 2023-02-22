@@ -9,7 +9,7 @@ const DetallsUsuari = () => (
 		<FormulariDetallsUsuari />
 		<div>
 			No vols conservar els canvis?
-			<Link to="/panellusuari">Cancel·lar canvis</Link>
+			<Link to="/usuari">Cancel·lar canvis</Link>
 		</div>
 	</ContenidorForm>
 );
