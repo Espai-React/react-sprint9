@@ -1,6 +1,3 @@
-import { addDoc, doc, setDoc } from "firebase/firestore";
-import { db, refUsuaris } from "../../config/firebase/firebase";
-
 export const signUp = async (
 	e,
 	correuElectronicRef,
@@ -9,6 +6,7 @@ export const signUp = async (
 	usuariLoguejat,
 	setLogueigUsuari,
 	signup,
+	setusuari,
 	navega
 ) => {
 	e.preventDefault();
@@ -26,24 +24,42 @@ export const signUp = async (
 		return;
 	}
 
+	let dadesSignUp =
+		claudePasRef.current.value === import.meta.env.VITE_APP_ADMIN_CLAUEPAS
+			? {
+					correuElectronic: correuElectronicRef.current.value,
+					administrador: true,
+				}
+			: {
+					correuElectronic: correuElectronicRef.current.value,
+					administrador: false,
+				};
+
 	try {
 		const usuari = await signup(
 			correuElectronicRef.current.value,
 			claudePasRef.current.value
 		);
-		await setDoc(doc(db, "usuaris", usuari.user.uid), {
-			correuElectronic: usuari.user.email,
-			administrador: false,
-		});
+		await setusuari("usuaris", usuari.user.uid, dadesSignUp);
 		setLogueigUsuari((prev) => ({
 			...prev,
 			missatge: `Nou usuari: ${usuariLoguejat}`,
 		}));
-		navega("/usuari");
+		dadesSignUp.administrador ? navega("/admin") : navega("/usuari");
 	} catch (err) {
+		console.log(err.message);
+		let error;
+		switch (err.message) {
+			case "Firebase: Error (auth/email-already-in-use).":
+				error = "Correu electrònic ja en ús";
+				break;
+			default:
+				error = "Error en crear nou usuari";
+				break;
+		}
 		setLogueigUsuari((prev) => ({
 			...prev,
-			error: "Error en crear nou usuari",
+			error,
 		}));
 	}
 	setLogueigUsuari((prev) => ({

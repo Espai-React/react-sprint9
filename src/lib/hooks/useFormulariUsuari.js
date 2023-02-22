@@ -5,8 +5,13 @@ import { useUsuaris } from "./useUsuaris";
 import { crearUsuari } from "../utils/crearUsuari";
 
 export const useFormulariUsuari = (usuariLoguejat, authID, administrador) => {
-	const { dadesUsuari, setDadesUsuari, crearusuari, actualitzarusuari } =
-		useUsuaris();
+	const {
+		dadesUsuari,
+		setDadesUsuari,
+		crearusuari,
+		setusuari,
+		actualitzarusuari,
+	} = useUsuaris();
 	const navega = useNavigate();
 
 	const [procesUsuari, setProcesUsuari] = useState({
@@ -15,8 +20,7 @@ export const useFormulariUsuari = (usuariLoguejat, authID, administrador) => {
 		missatge: "",
 	});
 
-	const handleCreateUser = () => {
-		console.log(dadesUsuari)
+	const handleCreateUser = () =>
 		crearUsuari(
 			dadesUsuari,
 			setDadesUsuari,
@@ -25,8 +29,7 @@ export const useFormulariUsuari = (usuariLoguejat, authID, administrador) => {
 			usuariLoguejat,
 			authID,
 			administrador
-			);
-		}
+		);
 
 	const handleSubmitDetailsUsuari = (e) =>
 		actualitzarDetallsUsuari(

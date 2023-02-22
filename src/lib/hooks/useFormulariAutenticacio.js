@@ -7,6 +7,7 @@ import { resetPassword } from "../utils/resetPassword";
 import { updateProfile } from "../utils/updateProfile";
 import { logOut } from "../utils/logOut";
 import { logueigAmbGoogle } from "../utils/logueigAmbGoogle";
+import { useUsuaris } from "./useUsuaris";
 
 export const useFormulariAutenticacio = (
 	correuElectronicRef,
@@ -22,6 +23,8 @@ export const useFormulariAutenticacio = (
 		updatepassword,
 		logout,
 	} = useAutenticacio();
+
+	const { setusuari } = useUsuaris();
 
 	const navega = useNavigate();
 
@@ -40,6 +43,7 @@ export const useFormulariAutenticacio = (
 			usuariLoguejat,
 			setLogueigUsuari,
 			signup,
+			setusuari,
 			navega
 		);
 

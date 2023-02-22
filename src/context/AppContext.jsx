@@ -27,12 +27,13 @@ const ContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		const cancellaSubscripcio = () => {
+			
 			onAuthStateChanged(auth, (user) => {
-				setGestioUsuari((prev) => ({
-					...prev,
+				setGestioUsuari({
 					usuariLoguejat: user,
 					loadingUsuari: false,
-				}));
+					administrador: false
+				});
 			});
 			onSnapshot(refUsuaris, (snapshot) => {
 				const dadesdbUsuaris = snapshot.docs.map((doc) => ({ ...doc.data() }));

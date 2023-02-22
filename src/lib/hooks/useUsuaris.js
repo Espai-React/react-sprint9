@@ -1,15 +1,14 @@
 import { updateDoc, addDoc, setDoc, doc } from "firebase/firestore";
-import { refUsuaris } from "../../config/firebase/firebase";
+import { db, refUsuaris } from "../../config/firebase/firebase";
 import { useState } from "react";
 
 export const useUsuaris = () => {
 	const [dadesUsuari, setDadesUsuari] = useState({
-		authID: null,
 		correuElectronic: null,
-		administrador: false,
-		nom: "nom",
-		cognom: "cognom",
-		telefon: "telefon",
+		administrador: null,
+		nom: null,
+		cognom: null,
+		telefon: null,
 	});
 
 	const crearusuari = (refUsuaris, dadesUsuari) => {
@@ -17,7 +16,7 @@ export const useUsuaris = () => {
 	};
 
 	const setusuari = (nomdb, authID, dadesUsuari) => {
-		setDoc(doc(db, nomdb, authID), { dadesUsuari });
+		setDoc(doc(db, nomdb, authID), dadesUsuari);
 	};
 
 	const actualitzarusuari = (dadesUsuari) =>

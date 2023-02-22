@@ -7,7 +7,7 @@ import { useFormulariUsuari } from "../../lib/hooks/useFormulariUsuari";
 import { useAppContext } from "../../context/AppContext";
 import { useEffect } from "react";
 
-function PanellUsuari() {
+function PanellAdmin() {
 	const { usuariLoguejat, authID, administrador } = useAppContext();
 	console.log(usuariLoguejat, authID, administrador);
 
@@ -22,7 +22,7 @@ function PanellUsuari() {
 	return (
 		<ContenidorPage>
 			<Titol>
-				Panell Usuari
+				Panell Admin
 				<p>
 					{dadesUsuari.authID}
 					{usuariLoguejat}
@@ -39,4 +39,4 @@ function PanellUsuari() {
 	);
 }
 
-export default PanellUsuari;
+export default PanellAdmin;
