@@ -14,7 +14,6 @@ export const crearUsuari = async (
 	});	
 	
 	try {
-		console.log(dadesUsuari);
 		await crearusuari(dadesUsuari);
 		setProcesUsuari((prev) => ({
 			...prev,

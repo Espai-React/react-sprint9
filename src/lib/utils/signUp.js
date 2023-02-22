@@ -1,3 +1,6 @@
+import { addDoc, doc, setDoc } from "firebase/firestore";
+import { db, refUsuaris } from "../../config/firebase/firebase";
+
 export const signUp = async (
 	e,
 	correuElectronicRef,
@@ -14,6 +17,7 @@ export const signUp = async (
 		error: "",
 		missatge: "",
 	});
+
 	if (claudePasRef.current.value !== clauePasConfirmacioRef.current.value) {
 		setLogueigUsuari((prev) => ({
 			...prev,
@@ -23,7 +27,14 @@ export const signUp = async (
 	}
 
 	try {
-		await signup(correuElectronicRef.current.value, claudePasRef.current.value);
+		const usuari = await signup(
+			correuElectronicRef.current.value,
+			claudePasRef.current.value
+		);
+		await setDoc(doc(db, "usuaris", usuari.user.uid), {
+			correuElectronic: usuari.user.email,
+			administrador: false,
+		});
 		setLogueigUsuari((prev) => ({
 			...prev,
 			missatge: `Nou usuari: ${usuariLoguejat}`,

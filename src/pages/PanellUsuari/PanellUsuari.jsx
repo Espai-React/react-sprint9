@@ -16,26 +16,15 @@ function PanellUsuari() {
 		authID,
 		administrador
 	);
-	const { handleLogout } = useFormulariAutenticacio();
-	
-	useEffect(() => {
-		console.log("aquí form panell");
-		setDadesUsuari((prev) => ({
-			...prev,
-			authID,
-			correuElectronic: usuariLoguejat,
-			nom: "nom2",
-			cognom: "cognom2",
-			telefon: "telefon2"
-		}));
 
-		console.log(dadesUsuari);
-		handleCreateUser();
-	}, [usuariLoguejat]);
+	const { handleLogout } = useFormulariAutenticacio();
 
 	return (
 		<ContenidorPage>
-			<Titol>Panell Usuari {dadesUsuari.authID}{dadesUsuari.nom}</Titol>
+			<Titol>
+				Panell Usuari {dadesUsuari.authID}
+				{dadesUsuari.nom}
+			</Titol>
 			<Link to="detallsusuari">
 				<Boto>Detalls Usuari</Boto>
 			</Link>
