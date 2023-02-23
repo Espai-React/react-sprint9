@@ -2,8 +2,8 @@ import { createContext, useContext, useEffect } from "react";
 import { useAutenticacio } from "../lib/hooks/useAutenticacio";
 import { useUsuaris } from "../lib/hooks/useUsuaris";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth, refUsuaris } from "../config/firebase/firebase";
-import { onSnapshot } from "firebase/firestore";
+import { auth, db, refUsuaris } from "../config/firebase/firebase";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 
 export const Context = createContext();
 export const useAppContext = () => useContext(Context);
@@ -16,6 +16,7 @@ const ContextProvider = ({ children }) => {
 
 	const {
 		dadesUsuari: { nom, cognom, telefon },
+		setDadesUsuari,
 	} = useUsuaris();
 
 	console.log(
@@ -27,12 +28,21 @@ const ContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		const cancellaSubscripcio = () => {
-			
-			onAuthStateChanged(auth, (user) => {
+			onAuthStateChanged(auth, async (user) => {
+				const usuari = (await getDoc(doc(db, "usuaris", user.uid))).data();
+				const { correuElectronic, administrador, nom, cognom, telefon } =
+					usuari;
+				setDadesUsuari({
+					correuElectronic,
+					administrador,
+					nom,
+					cognom,
+					telefon,
+				});
 				setGestioUsuari({
 					usuariLoguejat: user,
 					loadingUsuari: false,
-					administrador: false
+					administrador,
 				});
 			});
 			onSnapshot(refUsuaris, (snapshot) => {

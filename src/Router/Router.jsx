@@ -4,8 +4,8 @@ import PanellPublic from "../pages/PanellPublic";
 import Login from "../components/Login";
 import Signup from "../components/Singup";
 import ClaudePasOblidada from "../components/ClaudePasOblidada";
-import LayoutAdmin from '../layouts/LayoutAdmin';
-import PanellAdmin from '../pages/PanellAdmin/PanellAdmin';
+import LayoutAdmin from "../layouts/LayoutAdmin";
+import PanellAdmin from "../pages/PanellAdmin/PanellAdmin";
 import LayoutUsuari from "../layouts/LayoutUsuari";
 import PanellUsuari from "../pages/PanellUsuari";
 import DetallsUsuari from "../components/DetallsUsuari";
@@ -21,7 +21,7 @@ const Router = () => {
 					<Route path="signup" element={<Signup />} />
 					<Route path="claudepasoblidada" element={<ClaudePasOblidada />} />
 					<Route path="admin" element={<LayoutAdmin />}>
-						<Route index element={<PanellAdmin />} />
+						<Route index element={<PanellAdmin />}></Route>
 					</Route>
 					<Route path="usuari" element={<LayoutUsuari />}>
 						<Route index element={<PanellUsuari />} />
