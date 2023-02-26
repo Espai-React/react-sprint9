@@ -1,5 +1,5 @@
 import { updateDoc, addDoc, setDoc, doc, getDoc } from "firebase/firestore";
-import { db, refUsuaris } from "../../config/firebase/firebase";
+import { db } from "../../config/firebase/firebase";
 import { useState } from "react";
 
 export const useUsuaris = () => {
@@ -8,6 +8,8 @@ export const useUsuaris = () => {
 		administrador: null,
 		nom: null,
 		cognom: null,
+		poblacio: null,
+		codiPostal: null,
 		telefon: null,
 	});
 
@@ -19,12 +21,10 @@ export const useUsuaris = () => {
 		setDoc(doc(db, nomdb, authID), dadesUsuari);
 	};
 
-	const actualitzarusuari = (dadesUsuari) =>
-		updateDoc(refUsuaris, { dadesUsuari });
-	
-	const recollirusuari = (nomdb, authID) => {
-		getDoc(doc(db, nomdb, authID));
-	}
+	const actualitzarusuari = (nomdb, authID, dadesUsuari) =>
+		updateDoc(doc(db, nomdb, authID), dadesUsuari);
+
+	const obtenirusuari = (nomdb, authID) => getDoc(doc(db, nomdb, authID));
 
 	return {
 		dadesUsuari,
@@ -32,6 +32,6 @@ export const useUsuaris = () => {
 		crearusuari,
 		setusuari,
 		actualitzarusuari,
-		recollirusuari,
+		obtenirusuari,
 	};
 };

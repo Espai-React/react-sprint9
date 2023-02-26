@@ -19,7 +19,7 @@ const FormulariNovaClaudePas = () => {
 				referencia={correuElectronicRef}
 				requerit={true}
 			/>
-			<div className="error">
+			<div className="avis">
 				{error ? <span>{error}</span> : <span>{missatge}</span>}
 			</div>
 			<Boto tipus="submit" deshabilitat={processant}>

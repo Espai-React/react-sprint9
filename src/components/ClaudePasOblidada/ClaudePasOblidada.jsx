@@ -7,7 +7,7 @@ const ClaudePasOblidada = () => (
 	<ContenidorForm>
 		<Titol>Crear nova constrasenya</Titol>
 		<FormulariNovaClaudePas />
-		<div>
+		<div className="peu">
 			<Link to="/login">Tornar a nova sessió</Link>
 		</div>
 	</ContenidorForm>

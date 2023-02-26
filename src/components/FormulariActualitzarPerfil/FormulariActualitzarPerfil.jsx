@@ -5,13 +5,13 @@ import Boto from "../common/Boto";
 import { useFormulariAutenticacio } from "../../lib/hooks/useFormulariAutenticacio";
 import { useAppContext } from "../../context/AppContext";
 
-const FormulariCanvisUsuari = () => {
+const FormulariActualitzarPerfil = () => {
 	const { usuariLoguejat } = useAppContext();
 	const nouCorreuElectronicRef = useRef();
 	const novaClaudePasRef = useRef();
 	const novaClaudePasConfirmacioRef = useRef();
 
-	const { error, processant, handleSubmitUpdateProfile } =
+	const { error, missatge, processant, handleSubmitUpdateProfile } =
 		useFormulariAutenticacio(
 			nouCorreuElectronicRef,
 			novaClaudePasRef,
@@ -26,7 +26,7 @@ const FormulariCanvisUsuari = () => {
 				nom="correuElectronic"
 				referencia={nouCorreuElectronicRef}
 				requerit={true}
-				defaultValue={usuariLoguejat}
+				placeholder={usuariLoguejat}
 			/>
 
 			<BlocInput
@@ -35,7 +35,7 @@ const FormulariCanvisUsuari = () => {
 				nom="claudePas"
 				referencia={novaClaudePasRef}
 				requerit={false}
-				placeholder="deixa-ho en blanc si no vols fer canvis..."
+				placeholder="Deixa-ho en blanc si no vols fer canvis..."
 			/>
 
 			<BlocInput
@@ -44,10 +44,13 @@ const FormulariCanvisUsuari = () => {
 				nom="claudePasConfirmacio"
 				referencia={novaClaudePasConfirmacioRef}
 				requerit={false}
-				placeholder="deixa-ho en blanc si no vols fer canvis..."
+				placeholder="Deixa-ho en blanc si no vols fer canvis..."
 			/>
 
-			<div className="error">{error && <span>{error}</span>}</div>
+			<div className="avis">
+				{missatge && <span>{missatge}</span>}
+				{error && <span>{error}</span>}
+			</div>
 			<Boto tipus="submit" deshabilitat={processant}>
 				Aplicar canvis
 			</Boto>
@@ -55,4 +58,4 @@ const FormulariCanvisUsuari = () => {
 	);
 };
 
-export default FormulariCanvisUsuari;
+export default FormulariActualitzarPerfil;

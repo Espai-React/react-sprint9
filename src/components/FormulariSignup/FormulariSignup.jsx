@@ -3,27 +3,32 @@ import { Formulari } from "../../styles/common/Formulari.styles";
 import BlocInput from "../common/BlocInput";
 import Boto from "../common/Boto";
 import { useFormulariAutenticacio } from "../../lib/hooks/useFormulariAutenticacio";
-import { logosLogin } from "../../lib/constants/logosLogin";
-import { BotoLogo } from "../../styles/common/BotoLogo.styles";
 
 const FormulariSignup = () => {
 	const correuElectronicRef = useRef();
 	const claudePasRef = useRef();
 	const claudePasConfirmacioRef = useRef();
+	const nomRef = useRef();
+	const cognomRef = useRef();
+	const poblacioRef = useRef();
+	const codiPostalRef = useRef();
+	const telefonRef = useRef();
 
-	const { error, processant, handleSubmitGoogle, handleSubmitSignup } =
-		useFormulariAutenticacio(
-			correuElectronicRef,
-			claudePasRef,
-			claudePasConfirmacioRef
-		);
-
-	const logoGoogle = logosLogin.logoGoogle;
+	const { error, missatge, processant, handleSubmitSignup } = useFormulariAutenticacio(
+		correuElectronicRef,
+		claudePasRef,
+		claudePasConfirmacioRef,
+		nomRef,
+		cognomRef,
+		poblacioRef,
+		codiPostalRef,
+		telefonRef
+	);
 
 	return (
 		<Formulari id="signup" onSubmit={handleSubmitSignup}>
 			<BlocInput
-				etiqueta="Correu electrònic"
+				etiqueta="Correu electrònic *"
 				tipus="email"
 				nom="correuElectronic"
 				referencia={correuElectronicRef}
@@ -31,7 +36,7 @@ const FormulariSignup = () => {
 			/>
 
 			<BlocInput
-				etiqueta="Contrasenya"
+				etiqueta="Contrasenya *"
 				tipus="password"
 				nom="claudePas"
 				referencia={claudePasRef}
@@ -39,24 +44,55 @@ const FormulariSignup = () => {
 			/>
 
 			<BlocInput
-				etiqueta="Confirmació contrasenya"
+				etiqueta="Confirmació contrasenya *"
 				tipus="password"
 				nom="claudePasConfirmacio"
 				referencia={claudePasConfirmacioRef}
 				requerit={true}
 			/>
+			<BlocInput
+				etiqueta="Nom *"
+				tipus="text"
+				nom="nom"
+				referencia={nomRef}
+				requerit={true}
+			/>
+			<BlocInput
+				etiqueta="Cognom"
+				tipus="text"
+				nom="cognom"
+				referencia={cognomRef}
+				requerit={false}
 
-			<div className="error">{error && <span>{error}</span>}</div>
+			/><BlocInput
+				etiqueta="Població"
+				tipus="text"
+				nom="Poblacio"
+				referencia={poblacioRef}
+				requerit={false}
+
+			/><BlocInput
+				etiqueta="Codi Postal"
+				tipus="text"
+				nom="Codi Postal"
+				referencia={codiPostalRef}
+				requerit={false}
+			/>
+			<BlocInput
+				etiqueta="Telefon"
+				tipus="tel"
+				nom="telefon"
+				referencia={telefonRef}
+				requerit={false}
+			/>
+
+			<div className="avis">
+				{missatge && <span>{missatge}</span>}
+				{error && <span>{error}</span>}
+			</div>
 			<Boto tipus="submit" deshabilitat={processant}>
 				Crear usuari
 			</Boto>
-			<BotoLogo
-				tipus="button"
-				onClick={handleSubmitGoogle}
-				deshabilitat={processant}>
-				<img src={logoGoogle} />
-				Crear usuari amb Google
-			</BotoLogo>
 		</Formulari>
 	);
 };

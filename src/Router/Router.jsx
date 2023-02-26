@@ -8,28 +8,33 @@ import LayoutAdmin from "../layouts/LayoutAdmin";
 import PanellAdmin from "../pages/PanellAdmin/PanellAdmin";
 import LayoutUsuari from "../layouts/LayoutUsuari";
 import PanellUsuari from "../pages/PanellUsuari";
-import DetallsUsuari from "../components/DetallsUsuari";
-import CanvisUsuari from "../components/CanvisUsuari/index";
+import ActualitzarUsuari from "../components/ActualitzarUsuari";
+import ActualitzarPerfil from "../components/ActualitzarPerfil";
+import ContextProvider from '../context/AppContext';
+
+
 
 const Router = () => {
 	return (
 		<BrowserRouter>
-			<Routes>
-				<Route path="" element={<LayoutArrel />}>
-					<Route index element={<PanellPublic />} />
-					<Route path="login" element={<Login />} />
-					<Route path="signup" element={<Signup />} />
-					<Route path="claudepasoblidada" element={<ClaudePasOblidada />} />
-					<Route path="admin" element={<LayoutAdmin />}>
-						<Route index element={<PanellAdmin />}></Route>
+			<ContextProvider>
+				<Routes>
+					<Route path="" element={<LayoutArrel />}>
+						<Route index element={<PanellPublic />} />
+						<Route path="login" element={<Login />} />
+						<Route path="signup" element={<Signup />} />
+						<Route path="claudepasoblidada" element={<ClaudePasOblidada />} />
+						<Route path="admin" element={<LayoutAdmin />}>
+							<Route index element={<PanellAdmin />}></Route>
+						</Route>
+						<Route path="usuari" element={<LayoutUsuari />}>
+							<Route index element={<PanellUsuari />} />
+							<Route path="actualitzarusuari" element={<ActualitzarUsuari />} />
+							<Route path="actualitzarperfil" element={<ActualitzarPerfil />} />
+						</Route>
 					</Route>
-					<Route path="usuari" element={<LayoutUsuari />}>
-						<Route index element={<PanellUsuari />} />
-						<Route path="detallsusuari" element={<DetallsUsuari />} />
-						<Route path="canvisusuari" element={<CanvisUsuari />} />
-					</Route>
-				</Route>
-			</Routes>
+				</Routes>
+			</ContextProvider>
 		</BrowserRouter>
 	);
 };

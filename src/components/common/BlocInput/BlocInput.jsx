@@ -5,12 +5,12 @@ const BlocInput = ({
 	tipus,
 	nom,
 	placeholder,
-	defaultValue,
 	referencia,
 	requerit,
 	nomesLectura,
+	perDefecte
 }) => (
-	<Label htmlFor={nom} readOnly={nomesLectura}>
+	<Label htmlFor={nom}>
 		{etiqueta}
 
 		<input
@@ -18,10 +18,11 @@ const BlocInput = ({
 			id={nom}
 			name={nom}
 			placeholder={placeholder}
-			defaultValue={defaultValue}
+			defaultValue={perDefecte}
 			ref={referencia}
 			required={requerit}
 			readOnly={nomesLectura}
+
 		/>
 	</Label>
 );

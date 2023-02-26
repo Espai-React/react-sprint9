@@ -1,18 +1,23 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { actualitzarDetallsUsuari } from "../utils/actualitzaUsuari";
 import { useUsuaris } from "./useUsuaris";
-import { crearUsuari } from "../utils/crearUsuari";
+import { crearUsuari } from "../utils/usuari/crearUsuari";
+import { obtenirUsuari } from "../utils/usuari/obtenirUsuari";
+import { actualitzarUsuari } from "../utils/usuari/actualitzarUsuari";
+import { useAppContext } from "../../context/AppContext";
 
-export const useFormulariUsuari = (usuariLoguejat, authID, administrador) => {
-	const {
-		dadesUsuari,
-		setDadesUsuari,
-		crearusuari,
-		setusuari,
-		actualitzarusuari,
-	} = useUsuaris();
-	const navega = useNavigate();
+export const useFormulariUsuari = (
+	nomRef,
+	cognomRef,
+	poblacioRef,
+	codiPostalRef,
+	telefonRef
+) => {
+	const { usuariLoguejat, authID, dadesUsuari } = useAppContext();
+	console.log(usuariLoguejat, authID, dadesUsuari);
+
+	const { setDadesUsuari, crearusuari, obtenirusuari, actualitzarusuari } =
+		useUsuaris();
 
 	const [procesUsuari, setProcesUsuari] = useState({
 		processant: false,
@@ -30,27 +35,34 @@ export const useFormulariUsuari = (usuariLoguejat, authID, administrador) => {
 			authID,
 			administrador
 		);
+ 
+	const handleGetUser = (authID) =>
+		obtenirUsuari(setProcesUsuari, obtenirusuari, authID);
 
-	const handleSubmitDetailsUsuari = (e) =>
-		actualitzarDetallsUsuari(
+	const handleSubmitActualitzarUsuari = (e) => {
+		//const navega = useNavigate();
+		actualitzarUsuari(
 			e,
 			nomRef,
 			cognomRef,
+			poblacioRef,
+			codiPostalRef,
 			telefonRef,
+			usuariLoguejat,
+			authID,
 			dadesUsuari,
-			setDadesUsuari,
 			setProcesUsuari,
 			actualitzarusuari,
 			navega
 		);
+	};
 
 	return {
 		error: procesUsuari.error,
 		processant: procesUsuari.processant,
 		missatge: procesUsuari.missatge,
-		dadesUsuari,
-		setDadesUsuari,
 		handleCreateUser,
-		handleSubmitDetailsUsuari,
+		handleGetUser,
+		handleSubmitActualitzarUsuari,
 	};
 };

@@ -4,11 +4,11 @@ import { useAppContext } from "../context/AppContext";
 const LayoutAdmin = () => {
 	const { usuariLoguejat, administrador } = useAppContext();
 
-	return (usuariLoguejat === null && !administrador) ? (
-		<Navigate to="/" />
+	return usuariLoguejat !== null ? (
+		<Outlet />
 	) : (
 		<>
-			<Outlet />
+			<Navigate to="/" />
 		</>
 	);
 };

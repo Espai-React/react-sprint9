@@ -4,11 +4,11 @@ import { useAppContext } from "../context/AppContext";
 const LayoutUsuari = () => {
 	const { usuariLoguejat } = useAppContext();
 
-	return usuariLoguejat === null ? (
-		<Navigate to="/" />
+	return usuariLoguejat !== null ? (
+		<Outlet />
 	) : (
 		<>
-			<Outlet />
+			<Navigate to="/" />
 		</>
 	);
 };

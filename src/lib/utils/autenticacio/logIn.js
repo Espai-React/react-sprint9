@@ -14,24 +14,16 @@ export const logIn = async (
 		missatge: "",
 	});
 
-	let dadesSignUp =
-		claudePasRef.current.value === import.meta.env.VITE_APP_ADMIN_CLAUEPAS
-			? {
-					correuElectronic: correuElectronicRef.current.value,
-					administrador: true,
-				}
-			: {
-					correuElectronic: correuElectronicRef.current.value,
-					administrador: false,
-				};
-
+	const condAdmin =
+		claudePasRef.current.value === import.meta.env.VITE_APP_ADMIN_CLAUEPAS;
+	
 	try {
 		await login(correuElectronicRef.current.value, claudePasRef.current.value);
 		setLogueigUsuari((prev) => ({
 			...prev,
 			missatge: `Nova sessió usuari: ${usuariLoguejat}`,
 		}));
-		dadesSignUp.administrador ? navega("/admin") : navega("/usuari");
+		condAdmin ? navega("/admin") : navega("/usuari");
 	} catch (err) {
 		let error;
 		switch (err.message) {

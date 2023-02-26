@@ -8,7 +8,7 @@ const Login = () => (
 	<ContenidorForm>
 		<Titol>Nova sessió d'usuari</Titol>
 		<FormulariLogin />
-		<div>
+		<div className="peu">
 			Vols crear un compte? <Link to="/signup">Crear compte nou</Link>
 		</div>
 	</ContenidorForm>

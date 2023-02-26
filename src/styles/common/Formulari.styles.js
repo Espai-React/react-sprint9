@@ -5,8 +5,11 @@ export const Formulari = styled.form`
 	align-items: center;
 	gap: 0.5rem;
 
-	.error {
-		height: 1rem;
+	.avis {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1.5rem;
 
 		span {
 			height: 1rem;

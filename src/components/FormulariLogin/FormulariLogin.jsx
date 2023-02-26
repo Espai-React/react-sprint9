@@ -11,7 +11,7 @@ const FormulariLogin = () => {
 	const correuElectronicRef = useRef();
 	const claudePasRef = useRef();
 
-	const { error, processant, handleSubmitLogin, handleSubmitGoogle } =
+	const { error, missatge, processant, handleSubmitLogin, handleSubmitGoogle } =
 		useFormulariAutenticacio(correuElectronicRef, claudePasRef);
 
 	const logoGoogle = logosLogin.logoGoogle;
@@ -19,25 +19,23 @@ const FormulariLogin = () => {
 	return (
 		<Formulari id="login" onSubmit={handleSubmitLogin}>
 			<BlocInput
-				etiqueta="Correu electrònic"
+				etiqueta="Correu electrònic *"
 				tipus="email"
 				nom="correuElectronic"
 				referencia={correuElectronicRef}
 				requerit={true}
 			/>
 			<BlocInput
-				etiqueta="Contrasenya"
+				etiqueta="Contrasenya *"
 				tipus="password"
 				nom="claudePas"
 				referencia={claudePasRef}
 				requerit={true}
 			/>
-			<div className="error">
-				{error ? (
-					<span>{error}</span>
-				) : (
-					<Link to="/claudepasoblidada">No recordes la contrasenya?</Link>
-				)}
+			<div className="avis">
+				{missatge && <span>{missatge}</span>}
+				{error && <span>{error}</span>}
+				<Link to="/claudepasoblidada">No recordes la contrasenya?</Link>
 			</div>
 			<Boto tipus="submit" deshabilitat={processant}>
 				Iniciar sessió

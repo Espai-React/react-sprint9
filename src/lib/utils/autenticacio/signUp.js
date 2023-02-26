@@ -2,7 +2,12 @@ export const signUp = async (
 	e,
 	correuElectronicRef,
 	claudePasRef,
-	clauePasConfirmacioRef,
+	claudePasConfirmacioRef,
+	nomRef,
+	cognomRef,
+	poblacioRef,
+	codiPostalRef,
+	telefonRef,
 	usuariLoguejat,
 	setLogueigUsuari,
 	signup,
@@ -16,7 +21,7 @@ export const signUp = async (
 		missatge: "",
 	});
 
-	if (claudePasRef.current.value !== clauePasConfirmacioRef.current.value) {
+	if (claudePasRef.current.value !== claudePasConfirmacioRef.current.value) {
 		setLogueigUsuari((prev) => ({
 			...prev,
 			error: "Les contrasenyes no coincideixen",
@@ -24,16 +29,17 @@ export const signUp = async (
 		return;
 	}
 
-	let dadesSignUp =
-		claudePasRef.current.value === import.meta.env.VITE_APP_ADMIN_CLAUEPAS
-			? {
-					correuElectronic: correuElectronicRef.current.value,
-					administrador: true,
-				}
-			: {
-					correuElectronic: correuElectronicRef.current.value,
-					administrador: false,
-				};
+	const condAdmin =
+		claudePasRef.current.value === import.meta.env.VITE_APP_ADMIN_CLAUEPAS;
+	let dadesSignUp = {
+		correuElectronic: correuElectronicRef.current.value,
+		administrador: condAdmin ? true : false,
+		nom: nomRef.current.value,
+		cognom: cognomRef.current.value,
+		poblacio: poblacioRef.current.value,
+		codiPostal: codiPostalRef.current.value,
+		telefon: telefonRef.current.value,
+	};
 
 	try {
 		const usuari = await signup(
@@ -47,7 +53,6 @@ export const signUp = async (
 		}));
 		dadesSignUp.administrador ? navega("/admin") : navega("/usuari");
 	} catch (err) {
-		console.log(err.message);
 		let error;
 		switch (err.message) {
 			case "Firebase: Error (auth/email-already-in-use).":

@@ -1,37 +1,38 @@
 import { useAutenticacio } from "./useAutenticacio";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signUp } from "../utils/signUp";
-import { logIn } from "../utils/logIn";
-import { resetPassword } from "../utils/resetPassword";
-import { updateProfile } from "../utils/updateProfile";
-import { logOut } from "../utils/logOut";
-import { logueigAmbGoogle } from "../utils/logueigAmbGoogle";
+import { signUp } from "../utils/autenticacio/signUp";
+import { logIn } from "../utils/autenticacio/logIn";
+import { resetPassword } from "../utils/autenticacio/resetPassword";
+import { logOut } from "../utils/autenticacio/logOut";
+import { logueigAmbGoogle } from "../utils/autenticacio/logueigAmbGoogle";
 import { useUsuaris } from "./useUsuaris";
+import { actualitzarPerfil } from "../utils/autenticacio/actualitzarPerfil";
+import { useAppContext } from "../../context/AppContext";
 
 export const useFormulariAutenticacio = (
 	correuElectronicRef,
 	claudePasRef,
-	clauePasConfirmacioRef
+	claudePasConfirmacioRef,
+	nomRef,
+	cognomRef,
+	poblacioRef,
+	codiPostalRef,
+	telefonRef
 ) => {
-	const {
-		gestioUsuari: { usuariLoguejat },
-		signup,
-		login,
-		resetpassword,
-		updateemail,
-		updatepassword,
-		logout,
-	} = useAutenticacio();
+	const { usuariLoguejatComplet, usuariLoguejat, dadesUsuari, authID } =
+		useAppContext();
 
-	const { setusuari } = useUsuaris();
+	const { signup, login, resetpassword, updateemail, updatepassword, logout } =
+		useAutenticacio(usuariLoguejatComplet);
 
+	const { setusuari, actualitzarusuari } = useUsuaris();
 	const navega = useNavigate();
 
 	const [logueigUsuari, setLogueigUsuari] = useState({
 		processant: false,
 		error: "",
-		missatge: "",
+		missatge: "Els camps marcats amb * són obligatoris",
 	});
 
 	const handleSubmitSignup = (e) =>
@@ -39,7 +40,12 @@ export const useFormulariAutenticacio = (
 			e,
 			correuElectronicRef,
 			claudePasRef,
-			clauePasConfirmacioRef,
+			claudePasConfirmacioRef,
+			nomRef,
+			cognomRef,
+			poblacioRef,
+			codiPostalRef,
+			telefonRef,
 			usuariLoguejat,
 			setLogueigUsuari,
 			signup,
@@ -59,21 +65,23 @@ export const useFormulariAutenticacio = (
 		);
 
 	const handleSubmitGoogle = () =>
-		logueigAmbGoogle(usuariLoguejat, setLogueigUsuari, navega);
+		logueigAmbGoogle(usuariLoguejat, setLogueigUsuari, setusuari, navega);
 
 	const handleSubmitNovaClaudePas = (e) =>
 		resetPassword(e, correuElectronicRef, setLogueigUsuari, resetpassword);
 
 	const handleSubmitUpdateProfile = (e) =>
-		updateProfile(
+		actualitzarPerfil(
 			e,
 			correuElectronicRef,
 			claudePasRef,
-			clauePasConfirmacioRef,
 			usuariLoguejat,
 			setLogueigUsuari,
 			updateemail,
 			updatepassword,
+			authID,
+			dadesUsuari,
+			actualitzarusuari,
 			navega
 		);
 

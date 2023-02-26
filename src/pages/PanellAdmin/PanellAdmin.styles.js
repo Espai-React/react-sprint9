@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const ContenidorForm = styled.div`
+export const Contenidor = styled.div`
 	min-width: 26rem;
 	max-width: 32rem;
-	margin: 2rem auto;
+	margin: 1rem auto;
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;
@@ -11,33 +11,20 @@ export const ContenidorForm = styled.div`
 	gap: 1.5rem;
 
 	h2 {
-		margin-bottom: 1.5rem;
+		margin-bottom: 0.5rem;
 	}
 
 	.capçalera {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		
-		h2 {
-			margin-bottom: 0.5rem;
-		}
 	}
 
-	form {
+	.bloc-botons {
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
-	}
-
-	.peu {
-		font-size: 1.1rem;
-		display: flex;
-		gap: 1rem;
-
-		a {
-			font-weight: bold;
-		}
+		justify-content: center;
+		gap: 0.5rem;
 	}
 `;

@@ -9,13 +9,11 @@ import {
 } from "firebase/auth";
 import { auth } from "../../config/firebase/firebase";
 
-export const useAutenticacio = () => {
+export const useAutenticacio = (usuariLoguejatComplet) => {
 	const [gestioUsuari, setGestioUsuari] = useState({
 		usuariLoguejat: null,
 		loadingUsuari: true,
-		administrador: false,
 	});
-	const { usuariLoguejat } = gestioUsuari;
 
 	const signup = (correuElectronic, claudePas) =>
 		createUserWithEmailAndPassword(auth, correuElectronic, claudePas);
@@ -27,10 +25,10 @@ export const useAutenticacio = () => {
 		sendPasswordResetEmail(auth, correuElectronic);
 
 	const updateemail = (correuElectronic) =>
-		updateEmail(usuariLoguejat, correuElectronic);
+		updateEmail(usuariLoguejatComplet, correuElectronic);
 
 	const updatepassword = (claudePas) =>
-		updatePassword(usuariLoguejat, claudePas);
+		updatePassword(usuariLoguejatComplet, claudePas);
 
 	const logout = () => signOut(auth);
 
@@ -45,4 +43,3 @@ export const useAutenticacio = () => {
 		logout,
 	};
 };
-

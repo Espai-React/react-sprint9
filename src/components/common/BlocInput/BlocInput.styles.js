@@ -25,7 +25,8 @@ export const Label = styled.label`
 			color: ${({ theme }) => theme.colors.titol};
 		}
 
-		&[readOnly] {
+		&[readOnly],
+		&[defaultValue] {
 			color: ${({ theme }) => theme.colors.missatge};
 		}
 	}
