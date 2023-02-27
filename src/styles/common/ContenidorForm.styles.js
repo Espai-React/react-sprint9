@@ -3,12 +3,13 @@ import styled from "styled-components";
 export const ContenidorForm = styled.div`
 	min-width: 26rem;
 	max-width: 32rem;
+	height: 100%;
 	margin: 2rem auto;
-	padding: 1rem;
+	padding: 2rem 1rem 1rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 1.5rem;
+	gap: 1rem;
 
 	h2 {
 		margin-bottom: 1.5rem;
@@ -18,7 +19,7 @@ export const ContenidorForm = styled.div`
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		
+
 		h2 {
 			margin-bottom: 0.5rem;
 		}

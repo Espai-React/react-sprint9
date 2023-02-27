@@ -44,17 +44,16 @@ const ContextProvider = ({ children }) => {
 	telefon: ${telefon}`;
 	console.log(controlUsuari);
 
-	useEffect(() => {/* 
-		const user2 = async () => {
-			return await auth.currentUser;
-		};
-		console.log(user2); */
+	useEffect(() => {
+		const user2 = async () => await auth.currentUser?.uid.then((res) => console.log(res));
+			console.log(user2);
+		console.log("user2",user2);
 		const cancellaSubscripcio = () => {
 			onAuthStateChanged(auth, async (user) => {
 				setGestioUsuari({
 					usuariLoguejat: user,
 					loadingUsuari: false,
-				});
+				});/* 
 				if (user !== null) {
 					const usuari = await handleGetUser(user.uid);
 					const {
@@ -75,7 +74,7 @@ const ContextProvider = ({ children }) => {
 						codiPostal,
 						telefon,
 					});
-				}
+				} */
 			});
 			onSnapshot(refUsuaris, (snapshot) => {
 				const dadesdbUsuaris = snapshot.docs.map((doc) => ({ ...doc.data() }));
@@ -90,6 +89,7 @@ const ContextProvider = ({ children }) => {
 		authID: usuariLoguejat === null ? null : usuariLoguejat.uid,
 		usuariLoguejat: usuariLoguejat === null ? null : usuariLoguejat.email,
 		dadesUsuari,
+		correuElectronic,
 		administrador,
 		nom,
 		cognom,

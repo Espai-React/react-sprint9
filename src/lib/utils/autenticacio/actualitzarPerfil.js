@@ -1,15 +1,17 @@
 export const actualitzarPerfil = async (
 	e,
-	correuElectronicRef,
-	claudePasRef,
+	nouCorreuElectronicRef,
+	novaClaudePasRef,
+	novaClaudePasConfirmacioRef,
+	usuariLoguejatComplet,
 	usuariLoguejat,
+	authID,
+	dadesUsuari,
+	navega,
 	setLogueigUsuari,
 	updateemail,
 	updatepassword,
-	authID,
-	dadesUsuari,
-	actualitzarusuari,
-	navega
+	actualitzarusuari
 ) => {
 	e.preventDefault();
 	setLogueigUsuari({
@@ -30,9 +32,9 @@ export const actualitzarPerfil = async (
 
 	let dadesUsuariNou = {
 		correuElectronic:
-			correuElectronicRef.current.value === ""
+			nouCorreuElectronicRef.current.value === ""
 				? correuElectronic
-				: correuElectronicRef.current.value,
+				: nouCorreuElectronicRef.current.value,
 		administrador,
 		nom,
 		cognom,
@@ -41,14 +43,27 @@ export const actualitzarPerfil = async (
 		telefon,
 	};
 
-	try {
-		await updateemail(correuElectronicRef.current.value);
-		await updatepassword(claudePasRef.current.value);
+	if (
+		novaClaudePasRef.current.value !== novaClaudePasConfirmacioRef.current.value
+	) {
 		setLogueigUsuari((prev) => ({
 			...prev,
-			missatge: `Nou usuari: ${usuariLoguejat}`,
+			error: "Les contrasenyes no coincideixen",
 		}));
+		return;
+	}
+
+	try {
+		await updateemail(
+			usuariLoguejatComplet,
+			nouCorreuElectronicRef.current.value
+		);
+		await updatepassword(usuariLoguejatComplet, novaClaudePasRef.current.value);
 		await actualitzarusuari("usuaris", authID, dadesUsuariNou);
+		setLogueigUsuari((prev) => ({
+			...prev,
+			missatge: `Usuari actualitzat: ${usuariLoguejat}`,
+		}));
 		navega("/usuari");
 	} catch (err) {
 		console.log(err.message);
@@ -58,7 +73,7 @@ export const actualitzarPerfil = async (
 				error = "Torneu a iniciar sessió, per poder realitzar els canvis";
 				break;
 			default:
-				error = "Error en crear nou usuari";
+				error = "Error en actualitzar usuari";
 				break;
 		}
 		setLogueigUsuari((prev) => ({

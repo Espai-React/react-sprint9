@@ -2,23 +2,30 @@ import { useFormulariAutenticacio } from "../../lib/hooks/useFormulariAutenticac
 import { ContenidorPage } from "../../styles/common/ContenidorPage.styles";
 import { Titol } from "../../styles/common/Titol.styles";
 import Boto from "../../components/common/Boto";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
-import { Contenidor } from "./PanellUsuari.styles";
+import { ContenidorPanell } from "./PanellUsuari.styles";
 
 function PanellUsuari() {
-	const { usuariLoguejat, authID, administrador, nom, cognom } =
-		useAppContext();
+	const {
+		correuElectronic,
+		usuariLoguejat,
+		authID,
+		administrador,
+		nom,
+		cognom,
+	} = useAppContext();
+	const navega = useNavigate();
 	console.log(usuariLoguejat, authID, administrador, nom, cognom);
 
 	const { handleLogout } = useFormulariAutenticacio();
 
 	return (
 		<ContenidorPage>
-			<Contenidor>
+			<ContenidorPanell>
 				<div className="capçalera">
 					<Titol>Panell Usuari</Titol>
-					<h3>{usuariLoguejat}</h3>
+					<h3>{correuElectronic}</h3>
 				</div>
 				<div className="bloc-botons">
 					<Link to="actualitzarusuari">
@@ -27,9 +34,13 @@ function PanellUsuari() {
 					<Link to="actualitzarperfil">
 						<Boto>Canviar correu i contrasenya</Boto>
 					</Link>
-					<Boto onClick={handleLogout}>Abandonar la sessió</Boto>
 				</div>
-			</Contenidor>
+				<div className="boto-peu">
+					<Boto onClick={() => handleLogout(usuariLoguejat, navega)}>
+						Abandonar la sessió
+					</Boto>
+				</div>
+			</ContenidorPanell>
 		</ContenidorPage>
 	);
 }

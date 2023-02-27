@@ -13,6 +13,13 @@ export const useUsuaris = () => {
 		telefon: null,
 	});
 
+	const setDades = (clau, valor) => {
+		setDadesUsuari((prev) => ({
+			...prev,
+			[clau]: valor,
+		}));
+	};
+
 	const crearusuari = (refUsuaris, dadesUsuari) => {
 		addDoc(refUsuaris, dadesUsuari);
 	};
@@ -28,6 +35,7 @@ export const useUsuaris = () => {
 
 	return {
 		dadesUsuari,
+		setDades,
 		setDadesUsuari,
 		crearusuari,
 		setusuari,

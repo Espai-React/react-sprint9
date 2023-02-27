@@ -1,4 +1,9 @@
-export const logOut = async (usuariLoguejat, setLogueigUsuari, logout, navega) => {
+export const logOut = async (
+	usuariLoguejat,
+	setLogueigUsuari,
+	logout,
+	navega
+) => {
 	setLogueigUsuari({
 		processant: false,
 		error: "",

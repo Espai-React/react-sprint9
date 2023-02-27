@@ -9,7 +9,8 @@ import {
 } from "firebase/auth";
 import { auth } from "../../config/firebase/firebase";
 
-export const useAutenticacio = (usuariLoguejatComplet) => {
+export const useAutenticacio = () => {
+	
 	const [gestioUsuari, setGestioUsuari] = useState({
 		usuariLoguejat: null,
 		loadingUsuari: true,
@@ -24,10 +25,10 @@ export const useAutenticacio = (usuariLoguejatComplet) => {
 	const resetpassword = (correuElectronic) =>
 		sendPasswordResetEmail(auth, correuElectronic);
 
-	const updateemail = (correuElectronic) =>
+	const updateemail = (usuariLoguejatComplet, correuElectronic) =>
 		updateEmail(usuariLoguejatComplet, correuElectronic);
 
-	const updatepassword = (claudePas) =>
+	const updatepassword = (usuariLoguejatComplet, claudePas) =>
 		updatePassword(usuariLoguejatComplet, claudePas);
 
 	const logout = () => signOut(auth);

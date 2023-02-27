@@ -3,9 +3,9 @@ export const logIn = async (
 	correuElectronicRef,
 	claudePasRef,
 	usuariLoguejat,
+	navega,
 	setLogueigUsuari,
-	login,
-	navega
+	login
 ) => {
 	e.preventDefault();
 	setLogueigUsuari({
@@ -16,7 +16,7 @@ export const logIn = async (
 
 	const condAdmin =
 		claudePasRef.current.value === import.meta.env.VITE_APP_ADMIN_CLAUEPAS;
-	
+
 	try {
 		await login(correuElectronicRef.current.value, claudePasRef.current.value);
 		setLogueigUsuari((prev) => ({

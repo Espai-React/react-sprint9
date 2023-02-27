@@ -9,10 +9,10 @@ export const signUp = async (
 	codiPostalRef,
 	telefonRef,
 	usuariLoguejat,
+	navega,
 	setLogueigUsuari,
 	signup,
-	setusuari,
-	navega
+	setusuari
 ) => {
 	e.preventDefault();
 	setLogueigUsuari({

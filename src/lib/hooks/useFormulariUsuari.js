@@ -1,23 +1,18 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useUsuaris } from "./useUsuaris";
 import { crearUsuari } from "../utils/usuari/crearUsuari";
 import { obtenirUsuari } from "../utils/usuari/obtenirUsuari";
 import { actualitzarUsuari } from "../utils/usuari/actualitzarUsuari";
-import { useAppContext } from "../../context/AppContext";
 
-export const useFormulariUsuari = (
-	nomRef,
-	cognomRef,
-	poblacioRef,
-	codiPostalRef,
-	telefonRef
-) => {
-	const { usuariLoguejat, authID, dadesUsuari } = useAppContext();
-	console.log(usuariLoguejat, authID, dadesUsuari);
-
-	const { setDadesUsuari, crearusuari, obtenirusuari, actualitzarusuari } =
-		useUsuaris();
+export const useFormulariUsuari = () => {
+	const {
+		dadesUsuari,
+		setDadesUsuari,
+		crearusuari,
+		setusuari,
+		actualitzarusuari,
+		obtenirusuari
+	} = useUsuaris();
 
 	const [procesUsuari, setProcesUsuari] = useState({
 		processant: false,
@@ -35,12 +30,27 @@ export const useFormulariUsuari = (
 			authID,
 			administrador
 		);
- 
+
 	const handleGetUser = (authID) =>
 		obtenirUsuari(setProcesUsuari, obtenirusuari, authID);
 
-	const handleSubmitActualitzarUsuari = (e) => {
-		//const navega = useNavigate();
+	const handleSubmitActualitzarUsuari = (
+		e,
+		nomRef,
+		cognomRef,
+		poblacioRef,
+		codiPostalRef,
+		telefonRef,
+		nom,
+		cognom,
+		poblacio,
+		codiPostal,
+		telefon,
+		usuariLoguejat,
+		authID,
+		dadesUsuari,
+		navega,
+	) => {
 		actualitzarUsuari(
 			e,
 			nomRef,
@@ -48,12 +58,17 @@ export const useFormulariUsuari = (
 			poblacioRef,
 			codiPostalRef,
 			telefonRef,
+			nom,
+			cognom,
+			poblacio,
+			codiPostal,
+			telefon,
 			usuariLoguejat,
 			authID,
 			dadesUsuari,
+			navega,
 			setProcesUsuari,
-			actualitzarusuari,
-			navega
+			actualitzarusuari
 		);
 	};
 

@@ -8,7 +8,7 @@ const Capçalera = () => {
 	return (
 	<Contenidor>
 		<h1>Envivo</h1>
-		<Link to={(usuariloguejat ===null) ? "/" : (!administrador)? "/usuari" : "/administrador"}>			
+		<Link to={(usuariloguejat ===null) ? "/" : (!administrador)? "/usuari" : "/admin"}>			
 			<RiHome2Line />
 		</Link>
 	</Contenidor>

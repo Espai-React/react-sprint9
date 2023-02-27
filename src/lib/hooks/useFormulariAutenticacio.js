@@ -1,6 +1,5 @@
 import { useAutenticacio } from "./useAutenticacio";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { signUp } from "../utils/autenticacio/signUp";
 import { logIn } from "../utils/autenticacio/logIn";
 import { resetPassword } from "../utils/autenticacio/resetPassword";
@@ -8,26 +7,12 @@ import { logOut } from "../utils/autenticacio/logOut";
 import { logueigAmbGoogle } from "../utils/autenticacio/logueigAmbGoogle";
 import { useUsuaris } from "./useUsuaris";
 import { actualitzarPerfil } from "../utils/autenticacio/actualitzarPerfil";
-import { useAppContext } from "../../context/AppContext";
 
-export const useFormulariAutenticacio = (
-	correuElectronicRef,
-	claudePasRef,
-	claudePasConfirmacioRef,
-	nomRef,
-	cognomRef,
-	poblacioRef,
-	codiPostalRef,
-	telefonRef
-) => {
-	const { usuariLoguejatComplet, usuariLoguejat, dadesUsuari, authID } =
-		useAppContext();
-
+export const useFormulariAutenticacio = () => {
 	const { signup, login, resetpassword, updateemail, updatepassword, logout } =
-		useAutenticacio(usuariLoguejatComplet);
+		useAutenticacio();
 
-	const { setusuari, actualitzarusuari } = useUsuaris();
-	const navega = useNavigate();
+	const { setDades, setusuari, actualitzarusuari } = useUsuaris();
 
 	const [logueigUsuari, setLogueigUsuari] = useState({
 		processant: false,
@@ -35,7 +20,19 @@ export const useFormulariAutenticacio = (
 		missatge: "Els camps marcats amb * són obligatoris",
 	});
 
-	const handleSubmitSignup = (e) =>
+	const handleSubmitSignup = (
+		e,
+		correuElectronicRef,
+		claudePasRef,
+		claudePasConfirmacioRef,
+		nomRef,
+		cognomRef,
+		poblacioRef,
+		codiPostalRef,
+		telefonRef,
+		usuariLoguejat,
+		navega
+	) =>
 		signUp(
 			e,
 			correuElectronicRef,
@@ -47,45 +44,81 @@ export const useFormulariAutenticacio = (
 			codiPostalRef,
 			telefonRef,
 			usuariLoguejat,
+			navega,
 			setLogueigUsuari,
 			signup,
-			setusuari,
-			navega
+			setusuari
 		);
 
-	const handleSubmitLogin = (e) =>
+	const handleSubmitSignupAdmin = (
+		e,
+		dadesUsuari,
+		claudePasConfirmacioRef,
+		usuariLoguejat,
+		navega
+	) =>
+		signUpAdmin(
+			e,
+			dadesUsuari,
+			claudePasConfirmacioRef,
+			usuariLoguejat,
+			navega,
+			setLogueigUsuari,
+			signup,
+			setusuari
+		);
+
+	const handleSubmitLogin = (
+		e,
+		correuElectronicRef,
+		claudePasRef,
+		usuariLoguejat,
+		navega
+	) =>
 		logIn(
 			e,
 			correuElectronicRef,
 			claudePasRef,
 			usuariLoguejat,
+			navega,
 			setLogueigUsuari,
-			login,
-			navega
+			login
 		);
 
-	const handleSubmitGoogle = () =>
-		logueigAmbGoogle(usuariLoguejat, setLogueigUsuari, setusuari, navega);
+	const handleSubmitGoogle = (usuariLoguejat, navega) =>
+		logueigAmbGoogle(usuariLoguejat, setLogueigUsuari, navega);
 
-	const handleSubmitNovaClaudePas = (e) =>
+	const handleSubmitNovaClaudePas = (e, correuElectronicRef) =>
 		resetPassword(e, correuElectronicRef, setLogueigUsuari, resetpassword);
 
-	const handleSubmitUpdateProfile = (e) =>
+	const handleSubmitUpdateProfile = (
+		e,
+		nouCorreuElectronicRef,
+		novaClaudePasRef,
+		novaClaudePasConfirmacioRef,
+		usuariLoguejatComplet,
+		usuariLoguejat,
+		authID,
+		dadesUsuari,
+		navega
+	) =>
 		actualitzarPerfil(
 			e,
-			correuElectronicRef,
-			claudePasRef,
+			nouCorreuElectronicRef,
+			novaClaudePasRef,
+			novaClaudePasConfirmacioRef,
+			usuariLoguejatComplet,
 			usuariLoguejat,
+			authID,
+			dadesUsuari,
+			navega,
 			setLogueigUsuari,
 			updateemail,
 			updatepassword,
-			authID,
-			dadesUsuari,
-			actualitzarusuari,
-			navega
+			actualitzarusuari
 		);
 
-	const handleLogout = () =>
+	const handleLogout = (usuariLoguejat, navega) =>
 		logOut(usuariLoguejat, setLogueigUsuari, logout, navega);
 
 	return {
@@ -93,6 +126,7 @@ export const useFormulariAutenticacio = (
 		processant: logueigUsuari.processant,
 		missatge: logueigUsuari.missatge,
 		handleSubmitSignup,
+		handleSubmitSignupAdmin,
 		handleSubmitLogin,
 		handleSubmitGoogle,
 		handleSubmitNovaClaudePas,

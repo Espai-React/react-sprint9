@@ -9,13 +9,14 @@ html {
 body {
 	font-family: ${({ theme }) => theme.fonts.global};
   background-color: ${({ theme }) => theme.colors.fons};
-	height: 50vh;
+	height: 100vh;
 }
 
 * {
 	color: ${({ theme }) => theme.colors.lletraGlobal};	
 }
-${'' /* 
+${
+	"" /* 
 .App {
 	position: absolute;
   top: 50%;
@@ -71,5 +72,6 @@ input {
 form {
 	display:flex;
 	flex-direction: column;
-} */}
+} */
+}
 `;

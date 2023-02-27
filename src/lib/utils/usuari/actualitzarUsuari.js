@@ -5,12 +5,17 @@ export const actualitzarUsuari = async (
 	poblacioRef,
 	codiPostalRef,
 	telefonRef,
+	nom,
+	cognom,
+	poblacio,
+	codiPostal,
+	telefon,
 	usuariLoguejat,
 	authID,
 	dadesUsuari,
+	navega,
 	setProcesUsuari,
-	actualitzarusuari,
-	navega
+	actualitzarusuari
 ) => {
 	e.preventDefault();
 	setProcesUsuari({
@@ -21,12 +26,7 @@ export const actualitzarUsuari = async (
 
 	const {
 		correuElectronic,
-		administrador,
-		nom,
-		cognom,
-		poblacio,
-		codiPostal,
-		telefon,
+		administrador
 	} = dadesUsuari;
 
 	let dadesUsuariNou = {

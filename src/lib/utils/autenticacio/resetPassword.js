@@ -18,6 +18,7 @@ export const resetPassword = async (
 			missatge: "Seguiu les instruccions rebudes a la vostra bústia d'entrada",
 		}));
 	} catch (err) {
+		console.log(err.message);
 		setLogueigUsuari((prev) => ({
 			...prev,
 			error: "Error en enviar correu nova constrasenya",
