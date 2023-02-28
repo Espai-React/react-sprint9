@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { Formulari } from "../../../styles/common/Formulari.styles";
 import BlocInput from "../../common/BlocInput";
 import Boto from "../../common/Boto";
@@ -15,34 +14,19 @@ const FormulariActualitzarUsuari = () => {
 		telefon,
 		usuariLoguejat,
 		authID,
+		setDades,
 		dadesUsuari,
 	} = useAppContext();
 	const navega = useNavigate();
-	
-	const nomRef = useRef();
-	const cognomRef = useRef();
-	const poblacioRef = useRef();
-	const codiPostalRef = useRef();
-	const telefonRef = useRef();
 
 	const { error, processant, handleSubmitActualitzarUsuari } =
 		useFormulariUsuari();
 	const handleSubmit = (e) =>
 		handleSubmitActualitzarUsuari(
 			e,
-			nomRef,
-			cognomRef,
-			poblacioRef,
-			codiPostalRef,
-			telefonRef,
-			nom,
-			cognom,
-			poblacio,
-			codiPostal,
-			telefon,
+			dadesUsuari,
 			usuariLoguejat,
 			authID,
-			dadesUsuari,
 			navega
 		);
 
@@ -52,7 +36,7 @@ const FormulariActualitzarUsuari = () => {
 				etiqueta="Nom nou"
 				tipus="text"
 				nom="nom"
-				referencia={nomRef}
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={false}
 				placeholder={nom}
 			/>
@@ -60,37 +44,35 @@ const FormulariActualitzarUsuari = () => {
 				etiqueta="Cognom nou"
 				tipus="text"
 				nom="cognom"
-				referencia={cognomRef}
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={false}
 				placeholder={cognom}
 			/>
 			<BlocInput
 				etiqueta="Població nova"
 				tipus="text"
-				nom="Poblacio"
-				referencia={poblacioRef}
+				nom="poblacio"
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={false}
 				placeholder={poblacio}
 			/>
 			<BlocInput
 				etiqueta="Codi Postal nou"
 				tipus="text"
-				nom="Codi Postal"
-				referencia={codiPostalRef}
+				nom="codiPostal"
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={false}
 				placeholder={codiPostal}
 			/>
 			<BlocInput
 				etiqueta="Número de telèfon nou"
 				tipus="tel"
-				nom="telèfon"
-				referencia={telefonRef}
+				nom="telefon"
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={false}
 				placeholder={telefon}
 			/>
-			<div className="avis">
-				{error && <span>{error}</span>}
-			</div>
+			<div className="avis">{error && <span>{error}</span>}</div>
 			<Boto tipus="submit" deshabilitat={processant}>
 				Aplicar canvis
 			</Boto>

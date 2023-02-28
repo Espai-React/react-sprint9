@@ -26,6 +26,7 @@ const ContextProvider = ({ children }) => {
 			codiPostal,
 			telefon,
 		},
+		setDades,
 		setDadesUsuari,
 	} = useUsuaris();
 
@@ -37,7 +38,7 @@ const ContextProvider = ({ children }) => {
 	authID: ${usuariLoguejat.uid}
 	usuariLoguejat: ${correuElectronic}
 	administrador: ${administrador}
-	nom:  ${nom}
+	nom: ${nom}
 	cognom: ${cognom}
 	poblacio: ${poblacio}
 	codiPosatal: ${codiPostal}
@@ -45,36 +46,19 @@ const ContextProvider = ({ children }) => {
 	console.log(controlUsuari);
 
 	useEffect(() => {
-		const user2 = async () => await auth.currentUser?.uid.then((res) => console.log(res));
+		/* const user2 = async () => await auth.currentUser?.uid.then((res) => console.log(res));
 			console.log(user2);
-		console.log("user2",user2);
+		console.log("user2",user2); */
 		const cancellaSubscripcio = () => {
 			onAuthStateChanged(auth, async (user) => {
 				setGestioUsuari({
 					usuariLoguejat: user,
 					loadingUsuari: false,
-				});/* 
+				});
 				if (user !== null) {
 					const usuari = await handleGetUser(user.uid);
-					const {
-						correuElectronic,
-						administrador,
-						nom,
-						cognom,
-						poblacio,
-						codiPostal,
-						telefon,
-					} = usuari;
-					setDadesUsuari({
-						correuElectronic,
-						administrador,
-						nom,
-						cognom,
-						poblacio,
-						codiPostal,
-						telefon,
-					});
-				} */
+					setDadesUsuari(usuari);
+				}
 			});
 			onSnapshot(refUsuaris, (snapshot) => {
 				const dadesdbUsuaris = snapshot.docs.map((doc) => ({ ...doc.data() }));
@@ -83,12 +67,13 @@ const ContextProvider = ({ children }) => {
 		};
 		return () => cancellaSubscripcio();
 	}, []);
-	
+
 	const value = {
 		usuariLoguejatComplet: usuariLoguejat === null ? null : usuariLoguejat,
 		authID: usuariLoguejat === null ? null : usuariLoguejat.uid,
 		usuariLoguejat: usuariLoguejat === null ? null : usuariLoguejat.email,
 		dadesUsuari,
+		setDades,
 		correuElectronic,
 		administrador,
 		nom,

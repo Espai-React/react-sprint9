@@ -1,12 +1,11 @@
 export const actualitzarPerfil = async (
 	e,
-	nouCorreuElectronicRef,
+	dadesUsuari,
 	novaClaudePasRef,
 	novaClaudePasConfirmacioRef,
 	usuariLoguejatComplet,
 	usuariLoguejat,
 	authID,
-	dadesUsuari,
 	navega,
 	setLogueigUsuari,
 	updateemail,
@@ -20,29 +19,7 @@ export const actualitzarPerfil = async (
 		missatge: "",
 	});
 
-	const {
-		correuElectronic,
-		administrador,
-		nom,
-		cognom,
-		poblacio,
-		codiPostal,
-		telefon,
-	} = dadesUsuari;
-
-	let dadesUsuariNou = {
-		correuElectronic:
-			nouCorreuElectronicRef.current.value === ""
-				? correuElectronic
-				: nouCorreuElectronicRef.current.value,
-		administrador,
-		nom,
-		cognom,
-		poblacio,
-		codiPostal,
-		telefon,
-	};
-
+	const { correuElectronic, administrador } = dadesUsuari;
 	if (
 		novaClaudePasRef.current.value !== novaClaudePasConfirmacioRef.current.value
 	) {
@@ -54,17 +31,15 @@ export const actualitzarPerfil = async (
 	}
 
 	try {
-		await updateemail(
-			usuariLoguejatComplet,
-			nouCorreuElectronicRef.current.value
-		);
+		await updateemail(usuariLoguejatComplet, correuElectronic);
 		await updatepassword(usuariLoguejatComplet, novaClaudePasRef.current.value);
-		await actualitzarusuari("usuaris", authID, dadesUsuariNou);
+		await actualitzarusuari("usuaris", authID, dadesUsuari);
 		setLogueigUsuari((prev) => ({
 			...prev,
 			missatge: `Usuari actualitzat: ${usuariLoguejat}`,
 		}));
-		navega("/usuari");
+		console.log(dadesUsuari);
+		administrador ? navega("/admin") : navega("/usuari");
 	} catch (err) {
 		console.log(err.message);
 		let error;

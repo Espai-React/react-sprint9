@@ -7,9 +7,11 @@ import { useFormulariAutenticacio } from "../../../lib/hooks/useFormulariAutenti
 import { logosLogin } from "../../../lib/constants/logosLogin";
 import { BotoLogo } from "../../../styles/common/BotoLogo.styles";
 import { useAppContext } from "../../../context/AppContext";
+import { useUsuaris } from "../../../lib/hooks/useUsuaris";
+import { condAdmin } from "../../../lib/constants/condAdmin";
 
 const FormulariLogin = () => {
-	const correuElectronicRef = useRef();
+	const { dadesUsuari, setDades } = useUsuaris();
 	const claudePasRef = useRef();
 
 	const { error, missatge, processant, handleSubmitLogin, handleSubmitGoogle } =
@@ -17,13 +19,8 @@ const FormulariLogin = () => {
 	const { usuariLoguejat } = useAppContext();
 	const navega = useNavigate();
 	const handleSubmit = (e) =>
-		handleSubmitLogin(
-			e,
-			correuElectronicRef,
-			claudePasRef,
-			usuariLoguejat,
-			navega
-		);
+		handleSubmitLogin(e, dadesUsuari, claudePasRef, usuariLoguejat, navega);
+
 	const logoGoogle = logosLogin.logoGoogle;
 
 	return (
@@ -32,16 +29,21 @@ const FormulariLogin = () => {
 				etiqueta="Correu electrònic *"
 				tipus="email"
 				nom="correuElectronic"
-				referencia={correuElectronicRef}
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={true}
 			/>
+
 			<BlocInput
 				etiqueta="Contrasenya *"
 				tipus="password"
 				nom="claudePas"
 				referencia={claudePasRef}
+				onChange={(e) =>
+					setDades("administrador", condAdmin(claudePasRef.current.value))
+				}
 				requerit={true}
 			/>
+
 			<div className="avis">
 				{missatge && <span>{missatge}</span>}
 				{error && <span>{error}</span>}

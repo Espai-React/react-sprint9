@@ -5,26 +5,26 @@ import Boto from "../../common/Boto";
 import { useFormulariAutenticacio } from "../../../lib/hooks/useFormulariAutenticacio";
 import { useAppContext } from "../../../context/AppContext";
 import { useNavigate } from "react-router-dom";
+import { condAdmin } from "../../../lib/constants/condAdmin";
 
 const FormulariActualitzarPerfil = () => {
-	const nouCorreuElectronicRef = useRef();
 	const novaClaudePasRef = useRef();
 	const novaClaudePasConfirmacioRef = useRef();
 
 	const { error, missatge, processant, handleSubmitUpdateProfile } =
 		useFormulariAutenticacio();
-	const { usuariLoguejatComplet, usuariLoguejat, authID, dadesUsuari } = useAppContext();
+	const { dadesUsuari, setDades, usuariLoguejatComplet, usuariLoguejat, authID } =
+		useAppContext();
 	const navega = useNavigate();
 	const handleSubmit = (e) =>
 		handleSubmitUpdateProfile(
 			e,
-			nouCorreuElectronicRef,
+			dadesUsuari,
 			novaClaudePasRef,
 			novaClaudePasConfirmacioRef,
 			usuariLoguejatComplet,
 			usuariLoguejat,
 			authID,
-			dadesUsuari,
 			navega
 		);
 
@@ -34,7 +34,7 @@ const FormulariActualitzarPerfil = () => {
 				etiqueta="Nou correu electrònic"
 				tipus="email"
 				nom="correuElectronic"
-				referencia={nouCorreuElectronicRef}
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={false}
 				placeholder={usuariLoguejat}
 			/>
@@ -44,6 +44,9 @@ const FormulariActualitzarPerfil = () => {
 				tipus="password"
 				nom="claudePas"
 				referencia={novaClaudePasRef}
+				onChange={(e) =>
+					setDades("administrador", condAdmin(novaClaudePasRef.current.value))
+				}
 				requerit={false}
 				placeholder="Deixa-ho en blanc si no vols fer canvis..."
 			/>
@@ -57,9 +60,7 @@ const FormulariActualitzarPerfil = () => {
 				placeholder="Deixa-ho en blanc si no vols fer canvis..."
 			/>
 
-			<div className="avis">
-				{error && <span>{error}</span>}
-			</div>
+			<div className="avis">{error && <span>{error}</span>}</div>
 			<Boto tipus="submit" deshabilitat={processant}>
 				Aplicar canvis
 			</Boto>

@@ -1,6 +1,7 @@
 import { updateDoc, addDoc, setDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../../config/firebase/firebase";
 import { useState } from "react";
+import { useAppContext } from "../../context/AppContext";
 
 export const useUsuaris = () => {
 	const [dadesUsuari, setDadesUsuari] = useState({
@@ -20,6 +21,12 @@ export const useUsuaris = () => {
 		}));
 	};
 
+	const setDadesContext = (dadesUsuariContext) => {
+		setDadesUsuari({
+			dadesUsuariContext,
+		});
+	};
+
 	const crearusuari = (refUsuaris, dadesUsuari) => {
 		addDoc(refUsuaris, dadesUsuari);
 	};
@@ -36,6 +43,7 @@ export const useUsuaris = () => {
 	return {
 		dadesUsuari,
 		setDades,
+		setDadesContext,
 		setDadesUsuari,
 		crearusuari,
 		setusuari,

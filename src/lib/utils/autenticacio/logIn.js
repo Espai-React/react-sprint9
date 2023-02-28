@@ -1,6 +1,6 @@
 export const logIn = async (
 	e,
-	correuElectronicRef,
+	dadesUsuari,
 	claudePasRef,
 	usuariLoguejat,
 	navega,
@@ -13,17 +13,15 @@ export const logIn = async (
 		error: "",
 		missatge: "",
 	});
-
-	const condAdmin =
-		claudePasRef.current.value === import.meta.env.VITE_APP_ADMIN_CLAUEPAS;
+	const { correuElectronic, administrador } = dadesUsuari;
 
 	try {
-		await login(correuElectronicRef.current.value, claudePasRef.current.value);
+		await login(correuElectronic, claudePasRef.current.value);
 		setLogueigUsuari((prev) => ({
 			...prev,
 			missatge: `Nova sessió usuari: ${usuariLoguejat}`,
 		}));
-		condAdmin ? navega("/admin") : navega("/usuari");
+		administrador ? navega("/admin") : navega("/usuari");
 	} catch (err) {
 		let error;
 		switch (err.message) {

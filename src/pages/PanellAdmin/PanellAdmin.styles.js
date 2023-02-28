@@ -9,7 +9,8 @@ export const ContenidorPanell = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-
+	gap: 1.5rem;
+	
 	h2 {
 		margin-bottom: 0.5rem;
 	}

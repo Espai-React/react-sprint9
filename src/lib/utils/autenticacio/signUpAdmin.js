@@ -1,9 +1,9 @@
 export const signUpAdmin = async (
 	e,
 	dadesUsuari,
+	claudePasRef,
 	claudePasConfirmacioRef,
 	usuariLoguejat,
-	navega,
 	setLogueigUsuari,
 	signup,
 	setusuari
@@ -14,10 +14,9 @@ export const signUpAdmin = async (
 		error: "",
 		missatge: "",
 	});
+	const { correuElectronic } = dadesUsuari;
 
-	const { correuElectronic, claudePas, administrador } = dadesUsuari;
-
-	if (claudePas !== claudePasConfirmacioRef.current.value) {
+	if (claudePasRef.current.value !== claudePasConfirmacioRef.current.value) {
 		setLogueigUsuari((prev) => ({
 			...prev,
 			error: "Les contrasenyes no coincideixen",
@@ -26,13 +25,12 @@ export const signUpAdmin = async (
 	}
 
 	try {
-		const usuari = await signup(correuElectronic, claudePas);
+		const usuari = await signup(correuElectronic, claudePasRef.current.value);
 		await setusuari("usuaris", usuari.user.uid, dadesUsuari);
 		setLogueigUsuari((prev) => ({
 			...prev,
 			missatge: `Nou usuari: ${usuariLoguejat}`,
 		}));
-		administrador ? navega("/admin") : navega("/usuari");
 	} catch (err) {
 		let error;
 		switch (err.message) {

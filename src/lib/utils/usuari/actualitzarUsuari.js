@@ -1,18 +1,8 @@
 export const actualitzarUsuari = async (
 	e,
-	nomRef,
-	cognomRef,
-	poblacioRef,
-	codiPostalRef,
-	telefonRef,
-	nom,
-	cognom,
-	poblacio,
-	codiPostal,
-	telefon,
+	dadesUsuari,
 	usuariLoguejat,
 	authID,
-	dadesUsuari,
 	navega,
 	setProcesUsuari,
 	actualitzarusuari
@@ -24,36 +14,15 @@ export const actualitzarUsuari = async (
 		missatge: "",
 	});
 
-	const {
-		correuElectronic,
-		administrador
-	} = dadesUsuari;
-
-	let dadesUsuariNou = {
-		correuElectronic,
-		administrador,
-		nom: nomRef.current.value === "" ? nom : nomRef.current.value,
-		cognom: cognomRef.current.value === "" ? cognom : cognomRef.current.value,
-		poblacio:
-			poblacioRef.current.value === "" ? poblacio : poblacioRef.current.value,
-		codiPostal:
-			codiPostalRef.current.value === ""
-				? codiPostal
-				: codiPostalRef.current.value,
-		telefon:
-			telefonRef.current.value === "" ? telefon : telefonRef.current.value,
-	};
-
 	try {
-		await actualitzarusuari("usuaris", authID, dadesUsuariNou);
+		await actualitzarusuari("usuaris", authID, dadesUsuari);
 		setProcesUsuari((prev) => ({
 			...prev,
 			missatge: `Usuari actualitzat: ${usuariLoguejat}`,
 		}));
 		navega("/usuari");
 	} catch (err) {
-		console.log(err.message);
-		setProcesUsuari((prev) => ({
+	setProcesUsuari((prev) => ({
 			...prev,
 			error: `Error en actualitzar usuari`,
 		}));

@@ -4,31 +4,23 @@ import BlocInput from "../../common/BlocInput";
 import Boto from "../../common/Boto";
 import { useFormulariAutenticacio } from "../../../lib/hooks/useFormulariAutenticacio";
 import { useAppContext } from "../../../context/AppContext";
-import { useNavigate } from "react-router-dom";
-import { condAdmin } from '../../../lib/constants/condAdmin';
+import { condAdmin } from "../../../lib/constants/condAdmin";
+import { useUsuaris } from "../../../lib/hooks/useUsuaris";
 
 const FormulariSignupAdmin = () => {
 	const { dadesUsuari, setDades } = useUsuaris();
-	const {
-		correuElectronic,
-		administrador,
-		nom,
-		cognom,
-		poblacio,
-		codiPostal,
-		telefon,
-	} = dadesUsuari;
+	const claudePasRef = useRef();
 	const claudePasConfirmacioRef = useRef();
 
 	const { error, missatge, processant, handleSubmitSignupAdmin } =
 		useFormulariAutenticacio();
 	const { usuariLoguejat } = useAppContext();
-	const navega = useNavigate();
 
 	const handleSubmit = (e) =>
 		handleSubmitSignupAdmin(
 			e,
 			dadesUsuari,
+			claudePasRef,
 			claudePasConfirmacioRef,
 			usuariLoguejat,
 			navega
@@ -40,8 +32,7 @@ const FormulariSignupAdmin = () => {
 				etiqueta="Correu electrònic *"
 				tipus="email"
 				nom="correuElectronic"
-				value={correuElectronic}
-				onChange={(e) => setDades(e.target.nom, e.target.value)}
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={true}
 			/>
 
@@ -49,55 +40,53 @@ const FormulariSignupAdmin = () => {
 				etiqueta="Contrasenya *"
 				tipus="password"
 				nom="claudePas"
-				value={claudePas}
-				onChange={(e) => setDades(e.target.nom, condAdmin(e.target.value))}
+				referencia={claudePasRef}
+				onChange={(e) =>
+					setDades("administrador", condAdmin(claudePasRef.current.value))
+				}
 				requerit={true}
 			/>
 
 			<BlocInput
 				etiqueta="Confirmació contrasenya *"
 				tipus="password"
-				nom="claudePasConfirmacio"				referencia={claudePasConfirmacioRef}
+				nom="claudePasConfirmacio"
+				referencia={claudePasConfirmacioRef}
 				requerit={true}
 			/>
 			<BlocInput
 				etiqueta="Nom *"
 				tipus="text"
 				nom="nom"
-				value={nom}
-				onChange={(e) => setDades(e.target.nom, e.target.value)}
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={true}
 			/>
 			<BlocInput
 				etiqueta="Cognom"
 				tipus="text"
 				nom="cognom"
-				value={cognom}
-				onChange={(e) => setDades(e.target.nom, e.target.value)}
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={false}
 			/>
 			<BlocInput
 				etiqueta="Població"
 				tipus="text"
-				nom="Poblacio"
-				value={poblacio}
-				onChange={(e) => setDades(e.target.nom, e.target.value)}
+				nom="poblacio"
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={false}
 			/>
 			<BlocInput
 				etiqueta="Codi Postal"
 				tipus="text"
-				nom="Codi Postal"
-				value={codiPostal}
-				onChange={(e) => setDades(e.target.nom, e.target.value)}
+				nom="codiPostal"
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={false}
 			/>
 			<BlocInput
 				etiqueta="Telefon"
 				tipus="tel"
 				nom="telefon"
-				value={telefon}
-				onChange={(e) => setDades(e.target.nom, e.target.value)}
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={false}
 			/>
 

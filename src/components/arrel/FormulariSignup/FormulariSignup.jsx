@@ -4,46 +4,36 @@ import BlocInput from "../../common/BlocInput";
 import Boto from "../../common/Boto";
 import { useFormulariAutenticacio } from "../../../lib/hooks/useFormulariAutenticacio";
 import { useAppContext } from "../../../context/AppContext";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useUsuaris } from "../../../lib/hooks/useUsuaris";
+import { condAdmin } from "../../../lib/constants/condAdmin";
 
 const FormulariSignup = () => {
-	const correuElectronicRef = useRef();
+	const { dadesUsuari, setDades } = useUsuaris();
 	const claudePasRef = useRef();
 	const claudePasConfirmacioRef = useRef();
-	const nomRef = useRef();
-	const cognomRef = useRef();
-	const poblacioRef = useRef();
-	const codiPostalRef = useRef();
-	const telefonRef = useRef();
 
 	const { error, missatge, processant, handleSubmitSignup } =
 		useFormulariAutenticacio();
 	const { usuariLoguejat } = useAppContext();
 	const navega = useNavigate();
-	const handleSubmit = (e) =>
+	const handleSubmit = (e) => 
 		handleSubmitSignup(
 			e,
-			correuElectronicRef,
+			dadesUsuari,
 			claudePasRef,
 			claudePasConfirmacioRef,
-			nomRef,
-			cognomRef,
-			poblacioRef,
-			codiPostalRef,
-			telefonRef,
 			usuariLoguejat,
 			navega
 		);
 
 	return (
-		<Formulari
-			id="signup"
-			onSubmit={handleSubmit}>
+		<Formulari id="signup" onSubmit={handleSubmit}>
 			<BlocInput
 				etiqueta="Correu electrònic *"
 				tipus="email"
 				nom="correuElectronic"
-				referencia={correuElectronicRef}
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={true}
 			/>
 
@@ -52,6 +42,9 @@ const FormulariSignup = () => {
 				tipus="password"
 				nom="claudePas"
 				referencia={claudePasRef}
+				onChange={(e) =>
+					setDades("administrador", condAdmin(claudePasRef.current.value))
+				}
 				requerit={true}
 			/>
 
@@ -66,35 +59,35 @@ const FormulariSignup = () => {
 				etiqueta="Nom *"
 				tipus="text"
 				nom="nom"
-				referencia={nomRef}
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={true}
 			/>
 			<BlocInput
 				etiqueta="Cognom"
 				tipus="text"
 				nom="cognom"
-				referencia={cognomRef}
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={false}
 			/>
 			<BlocInput
 				etiqueta="Població"
 				tipus="text"
-				nom="Poblacio"
-				referencia={poblacioRef}
+				nom="poblacio"
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={false}
 			/>
 			<BlocInput
 				etiqueta="Codi Postal"
 				tipus="text"
-				nom="Codi Postal"
-				referencia={codiPostalRef}
+				nom="codiPostal"
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={false}
 			/>
 			<BlocInput
 				etiqueta="Telefon"
 				tipus="tel"
 				nom="telefon"
-				referencia={telefonRef}
+				onChange={(e) => setDades(e.target.name, e.target.value)}
 				requerit={false}
 			/>
 

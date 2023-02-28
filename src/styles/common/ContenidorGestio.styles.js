@@ -9,7 +9,8 @@ export const ContenidorGestio = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-
+	gap: 1.5rem;
+	
 	.capçalera {
 		display: flex;
 		flex-direction: column;
@@ -25,7 +26,7 @@ export const ContenidorGestio = styled.div`
 
 		a {
 			flex: 1 1 40%;
-			
+
 			button {
 				height: 80%;
 			}
@@ -36,7 +37,7 @@ export const ContenidorGestio = styled.div`
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;/* 
+		justify-content: center; /* 
 		margin-top: auto; */
 	}
 `;

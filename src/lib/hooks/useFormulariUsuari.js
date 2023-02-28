@@ -9,7 +9,6 @@ export const useFormulariUsuari = () => {
 		dadesUsuari,
 		setDadesUsuari,
 		crearusuari,
-		setusuari,
 		actualitzarusuari,
 		obtenirusuari
 	} = useUsuaris();
@@ -36,36 +35,16 @@ export const useFormulariUsuari = () => {
 
 	const handleSubmitActualitzarUsuari = (
 		e,
-		nomRef,
-		cognomRef,
-		poblacioRef,
-		codiPostalRef,
-		telefonRef,
-		nom,
-		cognom,
-		poblacio,
-		codiPostal,
-		telefon,
+		dadesUsuari,
 		usuariLoguejat,
 		authID,
-		dadesUsuari,
-		navega,
+		navega
 	) => {
 		actualitzarUsuari(
 			e,
-			nomRef,
-			cognomRef,
-			poblacioRef,
-			codiPostalRef,
-			telefonRef,
-			nom,
-			cognom,
-			poblacio,
-			codiPostal,
-			telefon,
+			dadesUsuari,
 			usuariLoguejat,
 			authID,
-			dadesUsuari,
 			navega,
 			setProcesUsuari,
 			actualitzarusuari

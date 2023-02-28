@@ -33,8 +33,8 @@ export const ContenidorPanell = styled.div`
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: center;/* 
 		margin-top: auto;
-		margin-bottom: -1.5rem;
+		margin-bottom: -1.5rem; */
 	}
 `;

@@ -6,6 +6,8 @@ const BlocInput = ({
 	nom,
 	placeholder,
 	referencia,
+	onChange,
+	value,
 	requerit,
 	nomesLectura,
 	perDefecte
@@ -18,6 +20,8 @@ const BlocInput = ({
 			id={nom}
 			name={nom}
 			placeholder={placeholder}
+			onChange={onChange}
+			value={value}
 			defaultValue={perDefecte}
 			ref={referencia}
 			required={requerit}

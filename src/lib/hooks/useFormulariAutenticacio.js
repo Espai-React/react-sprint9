@@ -7,12 +7,13 @@ import { logOut } from "../utils/autenticacio/logOut";
 import { logueigAmbGoogle } from "../utils/autenticacio/logueigAmbGoogle";
 import { useUsuaris } from "./useUsuaris";
 import { actualitzarPerfil } from "../utils/autenticacio/actualitzarPerfil";
+import { signUpAdmin } from "../utils/autenticacio/signUpAdmin";
 
 export const useFormulariAutenticacio = () => {
 	const { signup, login, resetpassword, updateemail, updatepassword, logout } =
 		useAutenticacio();
 
-	const { setDades, setusuari, actualitzarusuari } = useUsuaris();
+	const { setusuari, actualitzarusuari } = useUsuaris();
 
 	const [logueigUsuari, setLogueigUsuari] = useState({
 		processant: false,
@@ -22,27 +23,17 @@ export const useFormulariAutenticacio = () => {
 
 	const handleSubmitSignup = (
 		e,
-		correuElectronicRef,
+		dadesUsuari,
 		claudePasRef,
 		claudePasConfirmacioRef,
-		nomRef,
-		cognomRef,
-		poblacioRef,
-		codiPostalRef,
-		telefonRef,
 		usuariLoguejat,
 		navega
 	) =>
 		signUp(
 			e,
-			correuElectronicRef,
+			dadesUsuari,
 			claudePasRef,
 			claudePasConfirmacioRef,
-			nomRef,
-			cognomRef,
-			poblacioRef,
-			codiPostalRef,
-			telefonRef,
 			usuariLoguejat,
 			navega,
 			setLogueigUsuari,
@@ -53,16 +44,16 @@ export const useFormulariAutenticacio = () => {
 	const handleSubmitSignupAdmin = (
 		e,
 		dadesUsuari,
+		claudePasRef,
 		claudePasConfirmacioRef,
-		usuariLoguejat,
-		navega
+		usuariLoguejat
 	) =>
 		signUpAdmin(
 			e,
 			dadesUsuari,
+			claudePasRef,
 			claudePasConfirmacioRef,
 			usuariLoguejat,
-			navega,
 			setLogueigUsuari,
 			signup,
 			setusuari
@@ -70,14 +61,14 @@ export const useFormulariAutenticacio = () => {
 
 	const handleSubmitLogin = (
 		e,
-		correuElectronicRef,
+		dadesUsuari,
 		claudePasRef,
 		usuariLoguejat,
 		navega
 	) =>
 		logIn(
 			e,
-			correuElectronicRef,
+			dadesUsuari,
 			claudePasRef,
 			usuariLoguejat,
 			navega,
@@ -93,24 +84,22 @@ export const useFormulariAutenticacio = () => {
 
 	const handleSubmitUpdateProfile = (
 		e,
-		nouCorreuElectronicRef,
+		dadesUsuari,
 		novaClaudePasRef,
 		novaClaudePasConfirmacioRef,
 		usuariLoguejatComplet,
 		usuariLoguejat,
 		authID,
-		dadesUsuari,
 		navega
 	) =>
 		actualitzarPerfil(
 			e,
-			nouCorreuElectronicRef,
+			dadesUsuari,
 			novaClaudePasRef,
 			novaClaudePasConfirmacioRef,
 			usuariLoguejatComplet,
 			usuariLoguejat,
 			authID,
-			dadesUsuari,
 			navega,
 			setLogueigUsuari,
 			updateemail,
