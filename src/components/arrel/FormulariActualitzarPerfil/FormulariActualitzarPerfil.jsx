@@ -13,7 +13,7 @@ const FormulariActualitzarPerfil = () => {
 
 	const { error, missatge, processant, handleSubmitUpdateProfile } =
 		useFormulariAutenticacio();
-	const { dadesUsuari, setDades, usuariLoguejatComplet, usuariLoguejat, authID } =
+	const { dadesUsuari, setDades, setDadesUsuari, usuariLoguejatComplet, usuariLoguejat, authID } =
 		useAppContext();
 	const navega = useNavigate();
 	const handleSubmit = (e) =>
@@ -34,7 +34,9 @@ const FormulariActualitzarPerfil = () => {
 				etiqueta="Nou correu electrònic"
 				tipus="email"
 				nom="correuElectronic"
-				onChange={(e) => setDades(e.target.name, e.target.value)}
+				onChange={(e) =>
+					setDades(e.target.name, e.target.value, setDadesUsuari)
+				}
 				requerit={false}
 				placeholder={usuariLoguejat}
 			/>
@@ -45,7 +47,10 @@ const FormulariActualitzarPerfil = () => {
 				nom="claudePas"
 				referencia={novaClaudePasRef}
 				onChange={(e) =>
-					setDades("administrador", condAdmin(novaClaudePasRef.current.value))
+					setDades(
+						"administrador",
+						condAdmin(novaClaudePasRef.current.value, setDadesUsuari)
+					)
 				}
 				requerit={false}
 				placeholder="Deixa-ho en blanc si no vols fer canvis..."

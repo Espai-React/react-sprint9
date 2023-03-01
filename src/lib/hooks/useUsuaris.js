@@ -1,7 +1,6 @@
 import { updateDoc, addDoc, setDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "../../config/firebase/firebase";
 import { useState } from "react";
-import { useAppContext } from "../../context/AppContext";
 
 export const useUsuaris = () => {
 	const [dadesUsuari, setDadesUsuari] = useState({
@@ -14,40 +13,33 @@ export const useUsuaris = () => {
 		telefon: null,
 	});
 
-	const setDades = (clau, valor) => {
-		setDadesUsuari((prev) => ({
+	const setDades = (clau, valor, setter) => {
+		setter((prev) => ({
 			...prev,
 			[clau]: valor,
 		}));
 	};
 
-	const setDadesContext = (dadesUsuariContext) => {
-		setDadesUsuari({
-			dadesUsuariContext,
-		});
+	const crearElement = (refdb, dadesElement) => {
+		addDoc(refdb, dadesElement);
 	};
 
-	const crearusuari = (refUsuaris, dadesUsuari) => {
-		addDoc(refUsuaris, dadesUsuari);
+	const setElement = (nomdb, id, dadesElement) => {
+		setDoc(doc(db, nomdb, id), dadesElement);
 	};
 
-	const setusuari = (nomdb, authID, dadesUsuari) => {
-		setDoc(doc(db, nomdb, authID), dadesUsuari);
-	};
+	const actualitzarElement = (nomdb, id, dadesElement) =>
+		updateDoc(doc(db, nomdb, id), dadesElement);
 
-	const actualitzarusuari = (nomdb, authID, dadesUsuari) =>
-		updateDoc(doc(db, nomdb, authID), dadesUsuari);
-
-	const obtenirusuari = (nomdb, authID) => getDoc(doc(db, nomdb, authID));
+	const obtenirElement = (nomdb, id) => getDoc(doc(db, nomdb, id));
 
 	return {
 		dadesUsuari,
-		setDades,
-		setDadesContext,
 		setDadesUsuari,
-		crearusuari,
-		setusuari,
-		actualitzarusuari,
-		obtenirusuari,
+		setDades,
+		crearElement,
+		setElement,
+		actualitzarElement,
+		obtenirElement,
 	};
 };

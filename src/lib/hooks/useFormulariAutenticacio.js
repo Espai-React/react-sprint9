@@ -13,7 +13,7 @@ export const useFormulariAutenticacio = () => {
 	const { signup, login, resetpassword, updateemail, updatepassword, logout } =
 		useAutenticacio();
 
-	const { setusuari, actualitzarusuari } = useUsuaris();
+	const { setElement, actualitzarElement } = useUsuaris();
 
 	const [logueigUsuari, setLogueigUsuari] = useState({
 		processant: false,
@@ -38,7 +38,7 @@ export const useFormulariAutenticacio = () => {
 			navega,
 			setLogueigUsuari,
 			signup,
-			setusuari
+			setElement
 		);
 
 	const handleSubmitSignupAdmin = (
@@ -56,7 +56,7 @@ export const useFormulariAutenticacio = () => {
 			usuariLoguejat,
 			setLogueigUsuari,
 			signup,
-			setusuari
+			setElement
 		);
 
 	const handleSubmitLogin = (
@@ -104,7 +104,7 @@ export const useFormulariAutenticacio = () => {
 			setLogueigUsuari,
 			updateemail,
 			updatepassword,
-			actualitzarusuari
+			actualitzarElement
 		);
 
 	const handleLogout = (usuariLoguejat, navega) =>

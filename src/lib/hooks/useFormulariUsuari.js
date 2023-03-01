@@ -8,9 +8,9 @@ export const useFormulariUsuari = () => {
 	const {
 		dadesUsuari,
 		setDadesUsuari,
-		crearusuari,
-		actualitzarusuari,
-		obtenirusuari
+		crearElement,
+		actualitzarElement,
+		obtenirElement
 	} = useUsuaris();
 
 	const [procesUsuari, setProcesUsuari] = useState({
@@ -24,14 +24,14 @@ export const useFormulariUsuari = () => {
 			dadesUsuari,
 			setDadesUsuari,
 			setProcesUsuari,
-			crearusuari,
+			crearElement,
 			usuariLoguejat,
 			authID,
 			administrador
 		);
 
 	const handleGetUser = (authID) =>
-		obtenirUsuari(setProcesUsuari, obtenirusuari, authID);
+		obtenirUsuari(setProcesUsuari, obtenirElement, authID);
 
 	const handleSubmitActualitzarUsuari = (
 		e,
@@ -47,8 +47,8 @@ export const useFormulariUsuari = () => {
 			authID,
 			navega,
 			setProcesUsuari,
-			actualitzarusuari
-		);
+			actualitzarElement
+		)
 	};
 
 	return {

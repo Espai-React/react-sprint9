@@ -15,6 +15,7 @@ const FormulariActualitzarUsuari = () => {
 		usuariLoguejat,
 		authID,
 		setDades,
+		setDadesUsuari,
 		dadesUsuari,
 	} = useAppContext();
 	const navega = useNavigate();
@@ -36,7 +37,9 @@ const FormulariActualitzarUsuari = () => {
 				etiqueta="Nom nou"
 				tipus="text"
 				nom="nom"
-				onChange={(e) => setDades(e.target.name, e.target.value)}
+				onChange={(e) =>
+					setDades(e.target.name, e.target.value, setDadesUsuari)
+				}
 				requerit={false}
 				placeholder={nom}
 			/>
@@ -44,7 +47,9 @@ const FormulariActualitzarUsuari = () => {
 				etiqueta="Cognom nou"
 				tipus="text"
 				nom="cognom"
-				onChange={(e) => setDades(e.target.name, e.target.value)}
+				onChange={(e) =>
+					setDades(e.target.name, e.target.value, setDadesUsuari)
+				}
 				requerit={false}
 				placeholder={cognom}
 			/>
@@ -52,7 +57,9 @@ const FormulariActualitzarUsuari = () => {
 				etiqueta="Població nova"
 				tipus="text"
 				nom="poblacio"
-				onChange={(e) => setDades(e.target.name, e.target.value)}
+				onChange={(e) =>
+					setDades(e.target.name, e.target.value, setDadesUsuari)
+				}
 				requerit={false}
 				placeholder={poblacio}
 			/>
@@ -60,7 +67,9 @@ const FormulariActualitzarUsuari = () => {
 				etiqueta="Codi Postal nou"
 				tipus="text"
 				nom="codiPostal"
-				onChange={(e) => setDades(e.target.name, e.target.value)}
+				onChange={(e) =>
+					setDades(e.target.name, e.target.value, setDadesUsuari)
+				}
 				requerit={false}
 				placeholder={codiPostal}
 			/>
@@ -68,7 +77,9 @@ const FormulariActualitzarUsuari = () => {
 				etiqueta="Número de telèfon nou"
 				tipus="tel"
 				nom="telefon"
-				onChange={(e) => setDades(e.target.name, e.target.value)}
+				onChange={(e) =>
+					setDades(e.target.name, e.target.value, setDadesUsuari)
+				}
 				requerit={false}
 				placeholder={telefon}
 			/>

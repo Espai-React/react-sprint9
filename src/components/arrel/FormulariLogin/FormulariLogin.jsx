@@ -11,7 +11,7 @@ import { useUsuaris } from "../../../lib/hooks/useUsuaris";
 import { condAdmin } from "../../../lib/constants/condAdmin";
 
 const FormulariLogin = () => {
-	const { dadesUsuari, setDades } = useUsuaris();
+	const { dadesUsuari, setDades, setDadesUsuari } = useUsuaris();
 	const claudePasRef = useRef();
 
 	const { error, missatge, processant, handleSubmitLogin, handleSubmitGoogle } =
@@ -29,7 +29,9 @@ const FormulariLogin = () => {
 				etiqueta="Correu electrònic *"
 				tipus="email"
 				nom="correuElectronic"
-				onChange={(e) => setDades(e.target.name, e.target.value)}
+				onChange={(e) =>
+					setDades(e.target.name, e.target.value, setDadesUsuari)
+				}
 				requerit={true}
 			/>
 
@@ -39,7 +41,11 @@ const FormulariLogin = () => {
 				nom="claudePas"
 				referencia={claudePasRef}
 				onChange={(e) =>
-					setDades("administrador", condAdmin(claudePasRef.current.value))
+					setDades(
+						"administrador",
+						condAdmin(claudePasRef.current.value),
+						setDadesUsuari
+					)
 				}
 				requerit={true}
 			/>
