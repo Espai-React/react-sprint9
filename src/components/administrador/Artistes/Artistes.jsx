@@ -1,4 +1,4 @@
-import { Link, useOutletContext } from "react-router-dom";
+import {Link, useOutletContext, Outlet} from 'react-router-dom';
 import { Subtitol } from "../../../styles/common/Subtitol.styles";
 import { ContenidorGestio } from "../../../styles/common/ContenidorGestio.styles";
 import Boto from "../../common/Boto";
@@ -9,10 +9,10 @@ const Artistes = () => {
 	return (
 		<ContenidorGestio>
 			<div className="capçalera">
-				<Subtitol>Gestió artistes</Subtitol>
+				<Subtitol>Gestió d'artistes</Subtitol>
 			</div>
 			<div className="bloc-botons">
-				<Link to="alta">
+				<Link to="altaartista">
 					<Boto>Alta artista</Boto>
 				</Link>
 				<Link to="modificacio" onClick={(e) => e.preventDefault()}>
@@ -30,6 +30,7 @@ const Artistes = () => {
 					<Boto onClick={handleMostrar}>Tornar enrere</Boto>
 				</Link>
 			</div>
+			<Outlet/>
 		</ContenidorGestio>
 	);
 };

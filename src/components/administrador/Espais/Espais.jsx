@@ -1,4 +1,4 @@
-import { Link, useOutletContext } from "react-router-dom";
+import { Outlet, Link, useOutletContext } from "react-router-dom";
 import { Subtitol } from "../../../styles/common/Subtitol.styles";
 import { ContenidorGestio } from "../../../styles/common/ContenidorGestio.styles";
 import Boto from "../../common/Boto";
@@ -12,7 +12,7 @@ const Espais = () => {
 				<Subtitol>Gestió espais</Subtitol>
 			</div>
 			<div className="bloc-botons">
-				<Link to="alta">
+				<Link to="altaespai">
 					<Boto>Alta espai</Boto>
 				</Link>
 				<Link to="modificacio" onClick={(e) => e.preventDefault()}>
@@ -30,6 +30,7 @@ const Espais = () => {
 					<Boto onClick={handleMostrar}>Tornar enrere</Boto>
 				</Link>
 			</div>
+			<Outlet />
 		</ContenidorGestio>
 	);
 };

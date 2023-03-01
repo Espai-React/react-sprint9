@@ -5,15 +5,15 @@ import { logIn } from "../utils/autenticacio/logIn";
 import { resetPassword } from "../utils/autenticacio/resetPassword";
 import { logOut } from "../utils/autenticacio/logOut";
 import { logueigAmbGoogle } from "../utils/autenticacio/logueigAmbGoogle";
-import { useUsuaris } from "./useUsuaris";
 import { actualitzarPerfil } from "../utils/autenticacio/actualitzarPerfil";
-import { signUpAdmin } from "../utils/autenticacio/signUpAdmin";
+import { usedb } from './usedb';
+import { altaUsuari } from '../utils/administrador/altaUsuari';
 
 export const useFormulariAutenticacio = () => {
 	const { signup, login, resetpassword, updateemail, updatepassword, logout } =
 		useAutenticacio();
 
-	const { setElement, actualitzarElement } = useUsuaris();
+	const { setElement, actualitzarElement } = usedb();
 
 	const [logueigUsuari, setLogueigUsuari] = useState({
 		processant: false,
@@ -41,19 +41,17 @@ export const useFormulariAutenticacio = () => {
 			setElement
 		);
 
-	const handleSubmitSignupAdmin = (
+	const handleSubmitAltaUsuari = (
 		e,
 		dadesUsuari,
 		claudePasRef,
-		claudePasConfirmacioRef,
-		usuariLoguejat
+		claudePasConfirmacioRef
 	) =>
-		signUpAdmin(
+		altaUsuari(
 			e,
 			dadesUsuari,
 			claudePasRef,
 			claudePasConfirmacioRef,
-			usuariLoguejat,
 			setLogueigUsuari,
 			signup,
 			setElement
@@ -115,7 +113,7 @@ export const useFormulariAutenticacio = () => {
 		processant: logueigUsuari.processant,
 		missatge: logueigUsuari.missatge,
 		handleSubmitSignup,
-		handleSubmitSignupAdmin,
+		handleSubmitAltaUsuari,
 		handleSubmitLogin,
 		handleSubmitGoogle,
 		handleSubmitNovaClaudePas,

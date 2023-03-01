@@ -35,11 +35,11 @@ function PanellAdmin() {
 							<Link to="usuaris">
 								<Boto onClick={handleMostrar}>Usuaris</Boto>
 							</Link>
-							<Link to="espais">
-								<Boto onClick={handleMostrar}>Espais</Boto>
-							</Link>
 							<Link to="artistes">
 								<Boto onClick={handleMostrar}>Artistes</Boto>
+							</Link>
+							<Link to="espais">
+								<Boto onClick={handleMostrar}>Espais</Boto>
 							</Link>
 							<Link to="esdeveniments">
 								<Boto onClick={handleMostrar}>Esdeveniments</Boto>

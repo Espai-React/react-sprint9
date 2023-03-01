@@ -5,11 +5,11 @@ import Boto from "../../common/Boto";
 import { useFormulariAutenticacio } from "../../../lib/hooks/useFormulariAutenticacio";
 import { useAppContext } from "../../../context/AppContext";
 import { useNavigate } from "react-router-dom";
-import { useUsuaris } from "../../../lib/hooks/useUsuaris";
+import { usedb } from "../../../lib/hooks/usedb";
 import { condAdmin } from "../../../lib/constants/condAdmin";
 
 const FormulariSignup = () => {
-	const { dadesUsuari, setDades, setDadesUsuari } = useUsuaris();
+	const { dadesUsuari, setDades, setDadesUsuari } = usedb();
 	const claudePasRef = useRef();
 	const claudePasConfirmacioRef = useRef();
 
@@ -44,7 +44,7 @@ const FormulariSignup = () => {
 				tipus="password"
 				nom="claudePas"
 				referencia={claudePasRef}
-				onChange={(e) =>
+				onChange={() =>
 					setDades(
 						"administrador",
 						condAdmin(claudePasRef.current.value),

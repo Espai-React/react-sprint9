@@ -1,14 +1,14 @@
 import { ContenidorForm } from "../../../styles/common/ContenidorForm.styles";
-import FormulariSignUpAdmin from '../FormulariSignupAdmin';
+import FormulariAltaEspai from "../FormulariAltaEspai";
 import { Subtitol } from '../../../styles/common/Subtitol.styles';
 
-const UsuariAlta = () => (
+const AltaEspai = () => (
 	<ContenidorForm>
 		<div className="capçalera">
-			<Subtitol>Alta usuari administració</Subtitol>
+			<Subtitol>Alta espai administració</Subtitol>
 		</div>
-		<FormulariSignUpAdmin />
+		<FormulariAltaEspai />
 	</ContenidorForm>
 );
 
-export default UsuariAlta;
+export default AltaEspai;

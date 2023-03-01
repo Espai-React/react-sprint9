@@ -5,21 +5,21 @@ import Boto from "../../common/Boto";
 import { useFormulariAutenticacio } from "../../../lib/hooks/useFormulariAutenticacio";
 import { useAppContext } from "../../../context/AppContext";
 import { condAdmin } from "../../../lib/constants/condAdmin";
-import { useUsuaris } from "../../../lib/hooks/useUsuaris";
-import { useNavigate } from 'react-router-dom';
+import { usedb } from "../../../lib/hooks/usedb";
+import { useNavigate } from "react-router-dom";
 
-const FormulariSignupAdmin = () => {
-	const { dadesUsuari, setDades, setDadesUsuari } = useUsuaris();
+const FormulariAltaUsuari = () => {
+	const { dadesUsuari, setDades, setDadesUsuari } = usedb();
 	const claudePasRef = useRef();
 	const claudePasConfirmacioRef = useRef();
 
-	const { error, missatge, processant, handleSubmitSignupAdmin } =
+	const { error, missatge, processant, handleSubmitAltaUsuari } =
 		useFormulariAutenticacio();
 	const { usuariLoguejat } = useAppContext();
 	const navega = useNavigate();
 
 	const handleSubmit = (e) =>
-		handleSubmitSignupAdmin(
+		handleSubmitAltaUsuari(
 			e,
 			dadesUsuari,
 			claudePasRef,
@@ -29,7 +29,7 @@ const FormulariSignupAdmin = () => {
 		);
 
 	return (
-		<Formulari id="signup" onSubmit={handleSubmit}>
+		<Formulari id="altaUsuari" onSubmit={handleSubmit}>
 			<BlocInput
 				etiqueta="Correu electrònic *"
 				tipus="email"
@@ -48,7 +48,8 @@ const FormulariSignupAdmin = () => {
 				onChange={(e) =>
 					setDades(
 						"administrador",
-						condAdmin(claudePasRef.current.value, setDadesUsuari)
+						condAdmin(claudePasRef.current.value),
+						setDadesUsuari
 					)
 				}
 				requerit={true}
@@ -112,10 +113,10 @@ const FormulariSignupAdmin = () => {
 				{error && <span>{error}</span>}
 			</div>
 			<Boto tipus="submit" deshabilitat={processant}>
-				Crear usuari
+				Crear registre usuari
 			</Boto>
 		</Formulari>
 	);
 };
 
-export default FormulariSignupAdmin;
+export default FormulariAltaUsuari;

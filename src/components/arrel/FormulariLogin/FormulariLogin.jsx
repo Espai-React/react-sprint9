@@ -7,11 +7,11 @@ import { useFormulariAutenticacio } from "../../../lib/hooks/useFormulariAutenti
 import { logosLogin } from "../../../lib/constants/logosLogin";
 import { BotoLogo } from "../../../styles/common/BotoLogo.styles";
 import { useAppContext } from "../../../context/AppContext";
-import { useUsuaris } from "../../../lib/hooks/useUsuaris";
+import { usedb } from "../../../lib/hooks/usedb";
 import { condAdmin } from "../../../lib/constants/condAdmin";
 
 const FormulariLogin = () => {
-	const { dadesUsuari, setDades, setDadesUsuari } = useUsuaris();
+	const { dadesUsuari, setDades, setDadesUsuari } = usedb();
 	const claudePasRef = useRef();
 
 	const { error, missatge, processant, handleSubmitLogin, handleSubmitGoogle } =
@@ -40,7 +40,7 @@ const FormulariLogin = () => {
 				tipus="password"
 				nom="claudePas"
 				referencia={claudePasRef}
-				onChange={(e) =>
+				onChange={() =>
 					setDades(
 						"administrador",
 						condAdmin(claudePasRef.current.value),

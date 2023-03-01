@@ -1,12 +1,11 @@
-export const signUpAdmin = async (
+export const altaUsuari = async (
 	e,
 	dadesUsuari,
 	claudePasRef,
 	claudePasConfirmacioRef,
-	usuariLoguejat,
 	setLogueigUsuari,
 	signup,
-	setusuari
+	setElement
 ) => {
 	e.preventDefault();
 	setLogueigUsuari({
@@ -26,10 +25,11 @@ export const signUpAdmin = async (
 
 	try {
 		const usuari = await signup(correuElectronic, claudePasRef.current.value);
-		await setusuari("usuaris", usuari.user.uid, dadesUsuari);
+		await setElement("usuaris", usuari.user.uid, dadesUsuari);
+		document.getElementById("altaUsuari").reset();
 		setLogueigUsuari((prev) => ({
 			...prev,
-			missatge: `Nou usuari: ${usuariLoguejat}`,
+			missatge: `Alta usuari: ${correuElectronic}`,
 		}));
 	} catch (err) {
 		let error;

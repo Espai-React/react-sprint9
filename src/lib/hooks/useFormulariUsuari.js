@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useUsuaris } from "./useUsuaris";
+import { usedb } from "./usedb";
 import { crearUsuari } from "../utils/usuari/crearUsuari";
 import { obtenirUsuari } from "../utils/usuari/obtenirUsuari";
 import { actualitzarUsuari } from "../utils/usuari/actualitzarUsuari";
@@ -10,8 +10,8 @@ export const useFormulariUsuari = () => {
 		setDadesUsuari,
 		crearElement,
 		actualitzarElement,
-		obtenirElement
-	} = useUsuaris();
+		obtenirElement,
+	} = usedb();
 
 	const [procesUsuari, setProcesUsuari] = useState({
 		processant: false,
@@ -48,7 +48,7 @@ export const useFormulariUsuari = () => {
 			navega,
 			setProcesUsuari,
 			actualitzarElement
-		)
+		);
 	};
 
 	return {

@@ -1,10 +1,10 @@
 import { createContext, useContext, useEffect } from "react";
 import { useAutenticacio } from "../lib/hooks/useAutenticacio";
-import { useUsuaris } from "../lib/hooks/useUsuaris";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, refUsuaris } from "../config/firebase/firebase";
 import { onSnapshot } from "firebase/firestore";
 import { useFormulariUsuari } from "../lib/hooks/useFormulariUsuari";
+import { usedb } from '../lib/hooks/usedb';
 
 export const Context = createContext();
 export const useAppContext = () => useContext(Context);
@@ -28,7 +28,7 @@ const ContextProvider = ({ children }) => {
 		},
 		setDades,
 		setDadesUsuari,
-	} = useUsuaris();
+	} = usedb();
 
 	const { handleGetUser } = useFormulariUsuari();
 

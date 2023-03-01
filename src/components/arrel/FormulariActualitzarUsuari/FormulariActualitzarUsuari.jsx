@@ -83,7 +83,17 @@ const FormulariActualitzarUsuari = () => {
 				requerit={false}
 				placeholder={telefon}
 			/>
-			<div className="avis">{error && <span>{error}</span>}</div>
+			<div className="avis">
+				{error ? (
+					<span>{error}</span>
+				) : (
+					<span>
+						{missatge === "Els camps marcats amb * són obligatoris"
+							? ""
+							: missatge}
+					</span>
+				)}
+			</div>
 			<Boto tipus="submit" deshabilitat={processant}>
 				Aplicar canvis
 			</Boto>

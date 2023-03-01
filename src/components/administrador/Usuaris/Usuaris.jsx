@@ -9,10 +9,10 @@ const Usuaris = () => {
 	return (
 		<ContenidorGestio>
 			<div className="capçalera">
-				<Subtitol>Gestió usuaris</Subtitol>
+				<Subtitol>Gestió d'usuaris</Subtitol>
 			</div>
 			<div className="bloc-botons">
-				<Link to="usuarialta">
+				<Link to="altausuari">
 					<Boto>Alta usuari</Boto>
 				</Link>
 				<Link to="modificacio" onClick={(e) => e.preventDefault()}>
