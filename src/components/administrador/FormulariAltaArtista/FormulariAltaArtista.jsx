@@ -18,31 +18,31 @@ const FormulariAltaArtista = () => {
 	return (
 		<Formulari id="altaArtista" onSubmit={handleSubmit}>
 			<BlocInput
-				etiqueta="Nom"
+				etiqueta="Nom *"
 				tipus="text"
 				nom="nom"
 				onChange={(e) =>
 					setDades(e.target.name, e.target.value, setDadesArtista)
 				}
-				requerit={false}
+				requerit={true}
 			/>
 			<BlocInput
-				etiqueta="Gènere"
+				etiqueta="Gènere *"
 				tipus="text"
 				nom="genere"
 				onChange={(e) =>
 					setDades(e.target.name, e.target.value, setDadesArtista)
 				}
-				requerit={false}
+				requerit={true}
 			/>
 			<BlocInput
-				etiqueta="Persona de Contacte"
+				etiqueta="Persona de Contacte *"
 				tipus="text"
 				nom="personaContacte"
 				onChange={(e) =>
 					setDades(e.target.name, e.target.value, setDadesArtista)
 				}
-				requerit={false}
+				requerit={true}
 			/>
 			<BlocInput
 				etiqueta="Correu electrònic"
@@ -54,13 +54,13 @@ const FormulariAltaArtista = () => {
 				requerit={false}
 			/>
 			<BlocInput
-				etiqueta="Número de telèfon"
+				etiqueta="Número de telèfon *"
 				tipus="text"
 				nom="telefon"
 				onChange={(e) =>
 					setDades(e.target.name, e.target.value, setDadesArtista)
 				}
-				requerit={false}
+				requerit={true}
 			/>
 			<BlocInput
 				etiqueta="Compte d'Instagram"
@@ -81,25 +81,27 @@ const FormulariAltaArtista = () => {
 				requerit={false}
 			/>
 			<BlocInput
-				etiqueta="Catxet"
+				etiqueta="Compte de Youtube"
 				tipus="text"
-				nom="catxet"
+				nom="youTube"
 				onChange={(e) =>
 					setDades(e.target.name, e.target.value, setDadesArtista)
 				}
 				requerit={false}
 			/>
+			<BlocInput
+				etiqueta="Catxet *"
+				tipus="text"
+				nom="catxet"
+				onChange={(e) =>
+					setDades(e.target.name, e.target.value, setDadesArtista)
+				}
+				requerit={true}
+			/>
 
 			<div className="avis">
-				{error ? (
-					<span>{error}</span>
-				) : (
-					<span>
-						{missatge === "Els camps marcats amb * són obligatoris"
-							? ""
-							: missatge}
-					</span>
-				)}
+				{missatge && <span>{missatge}</span>}
+				{error && <span>{error}</span>}
 			</div>
 			<Boto tipus="submit" deshabilitat={processant}>
 				Crear registre artista

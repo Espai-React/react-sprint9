@@ -17,51 +17,51 @@ const FormulariAltaEspai = () => {
 	return (
 		<Formulari id="altaEspai" onSubmit={handleSubmit}>
 			<BlocInput
-				etiqueta="Nom"
+				etiqueta="Nom *"
 				tipus="text"
 				nom="nom"
 				onChange={(e) => setDades(e.target.name, e.target.value, setDadesEspai)}
-				requerit={false}
+				requerit={true}
 			/>
 			<BlocInput
-				etiqueta="Adreça"
+				etiqueta="Adreça *"
 				tipus="text"
 				nom="adreça"
 				onChange={(e) => setDades(e.target.name, e.target.value, setDadesEspai)}
-				requerit={false}
+				requerit={true}
 			/>
 			<BlocInput
-				etiqueta="Població"
+				etiqueta="Població *"
 				tipus="text"
 				nom="poblacio"
 				onChange={(e) => setDades(e.target.name, e.target.value, setDadesEspai)}
-				requerit={false}
+				requerit={true}
 			/>
 			<BlocInput
-				etiqueta="Codi Postal"
+				etiqueta="Codi Postal *"
 				tipus="text"
-				nom="codPostal"
+				nom="codiPostal"
 				onChange={(e) => setDades(e.target.name, e.target.value, setDadesEspai)}
-				requerit={false}
+				requerit={true}
 			/>
 			<BlocInput
-				etiqueta="Persona de Contacte"
+				etiqueta="Persona de Contacte *"
 				tipus="text"
 				nom="personaContacte"
 				onChange={(e) => setDades(e.target.name, e.target.value, setDadesEspai)}
-				requerit={false}
+				requerit={true}
+			/>
+			<BlocInput
+				etiqueta="Telèfon *"
+				tipus="text"
+				nom="telefon"
+				onChange={(e) => setDades(e.target.name, e.target.value, setDadesEspai)}
+				requerit={true}
 			/>
 			<BlocInput
 				etiqueta="Correu Electrònic"
 				tipus="text"
 				nom="correuElectronic"
-				onChange={(e) => setDades(e.target.name, e.target.value, setDadesEspai)}
-				requerit={false}
-			/>
-			<BlocInput
-				etiqueta="Telèfon"
-				tipus="text"
-				nom="telefon"
 				onChange={(e) => setDades(e.target.name, e.target.value, setDadesEspai)}
 				requerit={false}
 			/>
@@ -80,23 +80,16 @@ const FormulariAltaEspai = () => {
 				requerit={false}
 			/>
 			<BlocInput
-				etiqueta="Aforament"
+				etiqueta="Aforament *"
 				tipus="text"
 				nom="aforament"
 				onChange={(e) => setDades(e.target.name, e.target.value, setDadesEspai)}
-				requerit={false}
+				requerit={true}
 			/>
 
 			<div className="avis">
-				{error ? (
-					<span>{error}</span>
-				) : (
-					<span>
-						{missatge === "Els camps marcats amb * són obligatoris"
-							? ""
-							: missatge}
-					</span>
-				)}
+				{missatge && <span>{missatge}</span>}
+				{error && <span>{error}</span>}
 			</div>
 			<Boto tipus="submit" deshabilitat={processant}>
 				Crear registre espai

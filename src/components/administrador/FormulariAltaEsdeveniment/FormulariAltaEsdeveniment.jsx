@@ -17,70 +17,63 @@ const FormulariAltaEsdeveniment = () => {
 	return (
 		<Formulari id="altaEsdeveniment" onSubmit={handleSubmit}>
 			<BlocInput
-				etiqueta="Nom esdeveniment"
+				etiqueta="Nom esdeveniment *"
 				tipus="text"
 				nom="nom"
 				onChange={(e) =>
 					setDades(e.target.name, e.target.value, setDadesEsdeveniment)
 				}
-				requerit={false}
+				requerit={true}
 			/>
 			<BlocInput
-				etiqueta="Artista"
+				etiqueta="Artista *"
 				tipus="text"
 				nom="artista"
 				onChange={(e) =>
 					setDades(e.target.name, e.target.value, setDadesEsdeveniment)
 				}
-				requerit={false}
+				requerit={true}
 			/>
 			<BlocInput
-				etiqueta="Data"
-				tipus="text"
-				nom="data"
-				onChange={(e) =>
-					setDades(e.target.name, e.target.value, setDadesEsdeveniment)
-				}
-				requerit={false}
-			/>
-			<BlocInput
-				etiqueta="Espai"
+				etiqueta="Espai *"
 				tipus="text"
 				nom="espai"
 				onChange={(e) =>
 					setDades(e.target.name, e.target.value, setDadesEsdeveniment)
 				}
-				requerit={false}
+				requerit={true}
 			/>
 			<BlocInput
-				etiqueta="Hora"
+				etiqueta="Data *"
+				tipus="text"
+				nom="data"
+				onChange={(e) =>
+					setDades(e.target.name, e.target.value, setDadesEsdeveniment)
+				}
+				requerit={true}
+				/>
+			<BlocInput
+				etiqueta="Hora *"
 				tipus="text"
 				nom="hora"
 				onChange={(e) =>
 					setDades(e.target.name, e.target.value, setDadesEsdeveniment)
 				}
-				requerit={false}
+				requerit={true}
 			/>
 			<BlocInput
-				etiqueta="Preu"
+				etiqueta="Preu *"
 				tipus="text"
 				nom="preu"
 				onChange={(e) =>
 					setDades(e.target.name, e.target.value, setDadesEsdeveniment)
 				}
-				requerit={false}
+				requerit={true}
 			/>
 
 			<div className="avis">
-				{error ? (
-					<span>{error}</span>
-				) : (
-					<span>
-						{missatge === "Els camps marcats amb * són obligatoris"
-							? ""
-							: missatge}
-					</span>
-				)}
+				{missatge && <span>{missatge}</span>}
+				{error && <span>{error}</span>}
 			</div>
 			<Boto tipus="submit" deshabilitat={processant}>
 				Crear registre esdeveniment

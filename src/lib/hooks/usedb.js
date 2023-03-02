@@ -18,6 +18,7 @@ export const usedb = () => {
 		poblacio: null,
 		codiPostal: null,
 		telefon: null,
+		preferencies: []
 	});
 
 	const [dadesArtista, setDadesArtista] = useState({
@@ -27,6 +28,7 @@ export const usedb = () => {
 		correuElectronic: null,
 		telefon: null,
 		instagram: null,
+		youTube: null,
 		web: null,
 		catxet: null,
 	});

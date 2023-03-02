@@ -7,6 +7,8 @@ import { useAppContext } from "../../../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { usedb } from "../../../lib/hooks/usedb";
 import { condAdmin } from "../../../lib/constants/condAdmin";
+import { estils } from "../../../lib/constants/llistesChecks";
+import BlocCheck from "../../common/BlocCheck/BlocCheck";
 
 const FormulariSignup = () => {
 	const { dadesUsuari, setDades, setDadesUsuari } = usedb();
@@ -26,6 +28,7 @@ const FormulariSignup = () => {
 			usuariLoguejat,
 			navega
 		);
+	console.log(dadesUsuari);
 
 	return (
 		<Formulari id="signup" onSubmit={handleSubmit}>
@@ -38,7 +41,6 @@ const FormulariSignup = () => {
 				}
 				requerit={true}
 			/>
-
 			<BlocInput
 				etiqueta="Contrasenya *"
 				tipus="password"
@@ -105,6 +107,28 @@ const FormulariSignup = () => {
 				}
 				requerit={false}
 			/>
+
+			<fieldset
+				className="preferencies"
+				onChange={(e) => {
+					const arr = document.querySelectorAll(".checkbox-estils");
+					console.log(arr);
+				}}>
+				<legend>Preferènies d'espectacle *</legend>
+				<ul className="estils">
+					{estils.map((estil, index) => (
+						<div className="checkbox-estils">
+							<BlocCheck
+								key={index}
+								etiqueta={estil[0].toUpperCase() + estil.substring(1)}
+								tipus="checkbox"
+								nom={estil}
+								value={estil}
+							/>
+						</div>
+					))}
+				</ul>
+			</fieldset>
 
 			<div className="avis">
 				{missatge && <span>{missatge}</span>}

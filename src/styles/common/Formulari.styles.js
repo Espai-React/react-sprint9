@@ -5,6 +5,29 @@ export const Formulari = styled.form`
 	align-items: center;
 	gap: 0.5rem;
 
+	.preferencies {
+		width: 100%;
+		border: 0.25rem solid ${({ theme }) => theme.colors.voraLilaFluix};
+		border-radius: 0.5rem;
+		/* height: 10rem; */
+		overflow: auto;
+
+		legend {
+			font-size: 1.1rem;
+			margin-left: 1rem;
+			padding: 0.5rem;
+		}
+
+		.checkbox-estils {
+			width: 100%;
+			margin: auto;
+			padding: 1rem 1rem 1.5rem;
+			display: flex;
+			flex-flow: row wrap;
+			gap: 0.75rem 4rem;
+		}
+	}
+
 	.avis {
 		display: flex;
 		flex-direction: column;

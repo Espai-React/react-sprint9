@@ -20,7 +20,7 @@ const FormulariActualitzarUsuari = () => {
 	} = useAppContext();
 	const navega = useNavigate();
 
-	const { error, processant, handleSubmitActualitzarUsuari } =
+	const { error, missatge, processant, handleSubmitActualitzarUsuari } =
 		useFormulariUsuari();
 	const handleSubmit = (e) =>
 		handleSubmitActualitzarUsuari(
