@@ -7,9 +7,11 @@ import { useAppContext } from "../../../context/AppContext";
 import { condAdmin } from "../../../lib/constants/condAdmin";
 import { usedb } from "../../../lib/hooks/usedb";
 import { useNavigate } from "react-router-dom";
+import { estils } from "../../../lib/constants/llistesChecks";
+import BlocCheck from "../../common/BlocCheck/BlocCheck";
 
 const FormulariAltaUsuari = () => {
-	const { dadesUsuari, setDades, setDadesUsuari } = usedb();
+	const { dadesUsuari, setDades, setParaulesClau, setDadesUsuari } = usedb();
 	const claudePasRef = useRef();
 	const claudePasConfirmacioRef = useRef();
 
@@ -27,6 +29,10 @@ const FormulariAltaUsuari = () => {
 			usuariLoguejat,
 			navega
 		);
+	
+	const { preferencies } = dadesUsuari;
+	//setDades("preferencies", [], setDadesUsuari);
+	console.log(preferencies);
 
 	return (
 		<Formulari id="altaUsuari" onSubmit={handleSubmit}>
@@ -107,6 +113,32 @@ const FormulariAltaUsuari = () => {
 				}
 				requerit={false}
 			/>
+			<fieldset
+				className="preferencies"
+				name="preferencies"
+				onChange={(e) => {
+					console.log(dadesUsuari.preferencies);
+					setParaulesClau(
+						e.target.checked,
+						e.target.closest(".preferencies").name,
+						e.target.value,
+						setDadesUsuari
+					);
+				}}>
+				<legend>Preferènies d'espectacle *</legend>
+				<ul>
+					{estils.map((estil, index) => (
+						<BlocCheck
+							key={index}
+							etiqueta={estil[0].toUpperCase() + estil.substring(1)}
+							tipus="checkbox"
+							nom={estil}
+							value={estil}
+							defaultChecked={preferencies.includes(estil)}
+						/>
+					))}
+				</ul>
+			</fieldset>
 
 			<div className="avis">
 				{missatge && <span>{missatge}</span>}

@@ -9,7 +9,6 @@ html {
 body {
 	font-family: ${({ theme }) => theme.fonts.global};
   background-color: ${({ theme }) => theme.colors.fons};
-	height: 100vh;
 }
 
 * {

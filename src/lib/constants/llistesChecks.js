@@ -3,6 +3,7 @@ const LLISTESCHECKS = {
 		"rock",
 		"pop",
 		"jazz",
+		"folk",
 		"flamenco",
 		"fusió",
 		"teatre",

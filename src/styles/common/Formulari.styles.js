@@ -5,7 +5,7 @@ export const Formulari = styled.form`
 	align-items: center;
 	gap: 0.5rem;
 
-	.preferencies {
+	fieldset {
 		width: 100%;
 		border: 0.25rem solid ${({ theme }) => theme.colors.voraLilaFluix};
 		border-radius: 0.5rem;
@@ -18,13 +18,12 @@ export const Formulari = styled.form`
 			padding: 0.5rem;
 		}
 
-		.checkbox-estils {
-			width: 100%;
+		ul {
 			margin: auto;
-			padding: 1rem 1rem 1.5rem;
+			padding: 1rem 1rem 2rem 4rem;
 			display: flex;
 			flex-flow: row wrap;
-			gap: 0.75rem 4rem;
+			gap: 1rem;
 		}
 	}
 

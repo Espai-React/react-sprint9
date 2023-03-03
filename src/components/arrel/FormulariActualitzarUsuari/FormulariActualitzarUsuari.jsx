@@ -4,6 +4,8 @@ import Boto from "../../common/Boto";
 import { useFormulariUsuari } from "../../../lib/hooks/useFormulariUsuari";
 import { useAppContext } from "../../../context/AppContext";
 import { useNavigate } from "react-router-dom";
+import {estils} from '../../../lib/constants/llistesChecks';
+import BlocCheck from '../../common/BlocCheck/BlocCheck';
 
 const FormulariActualitzarUsuari = () => {
 	const {
@@ -12,10 +14,12 @@ const FormulariActualitzarUsuari = () => {
 		poblacio,
 		codiPostal,
 		telefon,
+		preferencies,
 		usuariLoguejat,
 		authID,
 		setDades,
 		setDadesUsuari,
+		setParaulesClau,
 		dadesUsuari,
 	} = useAppContext();
 	const navega = useNavigate();
@@ -83,6 +87,31 @@ const FormulariActualitzarUsuari = () => {
 				requerit={false}
 				placeholder={telefon}
 			/>
+			<fieldset
+				className="preferencies"
+				name="preferencies"
+				onChange={(e) => {
+					setParaulesClau(
+						e.target.checked,
+						e.target.closest(".preferencies").name,
+						e.target.value,
+						setDadesUsuari
+					);
+				}}>
+				<legend>Preferènies d'espectacle *</legend>
+				<ul>
+					{estils.map((estil, index) => (
+						<BlocCheck
+							key={index}
+							etiqueta={estil[0].toUpperCase() + estil.substring(1)}
+							tipus="checkbox"
+							nom={estil}
+							value={estil}
+							defaultChecked={preferencies.includes(estil)}
+						/>
+					))}
+				</ul>
+			</fieldset>
 			<div className="avis">
 				{error ? (
 					<span>{error}</span>

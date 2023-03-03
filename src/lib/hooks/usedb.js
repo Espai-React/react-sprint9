@@ -18,7 +18,7 @@ export const usedb = () => {
 		poblacio: null,
 		codiPostal: null,
 		telefon: null,
-		preferencies: []
+		preferencies: [],
 	});
 
 	const [dadesArtista, setDadesArtista] = useState({
@@ -55,11 +55,32 @@ export const usedb = () => {
 		preu: null,
 	});
 
+	const [dbs, setdbs] = useState({
+		dadesdbUsuaris: [],
+		dadesdbArtistes: [],
+		dadesdbEspais: [],
+		dadesdbEsdeveniments: [],
+	});
+
 	const setDades = (clau, valor, setter) => {
 		setter((prev) => ({
 			...prev,
 			[clau]: valor,
 		}));
+	};
+
+	const setParaulesClau = (checked, clau, valor, setter) => {
+		if (checked) {
+			setter((prev) => ({
+				...prev,
+				[clau]: [...prev[clau], valor],
+			}));
+		} else {
+			setter((prev) => ({
+				...prev,
+				[clau]: [...prev[clau].filter((item) => item !== valor)],
+			}));
+		}
 	};
 
 	const afegirElement = (nomdb, dadesElement) => {
@@ -84,7 +105,10 @@ export const usedb = () => {
 		setDadesEspai,
 		dadesEsdeveniment,
 		setDadesEsdeveniment,
+		dbs,
+		setdbs,
 		setDades,
+		setParaulesClau,
 		afegirElement,
 		setElement,
 		actualitzarElement,

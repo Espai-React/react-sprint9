@@ -9,7 +9,8 @@ const BlocCheck = ({
 	value,
 	requerit,
 	nomesLectura,
-	perDefecte
+	perDefecte,
+	defaultChecked
 }) => (
 	<Label htmlFor={nom}>
 
@@ -23,7 +24,7 @@ const BlocCheck = ({
 			ref={referencia}
 			required={requerit}
 			readOnly={nomesLectura}
-
+			defaultChecked={defaultChecked}
 		/>
 		{etiqueta}
 	</Label>

@@ -17,6 +17,6 @@ export const auth = getAuth();
 export const db = getFirestore();
 export const refUsuaris = collection(db, "usuaris");
 export const refArtistes = collection(db, "artistes");
-export const refSales = collection(db, "sales");
+export const refEspais = collection(db, "espais");
 export const refEsdeveniments = collection(db, "esdeveniments");
 export default app;

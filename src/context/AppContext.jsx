@@ -1,10 +1,16 @@
 import { createContext, useContext, useEffect } from "react";
 import { useAutenticacio } from "../lib/hooks/useAutenticacio";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth, refUsuaris } from "../config/firebase/firebase";
+import {
+	auth,
+	refUsuaris,
+	refArtistes,
+	refEspais,
+	refEsdeveniments,
+} from "../config/firebase/firebase";
 import { onSnapshot } from "firebase/firestore";
 import { useFormulariUsuari } from "../lib/hooks/useFormulariUsuari";
-import { usedb } from '../lib/hooks/usedb';
+import { usedb } from "../lib/hooks/usedb";
 
 export const Context = createContext();
 export const useAppContext = () => useContext(Context);
@@ -25,9 +31,18 @@ const ContextProvider = ({ children }) => {
 			poblacio,
 			codiPostal,
 			telefon,
+			preferencies,
 		},
+		dbs: {
+			dadesdbUsuaris,
+			dadesdbArtistes,
+			dadesdbEspais,
+			dadesdbEsdeveniments,
+		},
+		setdbs,
 		setDades,
 		setDadesUsuari,
+		setParaulesClau,
 	} = usedb();
 
 	const { handleGetUser } = useFormulariUsuari();
@@ -42,7 +57,8 @@ const ContextProvider = ({ children }) => {
 	cognom: ${cognom}
 	poblacio: ${poblacio}
 	codiPosatal: ${codiPostal}
-	telefon: ${telefon}`;
+	telefon: ${telefon};
+	preferencies: ${preferencies}`;
 	console.log(controlUsuari);
 
 	useEffect(() => {
@@ -62,7 +78,28 @@ const ContextProvider = ({ children }) => {
 			});
 			onSnapshot(refUsuaris, (snapshot) => {
 				const dadesdbUsuaris = snapshot.docs.map((doc) => ({ ...doc.data() }));
-				console.log("Dades usuaris: ", dadesdbUsuaris);
+				setDades("dadesdbUsuaris", dadesdbUsuaris, setdbs);
+				console.log("Dades Usuaris: ", dadesdbUsuaris);
+			});
+
+			onSnapshot(refArtistes, (snapshot) => {
+				const dadesdbArtistes = snapshot.docs.map((doc) => ({ ...doc.data() }));
+				setDades("dadesdbArtistes", dadesdbArtistes, setdbs);
+				console.log("Dades Artistes: ", dadesdbArtistes);
+			});
+
+			onSnapshot(refEspais, (snapshot) => {
+				const dadesdbEspais = snapshot.docs.map((doc) => ({ ...doc.data() }));
+				setDades("dadesdbEspais", dadesdbEspais, setdbs);
+				console.log("Dades Espais: ", dadesdbEspais);
+			});
+
+			onSnapshot(refEsdeveniments, (snapshot) => {
+				const dadesdbEsdeveniments = snapshot.docs.map((doc) => ({
+					...doc.data(),
+				}));
+				setDades("dadesdbEsdeveniments", dadesdbEsdeveniments, setdbs);
+				console.log("Dades Esdeveniments: ", dadesdbEsdeveniments);
 			});
 		};
 		return () => cancellaSubscripcio();
@@ -72,9 +109,7 @@ const ContextProvider = ({ children }) => {
 		usuariLoguejatComplet: usuariLoguejat === null ? null : usuariLoguejat,
 		authID: usuariLoguejat === null ? null : usuariLoguejat.uid,
 		usuariLoguejat: usuariLoguejat === null ? null : usuariLoguejat.email,
-		setDades,
 		dadesUsuari,
-		setDadesUsuari,
 		correuElectronic,
 		administrador,
 		nom,
@@ -82,6 +117,14 @@ const ContextProvider = ({ children }) => {
 		poblacio,
 		codiPostal,
 		telefon,
+		preferencies,
+		setDades,
+		setDadesUsuari,
+		setParaulesClau,
+		dadesdbUsuaris,
+		dadesdbArtistes,
+		dadesdbEspais,
+		dadesdbEsdeveniments,
 	};
 
 	return (

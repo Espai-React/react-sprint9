@@ -27,6 +27,10 @@ export const altaUsuari = async (
 		const usuari = await signup(correuElectronic, claudePasRef.current.value);
 		await setElement("usuaris", usuari.user.uid, dadesUsuari);
 		document.getElementById("altaUsuari").reset();
+		const inputs = document.querySelectorAll('input[type="checkbox"]');
+		for (let i = 0; i < inputs.length; i++) {
+			inputs[i].checked = false;
+		}
 		setLogueigUsuari((prev) => ({
 			...prev,
 			missatge: `Alta usuari: ${correuElectronic}`,

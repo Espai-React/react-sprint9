@@ -5,6 +5,7 @@ import Boto from "../../components/common/Boto";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
 import { ContenidorPanell } from "./PanellUsuari.styles";
+import LlistaUsuari from "../../components/usuari/LlistaUsuari";
 
 function PanellUsuari() {
 	const {
@@ -35,6 +36,7 @@ function PanellUsuari() {
 						<Boto>Canviar correu i contrasenya</Boto>
 					</Link>
 				</div>
+				<LlistaUsuari/>
 				<div className="boto-peu">
 					<Boto onClick={() => handleLogout(usuariLoguejat, navega)}>
 						Abandonar la sessió

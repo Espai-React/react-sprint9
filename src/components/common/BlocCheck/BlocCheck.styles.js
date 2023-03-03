@@ -5,7 +5,6 @@ export const Label = styled.label`
 	display: flex;
 	align-items: end;
 	gap: 1rem;
-	padding-left: 2rem;
 	font-size: 1.1rem;
 
 	&:hover,
@@ -21,7 +20,7 @@ export const Label = styled.label`
 		color: ${({ theme }) => theme.colors.titol};
 		border-radius: 0.25rem;
 		height: 1.5rem;
-		width: 1.5rem;
+		min-width: 1.5rem;
 
 		&:checked::after {
 			position: absolute;

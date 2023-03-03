@@ -11,7 +11,7 @@ import { estils } from "../../../lib/constants/llistesChecks";
 import BlocCheck from "../../common/BlocCheck/BlocCheck";
 
 const FormulariSignup = () => {
-	const { dadesUsuari, setDades, setDadesUsuari } = usedb();
+	const { dadesUsuari, setDades, setParaulesClau, setDadesUsuari } = usedb();
 	const claudePasRef = useRef();
 	const claudePasConfirmacioRef = useRef();
 
@@ -19,6 +19,7 @@ const FormulariSignup = () => {
 		useFormulariAutenticacio();
 	const { usuariLoguejat } = useAppContext();
 	const navega = useNavigate();
+
 	const handleSubmit = (e) =>
 		handleSubmitSignup(
 			e,
@@ -28,7 +29,6 @@ const FormulariSignup = () => {
 			usuariLoguejat,
 			navega
 		);
-	console.log(dadesUsuari);
 
 	return (
 		<Formulari id="signup" onSubmit={handleSubmit}>
@@ -107,25 +107,26 @@ const FormulariSignup = () => {
 				}
 				requerit={false}
 			/>
-
 			<fieldset
-				className="preferencies"
+				className="preferencies" name="preferencies"
 				onChange={(e) => {
-					const arr = document.querySelectorAll(".checkbox-estils");
-					console.log(arr);
+					setParaulesClau(
+						e.target.checked,
+						e.target.closest(".preferencies").name,
+						e.target.value,
+						setDadesUsuari
+					);
 				}}>
 				<legend>Preferènies d'espectacle *</legend>
-				<ul className="estils">
+				<ul>
 					{estils.map((estil, index) => (
-						<div className="checkbox-estils">
-							<BlocCheck
-								key={index}
-								etiqueta={estil[0].toUpperCase() + estil.substring(1)}
-								tipus="checkbox"
-								nom={estil}
-								value={estil}
-							/>
-						</div>
+						<BlocCheck
+							key={index}
+							etiqueta={estil[0].toUpperCase() + estil.substring(1)}
+							tipus="checkbox"
+							nom={estil}
+							value={estil}
+						/>
 					))}
 				</ul>
 			</fieldset>
