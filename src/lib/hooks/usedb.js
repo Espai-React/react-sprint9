@@ -55,6 +55,20 @@ export const usedb = () => {
 		preu: null,
 	});
 
+	let esdevenimentLlista = {
+		nomEsdeveniment: null,
+		nomArtista: null,
+		genereArtista: null,
+		dataEsdeveniment: null,
+		nomEspai: null,
+		adreçaEspai: null,
+		poblacioEspai: null,
+		codiPostalEspai: null,
+		horaEsdeveniment: null,
+		preuEsdeveniment: null,
+		descripcioEsdeveniment: null
+	};
+
 	const [dbs, setdbs] = useState({
 		dadesdbUsuaris: [],
 		dadesdbArtistes: [],
@@ -105,6 +119,7 @@ export const usedb = () => {
 		setDadesEspai,
 		dadesEsdeveniment,
 		setDadesEsdeveniment,
+		esdevenimentLlista,
 		dbs,
 		setdbs,
 		setDades,

@@ -15,6 +15,11 @@ export const ContenidorPanell = styled.div`
 		margin-bottom: 0.5rem;
 	}
 
+	h2 + h3 {
+		font-weight: bold;
+		color: ${({ theme }) => theme.colors.lletraLila};
+	}
+
 	.capçalera {
 		display: flex;
 		flex-direction: column;
@@ -24,16 +29,19 @@ export const ContenidorPanell = styled.div`
 	.bloc-botons {
 		width: 100%;
 		display: flex;
-		flex-direction: column;
 		justify-content: center;
-		gap: 0.5rem;
+		gap: 1rem;
+
+		a {
+			flex: 1;
+		}
 	}
 
 	.boto-peu {
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;/* 
+		justify-content: center; /* 
 		margin-top: auto;
 		margin-bottom: -1.5rem; */
 	}

@@ -1,6 +1,7 @@
 import { useFormulariAutenticacio } from "../../lib/hooks/useFormulariAutenticacio";
 import { ContenidorPage } from "../../styles/common/ContenidorPage.styles";
 import { Titol } from "../../styles/common/Titol.styles";
+import { Subtitol } from '../../styles/common/Subtitol.styles';
 import Boto from "../../components/common/Boto";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
@@ -26,8 +27,11 @@ function PanellUsuari() {
 			<ContenidorPanell>
 				<div className="capçalera">
 					<Titol>Panell Usuari</Titol>
-					<h3>{correuElectronic}</h3>
+					<Subtitol>
+						{`${nom} ${cognom} (${correuElectronic})`}
+					</Subtitol>
 				</div>
+				<LlistaUsuari />
 				<div className="bloc-botons">
 					<Link to="actualitzarusuari">
 						<Boto>Canviar Detalls Usuari</Boto>
@@ -36,7 +40,6 @@ function PanellUsuari() {
 						<Boto>Canviar correu i contrasenya</Boto>
 					</Link>
 				</div>
-				<LlistaUsuari/>
 				<div className="boto-peu">
 					<Boto onClick={() => handleLogout(usuariLoguejat, navega)}>
 						Abandonar la sessió

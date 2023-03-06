@@ -9,8 +9,9 @@ export const THEME = {
 	colors: {
 		lletraGlobal: "#ccc",
 		titol: "#fff",
+		lletraLila: "#535b82",
 		fons: "#111",
-		fonsFosc: "#242424",
+		fonsFosc: "#222",
 		fonsLilaFluix: "#535b82",
 		fonsLilaIntens: "#646cff",
 		fonsBotoFluix: "#535b82",

@@ -60,6 +60,12 @@ const ContextProvider = ({ children }) => {
 	telefon: ${telefon};
 	preferencies: ${preferencies}`;
 	console.log(controlUsuari);
+	console.log(
+		dadesdbUsuaris,
+		dadesdbArtistes,
+		dadesdbEspais,
+		dadesdbEsdeveniments
+	);
 
 	useEffect(() => {
 		/* const user2 = async () => await auth.currentUser?.uid.then((res) => console.log(res));
@@ -79,19 +85,19 @@ const ContextProvider = ({ children }) => {
 			onSnapshot(refUsuaris, (snapshot) => {
 				const dadesdbUsuaris = snapshot.docs.map((doc) => ({ ...doc.data() }));
 				setDades("dadesdbUsuaris", dadesdbUsuaris, setdbs);
-				console.log("Dades Usuaris: ", dadesdbUsuaris);
+				//console.log("Dades Usuaris: ", dadesdbUsuaris);
 			});
 
 			onSnapshot(refArtistes, (snapshot) => {
 				const dadesdbArtistes = snapshot.docs.map((doc) => ({ ...doc.data() }));
 				setDades("dadesdbArtistes", dadesdbArtistes, setdbs);
-				console.log("Dades Artistes: ", dadesdbArtistes);
+				//console.log("Dades Artistes: ", dadesdbArtistes);
 			});
 
 			onSnapshot(refEspais, (snapshot) => {
 				const dadesdbEspais = snapshot.docs.map((doc) => ({ ...doc.data() }));
 				setDades("dadesdbEspais", dadesdbEspais, setdbs);
-				console.log("Dades Espais: ", dadesdbEspais);
+				//console.log("Dades Espais: ", dadesdbEspais);
 			});
 
 			onSnapshot(refEsdeveniments, (snapshot) => {
@@ -99,7 +105,7 @@ const ContextProvider = ({ children }) => {
 					...doc.data(),
 				}));
 				setDades("dadesdbEsdeveniments", dadesdbEsdeveniments, setdbs);
-				console.log("Dades Esdeveniments: ", dadesdbEsdeveniments);
+				//console.log("Dades Esdeveniments: ", dadesdbEsdeveniments);
 			});
 		};
 		return () => cancellaSubscripcio();
