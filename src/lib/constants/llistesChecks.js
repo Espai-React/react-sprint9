@@ -1,15 +1,15 @@
 const LLISTESCHECKS = {
 	estils: [
-		"rock",
-		"pop",
-		"jazz",
-		"folk",
-		"flamenco",
-		"fusió",
-		"teatre",
-		"monòlegs",
-		"contes",
-		"poesia",
+		"Rock",
+		"Pop",
+		"Jazz",
+		"Folk",
+		"Flamenco",
+		"Fusió",
+		"Teatre",
+		"Monòlegs",
+		"Contes",
+		"Poesia",
 	],
 };
 

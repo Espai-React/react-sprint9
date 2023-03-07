@@ -18,7 +18,7 @@ export const Contenidor = styled.div`
 
 		ul {
 			list-style: none;
-			padding: 0.5rem 1rem 0;
+			padding: 0.5rem 4rem 0;
 			display: flex;
 			flex-flow: row wrap;
 			justify-content: center;
@@ -58,18 +58,20 @@ export const Contenidor = styled.div`
 			padding: 1rem 2rem;
 			overflow: hidden;
 
-			div {
-				display: flex;
-				flex-flow: row nowrap;
-				justify-content: center;
-				align-items: start;
-				gap: 0.5rem;
-			}
+			.titol-resum{
 
-			.titol-resum span{
-					font-size: 1.5rem;
-					font-weight: bold;
+				span {
 					color: ${({ theme }) => theme.colors.lletraLila};
+					font-weight: bold;
+				}
+
+				span:nth-child(1) {
+					font-size: 1.5rem;					
+				}
+
+				span:nth-child(2) {
+					font-size: 1rem;
+				}
 			}
 		}
 

@@ -36,8 +36,6 @@ const LlistaUsuari = () => {
 			: setIdDesplegar(idFieldset);
 	};
 
-	console.log(idDesplegar);
-
 	return (
 		<Contenidor>
 			<div>
@@ -46,13 +44,14 @@ const LlistaUsuari = () => {
 					<ul>
 						{preferencies.map((preferencia, index) => (
 							<li key={index}>
-								{preferencia[0].toUpperCase() + preferencia.substring(1)}
+								{preferencia}
 							</li>
 						))}
 					</ul>
 				</div>
 			</div>
-			{arrayllistaPanellUsuari.map((esdevenimentLlista, index) => {
+			{arrayllistaPanellUsuari.map((element, index) => {
+				let esdevenimentLlista = element;
 				const {
 					nomEsdeveniment,
 					nomArtista,
@@ -77,8 +76,8 @@ const LlistaUsuari = () => {
 						<div className={`${idDesplegar !== index ? "actiu" : "noActiu"}`}>
 							<div className="element-resum">
 								<div className="titol-resum">
-									<span>{nomArtista}</span><span> - </span>
-								<span>{nomEspai}</span>
+									<span>{nomArtista}</span>
+									<span>{nomEspai}</span>
 								</div>
 								<div>
 									{`${dataEsdeveniment} -

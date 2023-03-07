@@ -34,7 +34,7 @@ function PanellUsuari() {
 				<LlistaUsuari />
 				<div className="bloc-botons">
 					<Link to="actualitzarusuari">
-						<Boto>Canviar Detalls Usuari</Boto>
+						<Boto>Canviar detalls usuari</Boto>
 					</Link>
 					<Link to="actualitzarperfil">
 						<Boto>Canviar correu i contrasenya</Boto>
