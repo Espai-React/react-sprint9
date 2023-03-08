@@ -2,8 +2,8 @@ import { Formulari } from "../../../styles/common/Formulari.styles";
 import BlocInput from "../../common/BlocInput";
 import Boto from "../../common/Boto";
 import { usedb } from "../../../lib/hooks/usedb";
-import { useFormulariEsdeveniment } from '../../../lib/hooks/useFormulariEsdeveniment';
-
+import { useFormulariEsdeveniment } from "../../../lib/hooks/useFormulariEsdeveniment";
+import BlocTextarea from "../../common/BlocTextArea/BlocTextArea";
 
 const FormulariAltaEsdeveniment = () => {
 	const { dadesEsdeveniment, setDades, setDadesEsdeveniment } = usedb();
@@ -51,7 +51,7 @@ const FormulariAltaEsdeveniment = () => {
 					setDades(e.target.name, e.target.value, setDadesEsdeveniment)
 				}
 				requerit={true}
-				/>
+			/>
 			<BlocInput
 				etiqueta="Hora *"
 				tipus="text"
@@ -70,6 +70,13 @@ const FormulariAltaEsdeveniment = () => {
 				}
 				requerit={true}
 			/>
+			<BlocTextarea
+				etiqueta="Descricpció *"
+				nom="descripcio"
+				onChange={(e) =>
+					setDades(e.target.name, e.target.value, setDadesEsdeveniment)}
+				requerit={true}
+				></BlocTextarea>
 
 			<div className="avis">
 				{missatge && <span>{missatge}</span>}

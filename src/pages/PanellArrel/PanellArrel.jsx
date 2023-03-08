@@ -5,7 +5,7 @@ import Boto from "../../components/common/Boto";
 import { Titol } from "../../styles/common/Titol.styles";
 import { ContenidorPanell } from "./PanellArrel.styles";
 
-function PanellArrel() {
+const PanellArrel = () => {
 	return (
 		<ContenidorPage>
 			<ContenidorPanell>

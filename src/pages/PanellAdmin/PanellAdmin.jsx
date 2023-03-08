@@ -8,7 +8,7 @@ import { ContenidorPanell } from "./PanellAdmin.styles";
 import { useState } from "react";
 import { Subtitol } from '../../styles/common/Subtitol.styles';
 
-function PanellAdmin() {
+const PanellAdmin = () => {
 	const [mostrarBotons, setMostrarBotons] = useState(true);
 
 	const handleMostrar = (e) => 

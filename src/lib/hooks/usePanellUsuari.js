@@ -1,9 +1,15 @@
 import { usedb } from "./usedb";
 import { useState } from "react";
+import { crearCorreu } from '../utils/crearCorreu';
 
 export const usePanellUsuari = () => {
+	const [procesCorreuElectronic, setProcesCorreuElectronic] = useState({
+		processant: false,
+		error: "",
+		missatge: "",
+	});
 	const [idDesplegar, setIdDesplegar] = useState(-1);
-	let { esdevenimentLlista } = usedb();
+	let { esdevenimentLlista, afegirElement } = usedb();
 
 	const arrayLlistaUsuari = (
 		preferencies,
@@ -41,8 +47,29 @@ export const usePanellUsuari = () => {
 				};
 				return esdevenimentLlista;
 			})
-			.filter((esdevenimentLlista) => preferencies.includes(esdevenimentLlista.genereArtista));
+			.filter((esdevenimentLlista) =>
+				preferencies.includes(esdevenimentLlista.genereArtista)
+			);
 	};
 
-	return { arrayLlistaUsuari, idDesplegar, setIdDesplegar };
+	const enviarCorreu = (correuElectronic, nom, cognom, llistaRef) => {
+		console.log(correuElectronic, nom, cognom, llistaRef.target);
+
+/* 
+
+
+
+
+		const contingutCorreu = {
+			to: adreça,
+			message: {
+				subject: titol,
+				text: cos,
+				html: cos,
+			},
+		};
+		crearCorreu(contingutCorreu, afegirElement, setProcesCorreuElectronic); */
+	};
+
+	return { arrayLlistaUsuari, idDesplegar, setIdDesplegar, enviarCorreu };
 };

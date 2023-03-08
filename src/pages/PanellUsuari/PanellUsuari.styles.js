@@ -29,11 +29,12 @@ export const ContenidorPanell = styled.div`
 	.bloc-botons {
 		width: 100%;
 		display: flex;
+		flex-flow: row wrap;
 		justify-content: center;
-		gap: 1rem;
+		gap: 0 1rem;
 
 		a {
-			flex: 1;
+			flex: 1 1 40%;
 		}
 	}
 

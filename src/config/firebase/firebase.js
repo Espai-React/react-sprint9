@@ -13,8 +13,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth();
-export const db = getFirestore();
+export const auth = getAuth(app);
+export const db = getFirestore(app);
 export const refUsuaris = collection(db, "usuaris");
 export const refArtistes = collection(db, "artistes");
 export const refEspais = collection(db, "espais");
