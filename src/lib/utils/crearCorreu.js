@@ -10,7 +10,7 @@ export const crearCorreu = async (
 	});
 
 	try {
-		await afegirElement("correuElectronic", contingutCorreu);
+		await afegirElement("correusElectronics", contingutCorreu);
 		setProcesCorreuElectronic((prev) => ({
 			...prev,
 			missatge: `Correu electrònic creat correctament`,

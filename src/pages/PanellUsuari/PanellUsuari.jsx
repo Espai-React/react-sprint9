@@ -8,9 +8,10 @@ import { useAppContext } from "../../context/AppContext";
 import { ContenidorPanell } from "./PanellUsuari.styles";
 import LlistaUsuari from "../../components/usuari/LlistaUsuari";
 import { usePanellUsuari } from "../../lib/hooks/usePanellUsuari";
-import { useRef } from "react";
+import { useState } from "react";
 
 const PanellUsuari = () => {
+	const [arrayLlista, setArrayLlista] = useState([]);
 	const {
 		correuElectronic,
 		usuariLoguejat,
@@ -18,6 +19,7 @@ const PanellUsuari = () => {
 		administrador,
 		nom,
 		cognom,
+		telefon
 	} = useAppContext();
 	const navega = useNavigate();
 	console.log(usuariLoguejat, authID, administrador, nom, cognom);
@@ -26,7 +28,9 @@ const PanellUsuari = () => {
 	const { enviarCorreu } = usePanellUsuari();
 
 	const handleMail = () =>
-		enviarCorreu(correuElectronic, nom, cognom);
+		enviarCorreu(correuElectronic, nom, cognom, arrayLlista);
+	const handleWhatsapp = () =>
+		enviarWhatsapp(telefon, correuElectronic, nom, cognom, arrayLlista);
 
 	return (
 		<ContenidorPage>
@@ -35,12 +39,13 @@ const PanellUsuari = () => {
 					<Titol>Panell Usuari</Titol>
 					<Subtitol>{`${nom} ${cognom} (${correuElectronic})`}</Subtitol>
 				</div>
-				<LlistaUsuari/>
+				<LlistaUsuari setArrayLlista={setArrayLlista} />
 				<div className="bloc-botons">
 					<Link onClick={handleMail}>
 						<Boto>Enviar selecció per correu</Boto>
 					</Link>
-					<Link to="enviarwhatsapp" onClick={(e) => e.preventDefault()}>
+
+					<Link to="https://api.whatsapp.com/send?phone=34609526387&text=Hola">
 						<Boto>Enviar selecció per whatsapp</Boto>
 					</Link>
 					<Link to="actualitzarusuari">

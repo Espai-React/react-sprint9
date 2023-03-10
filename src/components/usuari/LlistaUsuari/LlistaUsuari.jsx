@@ -2,39 +2,30 @@ import { Contenidor } from "./LlistaUsuari.styles";
 import { useAppContext } from "../../../context/AppContext";
 import { Subtitol } from "../../../styles/common/Subtitol.styles";
 import { usePanellUsuari } from "../../../lib/hooks/usePanellUsuari";
+import { useEffect } from "react";
 
-const LlistaUsuari = () => {
+const LlistaUsuari = ({ setArrayLlista }) => {
 	const {
-		nom,
-		cognom,
 		preferencies,
 		dadesdbArtistes,
 		dadesdbEspais,
 		dadesdbEsdeveniments,
 	} = useAppContext();
-	console.log(
-		nom,
-		cognom,
+
+	const { arrayLlistaUsuari, desplegar, idDesplegar } =
+		usePanellUsuari();
+	const arrayLlistaPanellUsuari = arrayLlistaUsuari(
 		preferencies,
 		dadesdbArtistes,
 		dadesdbEsdeveniments,
 		dadesdbEspais
 	);
+	const handleDesplegar = (e) => desplegar(e);	
 
-	const { arrayLlistaUsuari, idDesplegar, setIdDesplegar } = usePanellUsuari();
-	const arrayllistaPanellUsuari = arrayLlistaUsuari(
-		preferencies,
-		dadesdbArtistes,
-		dadesdbEsdeveniments,
-		dadesdbEspais
+	useEffect(
+		() => setArrayLlista([preferencies, arrayLlistaPanellUsuari]),
+		[dadesdbEsdeveniments]
 	);
-
-	const handleDesplegar = (e) => {
-		const idFieldset = +e.target.closest(".fieldset-llista").id;
-		idDesplegar === idFieldset
-			? setIdDesplegar(-1)
-			: setIdDesplegar(idFieldset);
-	};
 
 	return (
 		<Contenidor>
@@ -43,14 +34,12 @@ const LlistaUsuari = () => {
 				<div className="preferencies">
 					<ul>
 						{preferencies.map((preferencia, index) => (
-							<li key={index}>
-								{preferencia}
-							</li>
+							<li key={index}>{preferencia}</li>
 						))}
 					</ul>
 				</div>
 			</div>
-			{arrayllistaPanellUsuari.map((element, index) => {
+			{arrayLlistaPanellUsuari.map((element, index) => {
 				let esdevenimentLlista = element;
 				const {
 					nomEsdeveniment,
@@ -118,7 +107,7 @@ const LlistaUsuari = () => {
 									{preuEsdeveniment}
 								</li>
 								<li className="element-llista">
-									<span>Descricpió: </span>
+									<span>Descripció: </span>
 									{descripcioEsdeveniment}
 								</li>
 							</ul>

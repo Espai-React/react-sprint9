@@ -101,6 +101,13 @@ export const Contenidor = styled.div`
 			.element-llista:nth-child(8) {
 				align-items: start;
 				text-align: justify;
+				line-height: 1.5;
+				/*letter-spacing: .06rem;
+				word-spacing: .01rem; */
+
+				span {
+					letter-spacing: 0;
+				}
 			}
 		}
 

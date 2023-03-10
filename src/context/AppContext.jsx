@@ -61,6 +61,7 @@ const ContextProvider = ({ children }) => {
 	preferencies: ${preferencies}`;
 	console.log(controlUsuari);
 	console.log(
+		preferencies,
 		dadesdbUsuaris,
 		dadesdbArtistes,
 		dadesdbEspais,
