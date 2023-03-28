@@ -61,7 +61,6 @@ const ContextProvider = ({ children }) => {
 	preferencies: ${preferencies}`;
 	console.log(controlUsuari);
 	console.log(
-		preferencies,
 		dadesdbUsuaris,
 		dadesdbArtistes,
 		dadesdbEspais,
@@ -74,15 +73,16 @@ const ContextProvider = ({ children }) => {
 		console.log("user2",user2); */
 		const cancellaSubscripcio = () => {
 			onAuthStateChanged(auth, async (user) => {
-				setGestioUsuari({
+				setGestioUsuari((prev) => ({
+					...prev,
 					usuariLoguejat: user,
-					loadingUsuari: false,
-				});
+				}));
 				if (user !== null) {
-					const usuari = await handleGetUser(user.uid);
+					const usuari = await handleGetUser(user.uid, usuariLoguejat);
 					setDadesUsuari(usuari);
 				}
 			});
+
 			onSnapshot(refUsuaris, (snapshot) => {
 				const dadesdbUsuaris = snapshot.docs.map((doc) => ({ ...doc.data() }));
 				setDades("dadesdbUsuaris", dadesdbUsuaris, setdbs);
@@ -108,6 +108,12 @@ const ContextProvider = ({ children }) => {
 				setDades("dadesdbEsdeveniments", dadesdbEsdeveniments, setdbs);
 				//console.log("Dades Esdeveniments: ", dadesdbEsdeveniments);
 			});
+
+			setGestioUsuari((prev) => ({
+				...prev,
+				loadingUsuari: false,
+
+			}));
 		};
 		return () => cancellaSubscripcio();
 	}, []);

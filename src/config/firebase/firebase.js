@@ -20,3 +20,14 @@ export const refArtistes = collection(db, "artistes");
 export const refEspais = collection(db, "espais");
 export const refEsdeveniments = collection(db, "esdeveniments");
 export default app;
+
+/* let authWorkerApp = firebase.initializeApp(firebase.app().options, 'auth-worker');
+let authWorkerAuth = firebase.auth(authWorkerApp);
+authWorkerAuth.setPersistence(firebase.auth.Auth.Persistence.NONE); // disables caching of account credentials
+
+authWorkerAuth.createUserWithEmailAndPassword(email, password).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+}); */

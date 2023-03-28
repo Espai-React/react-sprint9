@@ -1,3 +1,6 @@
+import { updateCurrentUser } from "firebase/auth";
+import { auth } from "../../../config/firebase/firebase";
+
 export const altaUsuari = async (
 	e,
 	dadesUsuari,
@@ -8,13 +11,14 @@ export const altaUsuari = async (
 	setElement
 ) => {
 	e.preventDefault();
+	const adminUsuari = auth.currentUser;
 	setLogueigUsuari({
 		processant: false,
 		error: "",
 		missatge: "",
 	});
-	const { correuElectronic } = dadesUsuari;
 
+	const { correuElectronic } = dadesUsuari;
 	if (claudePasRef.current.value !== claudePasConfirmacioRef.current.value) {
 		setLogueigUsuari((prev) => ({
 			...prev,
@@ -25,6 +29,8 @@ export const altaUsuari = async (
 
 	try {
 		const usuari = await signup(correuElectronic, claudePasRef.current.value);
+		console.log(usuari.user.uid);
+		console.log(dadesUsuari);
 		await setElement("usuaris", usuari.user.uid, dadesUsuari);
 		document.getElementById("altaUsuari").reset();
 		const inputs = document.querySelectorAll('input[type="checkbox"]');
@@ -35,6 +41,8 @@ export const altaUsuari = async (
 			...prev,
 			missatge: `Alta usuari: ${correuElectronic}`,
 		}));
+		//await updateCurrentUser(auth, adminUsuari);
+
 	} catch (err) {
 		let error;
 		switch (err.message) {

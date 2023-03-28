@@ -6,7 +6,6 @@ import { useFormulariAutenticacio } from "../../../lib/hooks/useFormulariAutenti
 import { useAppContext } from "../../../context/AppContext";
 import { condAdmin } from "../../../lib/constants/condAdmin";
 import { usedb } from "../../../lib/hooks/usedb";
-import { useNavigate } from "react-router-dom";
 import { estils } from "../../../lib/constants/llistesChecks";
 import BlocCheck from "../../common/BlocCheck/BlocCheck";
 
@@ -17,23 +16,15 @@ const FormulariAltaUsuari = () => {
 
 	const { error, missatge, processant, handleSubmitAltaUsuari } =
 		useFormulariAutenticacio();
-	const { usuariLoguejat } = useAppContext();
-	const navega = useNavigate();
 
 	const handleSubmit = (e) =>
 		handleSubmitAltaUsuari(
 			e,
 			dadesUsuari,
 			claudePasRef,
-			claudePasConfirmacioRef,
-			usuariLoguejat,
-			navega
+			claudePasConfirmacioRef
 		);
 	
-	const { preferencies } = dadesUsuari;
-	//setDades("preferencies", [], setDadesUsuari);
-	console.log(preferencies);
-
 	return (
 		<Formulari id="altaUsuari" onSubmit={handleSubmit}>
 			<BlocInput
@@ -51,7 +42,7 @@ const FormulariAltaUsuari = () => {
 				tipus="password"
 				nom="claudePas"
 				referencia={claudePasRef}
-				onChange={(e) =>
+				onChange={() =>
 					setDades(
 						"administrador",
 						condAdmin(claudePasRef.current.value),
@@ -116,25 +107,22 @@ const FormulariAltaUsuari = () => {
 			<fieldset
 				className="preferencies"
 				name="preferencies"
-				onChange={(e) => {
-					console.log(dadesUsuari.preferencies);
+				onChange={(e) =>
 					setParaulesClau(
 						e.target.checked,
 						e.target.closest(".preferencies").name,
 						e.target.value,
 						setDadesUsuari
-					);
-				}}>
+					)
+				}>
 				<legend>Preferènies d'espectacle *</legend>
 				<ul>
 					{estils.map((estil, index) => (
 						<BlocCheck
 							key={index}
-							etiqueta={estil[0].toUpperCase() + estil.substring(1)}
+							etiqueta={estil}
 							tipus="checkbox"
-							nom={estil}
 							value={estil}
-							defaultChecked={preferencies.includes(estil)}
 						/>
 					))}
 				</ul>

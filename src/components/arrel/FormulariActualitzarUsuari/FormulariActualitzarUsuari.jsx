@@ -103,9 +103,8 @@ const FormulariActualitzarUsuari = () => {
 					{estils.map((estil, index) => (
 						<BlocCheck
 							key={index}
-							etiqueta={estil[0].toUpperCase() + estil.substring(1)}
+							etiqueta={estil}
 							tipus="checkbox"
-							nom={estil}
 							value={estil}
 							defaultChecked={preferencies.includes(estil)}
 						/>

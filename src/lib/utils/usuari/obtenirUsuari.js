@@ -1,7 +1,8 @@
 export const obtenirUsuari = async (
 	setProcesUsuari,
 	obtenirusuari,
-	authID
+	authID,
+	usuariLoguejat
 ) => {
 	setProcesUsuari({
 		processant: false,
@@ -13,7 +14,7 @@ export const obtenirUsuari = async (
 		usuari = (await obtenirusuari("usuaris", authID)).data();
 		setProcesUsuari((prev) => ({
 			...prev,
-			missatge: `Nou usuari obtingut: ${usuari.email}`,
+			missatge: `Nou usuari obtingut: ${usuariLoguejat}`,
 		}));
 	} catch (err) {
 		setProcesUsuari((prev) => ({

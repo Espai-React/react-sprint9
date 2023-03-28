@@ -30,8 +30,8 @@ export const useFormulariUsuari = () => {
 			administrador
 		);
 
-	const handleGetUser = (authID) =>
-		obtenirUsuari(setProcesUsuari, obtenirElement, authID);
+	const handleGetUser = (authID, usuariLoguejat) =>
+		obtenirUsuari(setProcesUsuari, obtenirElement, authID, usuariLoguejat);
 
 	const handleSubmitActualitzarUsuari = (
 		e,
